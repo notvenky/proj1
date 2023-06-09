@@ -1,0 +1,31 @@
+<mujoco>
+
+
+  <asset>
+    <!-- Meshes -->
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="green_leg_holder" file="green_leg_holder.STL"/>
+    <mesh name="central_link" file="central_link.STL"/>
+    <mesh name="red_central" file="red_central.STL"/>
+    <mesh name="red_leg_holder" file="red_leg_holder.STL"/>
+    <mesh name="red_leg" file="red_leg.STL"/>
+    <!-- Textures -->
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <!-- Materials -->
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset>
+
+
+  <worldbody>
+    <!-- Floor -->
+    <geom name="floor" condim="3" friction="0.9" size="0 0 0.05" type="plane" material="groundplane"/>
+    <!-- Light -->
+    <light name="ceiling" pos="0 0 2" dir="0 0 -1" directional="true"/>
+    <!-- Cameras -->
+    <camera name="target_from_origin" pos="0 0 1.25" xyaxes="0 -1 0 1 0 0"/>
+    <camera name="fixed_right" pos="2 -3 0.5" xyaxes="1 0 0 0 0.08 0.92" fovy="15" mode="fixed"/>
+  </worldbody>
+
+
+</mujoco>
