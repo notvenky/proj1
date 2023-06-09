@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Arbot_Final2">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.364397154664965 -0.247649999434367 -6.01260156101907E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.0302629231778384" />
+      <inertia
+        ixx="5.02495112065811E-06"
+        ixy="-2.27906657995863E-12"
+        ixz="-9.97393861619318E-13"
+        iyy="7.84051273383468E-06"
+        iyz="-4.13120009798839E-13"
+        izz="1.03414373246399E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Green Leg Holder">
+    <inertial>
+      <origin
+        xyz="0.0172732169920311 -1.71312543556777E-05 -0.031287417066664"
+        rpy="0 0 0" />
+      <mass
+        value="0.0691823471806534" />
+      <inertia
+        ixx="1.52782344011748E-05"
+        ixy="3.54597373724228E-12"
+        ixz="-1.9993525554542E-08"
+        iyy="1.71482472005019E-05"
+        iyz="1.06365725923554E-08"
+        izz="1.18773213678251E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Green Leg Holder.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Green Leg Holder.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Green_Leg Final Joint"
+    type="revolute">
+    <origin
+      xyz="0.323499999999949 -0.23065 0"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="Green Leg Holder" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Central Link">
+    <inertial>
+      <origin
+        xyz="9.37687602729006E-10 -0.0119556715226655 -0.00143737365720042"
+        rpy="0 0 0" />
+      <mass
+        value="0.0539301513915476" />
+      <inertia
+        ixx="1.40798231745956E-05"
+        ixy="5.95969931463667E-13"
+        ixz="4.50385489839396E-12"
+        iyy="8.83030787701522E-06"
+        iyz="7.82570198785263E-09"
+        izz="1.31645266254471E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Central Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Central Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Green Leg Central Joint"
+    type="revolute">
+    <origin
+      xyz="0.0170000000000003 0 -0.104499999999949"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="Green Leg Holder" />
+    <child
+      link="Central Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Red Leg Central Link">
+    <inertial>
+      <origin
+        xyz="-0.000634683524230184 -0.0270609311037213 -0.000240499458323506"
+        rpy="0 0 0" />
+      <mass
+        value="0.0785754173873364" />
+      <inertia
+        ixx="2.04672328369046E-05"
+        ixy="-6.51213489103556E-07"
+        ixz="-1.29580299420282E-11"
+        iyy="1.51377371263558E-05"
+        iyz="1.99352638242334E-08"
+        izz="1.98684640283872E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Red Leg Central Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Red Leg Central Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Red Leg Central Joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.0451500000000005"
+      rpy="1.5707963267949 0 1.5707963267949" />
+    <parent
+      link="Central Link" />
+    <child
+      link="Red Leg Central Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Red Leg Holder">
+    <inertial>
+      <origin
+        xyz="9.37687582279786E-10 -0.0119556715226657 -0.00143737365720034"
+        rpy="0 0 0" />
+      <mass
+        value="0.0539301513915474" />
+      <inertia
+        ixx="1.40798231745956E-05"
+        ixy="5.95969931287753E-13"
+        ixz="4.50385488910611E-12"
+        iyy="8.83030787701518E-06"
+        iyz="7.82570198786425E-09"
+        izz="1.3164526625447E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Red Leg Holder.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Red Leg Holder.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Red Knee"
+    type="revolute">
+    <origin
+      xyz="0 -0.104849999999999 0"
+      rpy="1.5707963267949 -1.5707963267949 3.1415927" />
+    <parent
+      link="Red Leg Central Link" />
+    <child
+      link="Red Leg Holder" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Red Leg">
+    <inertial>
+      <origin
+        xyz="0.0010112767157601 0.025027019650126 -0.00024735719341561"
+        rpy="0 0 0" />
+      <mass
+        value="0.0764066104013377" />
+      <inertia
+        ixx="2.30518915119425E-05"
+        ixy="-9.23317363001208E-07"
+        ixz="2.74998773262247E-11"
+        iyy="1.21149998535774E-05"
+        iyz="-1.9968936333633E-08"
+        izz="2.08200487284504E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Red Leg.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Arbot_Final2/meshes/Red Leg.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Red Leg Final Joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.045"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="Red Leg Holder" />
+    <child
+      link="Red Leg" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
