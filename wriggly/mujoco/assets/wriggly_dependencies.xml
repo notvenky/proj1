@@ -1,1 +1,52 @@
-<mujoco/>
+<mujoco>
+  <compiler angle="radian" inertiafromgeom="auto" inertiagrouprange="4 5"/>
+
+  <default>
+    <default class="wriggly">
+      <joint limited="true" damping="1" armature="0.001"/>
+      <geom contype="1" conaffinity="1" condim="4" group="1" margin="0.001" solref=".02 1" solimp=".8 .9 .01"/>
+      <position ctrllimited="true" kp="5"/>
+      <default class="viz_metal_black">
+        <geom contype="0" conaffinity="0" group="1" type="mesh" material="metal_black" mass="0"/>
+      </default>
+      <default class="viz_metal_grey">
+        <geom contype="0" conaffinity="0" group="1" type="mesh" material="metal_grey" mass="0"/>
+      </default>
+      <default class="viz_plastic">
+        <geom contype="0" conaffinity="0" group="1" type="mesh" material="plastic" mass="0"/>
+      </default>
+      <default class="collision">
+        <geom contype="1" conaffinity="1" group="4" rgba="0.3 0.3 1.0 0.5"/>
+        <site group="4"/>
+      </default>
+    </default>
+  </default>
+  <asset>
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="green_leg_holder" file="green_leg_holder.STL"/>
+    <mesh name="central_link" file="central_link.STL"/>
+    <mesh name="red_central" file="red_central.STL"/>
+    <mesh name="red_leg_holder" file="red_leg_holder.STL"/>
+    <mesh name="red_leg" file="red_leg.STL"/>
+  </asset>
+  <actuator>
+    <position name="ACT0" joint="Green_Leg_Final_Joint" class="wriggly" ctrlrange="-1.57 1.57"/>
+    <position name="ACT1" joint="Green_Leg_Central_Joint" class="wriggly" ctrlrange="-3.14 3.14"/>
+    <position name="ACT2" joint="Red_Leg_Central_Joint" class="wriggly" ctrlrange="-1.57 1.57"/>
+    <position name="ACT3" joint="Red_Knee" class="wriggly" ctrlrange="-3.14 3.14"/>
+    <position name="ACT4" joint="Red_Leg_Final_Joint" class="wriggly" ctrlrange="-1.57 1.57"/>
+  </actuator>
+  <sensor>
+    <jointpos name="ACT0_pos_sensor" joint="Green_Leg_Final_Joint"/>
+    <jointpos name="ACT1_pos_sensor" joint="Green_Leg_Central_Joint"/>
+    <jointpos name="ACT2_pos_sensor" joint="Red_Leg_Central_Joint"/>
+    <jointpos name="ACT3_pos_sensor" joint="Red_Knee"/>
+    <jointpos name="ACT4_pos_sensor" joint="Red_Leg_Final_Joint"/>
+
+    <jointvel name="ACT0_velocity_sensor" joint="Green_Leg_Final_Joint"/>
+    <jointvel name="ACT1_velocity_sensor" joint="Green_Leg_Central_Joint"/>
+    <jointvel name="ACT2_velocity_sensor" joint="Red_Leg_Central_Joint"/>
+    <jointvel name="ACT3_velocity_sensor" joint="Red_Knee"/>
+    <jointvel name="ACT4_velocity_sensor" joint="Red_Leg_Final_Joint"/>
+  </sensor>
+</mujoco>
