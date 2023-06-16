@@ -20,7 +20,7 @@ def main():
     mj.mjv_defaultCamera(cam)
     mj.mjv_defaultOption(opt)
 
-    xml_path = "/home/venky/Desktop/wriggly/simulation/meshes/wriggly.xml"
+    xml_path = "/home/venky/proj1/wriggly/mujoco/wriggly.xml"
     #xml_path = "/home/venky/robel_dev/robel/robel-scenes/dkitty/kitty-v2.1.xml"
     #xml_path = "/home/venky/Desktop/CILVR/quadruped/unitree/scene_torque.xml"
 

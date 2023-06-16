@@ -23,7 +23,7 @@ def main():
     mj.mjv_defaultCamera(cam)
     mj.mjv_defaultOption(opt)
 
-    xml_path = "/home/venky/Desktop/wriggly/simulation/meshes/wriggly.xml"
+    xml_path = "/home/venky/proj1/wriggly/mujoco/wriggly.xml"
     model = mj.MjModel.from_xml_path(xml_path)
     data = mj.MjData(model)
 
