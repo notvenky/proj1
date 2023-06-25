@@ -1,0 +1,17 @@
+Timestamp	Actuator IDs	Directions	Speeds	Angles	Torques	Duration
+2023-06-25 18:50:18.457551	[22]	['anticlockwise']	[142]	[419]	{11: 0, 12: 65529, 20: 71, 21: 1, 22: 0}	0.56338929197261
+2023-06-25 18:50:19.065354	[11, 21]	['anticlockwise', 'anticlockwise']	[95, 173]	[1421, 4059]	{11: 0, 12: 65530, 20: 71, 21: 0, 22: 0}	0.39099566761807536
+2023-06-25 18:50:19.641423	[20, 22, 21, 11]	['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']	[90, 113, 101, 91]	[3226, 1077, 134, 2670]	{11: 0, 12: 65529, 20: 71, 21: 0, 22: 0}	0.2935931349872435
+2023-06-25 18:50:20.825289	[12, 22]	['clockwise', 'anticlockwise']	[111, 115]	[1046, 2230]	{11: 0, 12: 65529, 20: 72, 21: 2, 22: 0}	0.9595341704026584
+2023-06-25 18:50:21.225114	[22, 12, 21]	['anticlockwise', 'anticlockwise', 'anticlockwise']	[150, 121, 54]	[2570, 2973, 3338]	{11: 0, 12: 65530, 20: 72, 21: 0, 22: 0}	0.15136169848126557
+2023-06-25 18:50:21.705214	[20, 21]	['clockwise', 'anticlockwise']	[100, 184]	[828, 2496]	{11: 0, 12: 65530, 20: 72, 21: 0, 22: 0}	0.256936447315722
+2023-06-25 18:50:22.393150	[22, 21, 12, 11, 20]	['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']	[66, 79, 90, 183, 135]	[2195, 580, 4087, 2031, 1299]	{11: 0, 12: 65530, 20: 71, 21: 0, 22: 0}	0.37269603439082244
+Timestamp,Dynamixel ID,Direction,Speed,Torque,Angle
+2023-06-25 18:51:47.537565,[[12]],[['clockwise']],98,96,2500
+2023-06-25 18:51:47.985483,[[21, 20]],[['clockwise', 'clockwise']],164,65,1474
+2023-06-25 18:51:48.433571,[[11, 20]],[['clockwise', 'clockwise']],147,19,1039
+2023-06-25 18:51:48.881487,[[20, 11, 21, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],69,43,3186
+2023-06-25 18:51:49.329421,[[22, 21, 12, 20]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],147,60,2124
+2023-06-25 18:51:49.777537,[[20, 21, 11, 22, 12]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],192,34,3184
+2023-06-25 18:51:50.225405,[[11, 22, 12, 20, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],130,59,1602
+2023-06-25 18:51:50.673341,[[11, 12, 22, 21, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],53,74,1585

@@ -17,7 +17,8 @@
     <light name="ceiling" pos="0 0 2" dir="0 0 -1" directional="true"/>
     <!-- Cameras -->
     <camera name="target_from_origin" pos="0 0 1.25" xyaxes="0 -1 0 1 0 0"/>
-    <camera name="fixed_right" pos="2 -3 0.5" xyaxes="1 0 0 0 0.08 0.92" fovy="15" mode="fixed"/>
+    <camera name = "free" pos="1.583 -1.302 2.903" xyaxes="0.762 0.648 0.000 -0.527 0.620 0.581"/>
+
   </worldbody>
 
 
