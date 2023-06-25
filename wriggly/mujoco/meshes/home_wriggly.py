@@ -34,8 +34,9 @@ def main():
     # Initialize goal positions
     num_actuators = model.nu
     goal_positions = [random.uniform(-1.57, 1.57) for _ in range(num_actuators)]
+    print(num_actuators)
 
-    std_dev = 0.05  # Standard deviation of the Gaussian noise
+    std_dev = 0.02  # Standard deviation of the Gaussian noise
 
     while not mj.glfw.glfw.window_should_close(window):
         simstart = data.time
@@ -50,9 +51,9 @@ def main():
 
                 # Move the actuator towards the goal position
                 if data.ctrl[i] < goal_positions[i]:
-                    data.ctrl[i] += 0.01
+                    data.ctrl[i] += 0.3925
                 else:
-                    data.ctrl[i] -= 0.01
+                    data.ctrl[i] -= 0.3925
 
                 # Add Gaussian noise
                 noise = np.random.normal(0, std_dev)

@@ -13,7 +13,7 @@ from dm_env import specs
 
 
 # Path to MuJoCo XML file.
-MODEL_XML_PATH = pathlib.Path('/home/venky/Desktop/wriggly/simulation/meshes/wriggly.xml')
+MODEL_XML_PATH = pathlib.Path('/home/venky/proj1/wriggly/mujoco/wriggly.xml')
 
 # Control range for joint velocities (if `kd` > 0).
 # Control ranges for joint positions and torques can be extracted from the XML.

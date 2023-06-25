@@ -1,0 +1,20 @@
+<mujoco model="wriggly">
+
+
+  <include file = "scenes/basic_scene.xml"/>
+  <!--include file = "scenes/dkitty_scene.xml"-->
+  <include file = "assets/wriggly_dependencies.xml"/>
+  <compiler meshdir="."/>
+  <include file = "assets/wriggly_chain.xml"/>
+    <worldbody>
+    <body name="markers" pos="0 0 0.4">
+      <body name="current_angle" pos="0 0 0" euler="0 0 1.57">
+        <site name="current_mark" type="capsule" size="0.006 0.1" pos="0.105 0 0" euler="0 1.57 0" rgba="0 1 0 1"/>
+      </body>
+      <body name="target_angle" pos="0 0 0" euler="0 0 4.71">
+        <site name="target_mark" type="capsule" size="0.006 0.1" pos="0.105 0 0" euler="0 1.57 0" rgba="0 0 1 1"/>
+      </body>
+    </body>
+  </worldbody>
+
+</mujoco>

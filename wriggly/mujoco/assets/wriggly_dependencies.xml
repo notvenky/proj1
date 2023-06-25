@@ -1,8 +1,9 @@
 <mujoco>
-  <compiler angle="radian" autolimits="true"/>
+  <compiler angle="radian" autolimits="true" />
   <default>
       <position forcelimited="true" forcerange="-3 3"/>
   </default>
+  <option timestep = "0.01" gravity = real(3),“0 0 -9.81”/>
   <asset>
     <mesh name="base_link"        file="../mujoco/meshes/base_link.STL"/>
     <mesh name="green_leg_holder" file="../mujoco/meshes/green_leg_holder.STL"/>

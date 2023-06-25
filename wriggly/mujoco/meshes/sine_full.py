@@ -1,7 +1,7 @@
 import random
 import numpy as np
 import mujoco as mj
-
+import math
 
 def main():
     max_width = 200
@@ -20,10 +20,7 @@ def main():
     mj.mjv_defaultCamera(cam)
     mj.mjv_defaultOption(opt)
 
-    #xml_path = "/home/venky/Desktop/wriggly/simulation/meshes/wriggly.xml"
-    xml_path = "/home/venky/robel_dev/robel/robel-scenes/dkitty/kitty-v2.1.xml"
-    #xml_path = "/home/venky/Desktop/CILVR/quadruped/unitree/scene_torque.xml"
-
+    xml_path = "/home/venky/proj1/wriggly/mujoco/wriggly.xml"
 
     model = mj.MjModel.from_xml_path(xml_path)
     data = mj.MjData(model)
@@ -31,12 +28,12 @@ def main():
     scene = mj.MjvScene(model, maxgeom=10000)
     context = mj.MjrContext(model, mj.mjtFontScale.mjFONTSCALE_150.value)
 
-    # Initialize goal positions
     num_actuators = model.nu
     goal_positions = [random.uniform(-1.57, 1.57) for _ in range(num_actuators)]
-    print(num_actuators)
+    #print(num_actuators)
 
-    std_dev = 0.1  # Standard deviation of the Gaussian noise
+    std_dev = 0.02  # Standard deviation of the Gaussian noise
+    time_step = 0.01  # Time step for the sine wave, change as per your needs
 
     while not mj.glfw.glfw.window_should_close(window):
         simstart = data.time
@@ -44,23 +41,26 @@ def main():
         while (data.time - simstart < 1.0 / 60.0):
             # Update goal positions
             for i in range(num_actuators):
-                # Check if the actuator has reached its goal position
-                if abs(data.ctrl[i] - goal_positions[i]) < 0.01:
-                    # Generate a new random goal position
-                    goal_positions[i] = random.uniform(-1.57, 1.57)
+                if i in [0, 2, 4]:
+                    # Generate the sine wave for these actuators
+                    phase = -np.pi if i == 0 else 0 if i == 2 else np.pi
+                    goal_positions[i] = 1.57*np.sin(data.time * time_step + phase)
+                elif i in [1, 3]:
+                    # Generate the sine wave for these actuators
+                    phase = -np.pi/2 if i == 1 else np.pi/2
+                    goal_positions[i] = 3.14*np.sin(data.time * time_step + phase)
 
-                # Move the actuator towards the goal position
-                if data.ctrl[i] < goal_positions[i]:
-                    data.ctrl[i] += 0.01
-                else:
-                    data.ctrl[i] -= 0.01
+                    # Move the actuator towards the goal position
+                    if data.ctrl[i] < goal_positions[i]:
+                        data.ctrl[i] += 0.05
+                    else:
+                        data.ctrl[i] -= 0.05
 
                 # Add Gaussian noise
                 noise = np.random.normal(0, std_dev)
                 data.ctrl[i] += noise
 
                 #TODO: Cable Tension
-
 
             mj.mj_step(model, data)
 
