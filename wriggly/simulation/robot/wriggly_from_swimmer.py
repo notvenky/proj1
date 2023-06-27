@@ -1,5 +1,3 @@
-
-
 """Procedurally generated wriggly domain."""
 import collections
 
@@ -57,6 +55,16 @@ SUITE = containers.TaggedTasks()
 class Physics(mujoco.Physics):
   """Physics simulation with additional features for the wriggly domain."""
 
+  def nose_to_target(self):
+    """Returns a vector from nose to target in local coordinate of the head."""
+    nose_to_target = (self.named.data.geom_xpos['target'] -
+                      self.named.data.geom_xpos['green_leg'])
+    head_orientation = self.named.data.xmat['green_leg'].reshape(3, 3)
+    return nose_to_target.dot(head_orientation)[:2]
+
+  def nose_to_target_dist(self):
+    """Returns the distance from the nose to the target."""
+    return np.linalg.norm(self.nose_to_target())
 
   def body_velocities(self):
     """Returns local body velocities: x,y linear, z rotational."""
@@ -111,9 +119,9 @@ class Wriggly(base.Task):
 
   def get_reward(self, physics):
     """Returns a smooth reward."""
-    target_size = physics.named.model.geom_size['target', 0]
+    target_size = physics.named.model.geom_size['target', 1]
     #physics.nose_to_target_dist(),
-    return rewards.tolerance(0.0,
+    return rewards.tolerance(physics.nose_to_target_dist(),
                              bounds=(0, target_size),
                              margin=5*target_size,
                              sigmoid='long_tail')

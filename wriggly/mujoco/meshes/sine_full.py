@@ -33,7 +33,8 @@ def main():
     #print(num_actuators)
 
     std_dev = 0.02  # Standard deviation of the Gaussian noise
-    time_step = 0.01  # Time step for the sine wave, change as per your needs
+    freq_even = 1
+    freq_odd = 1
 
     while not mj.glfw.glfw.window_should_close(window):
         simstart = data.time
@@ -42,19 +43,25 @@ def main():
             # Update goal positions
             for i in range(num_actuators):
                 if i in [0, 2, 4]:
-                    # Generate the sine wave for these actuators
+                    
+                    # # Generate the sine wave for these actuators
                     phase = -np.pi if i == 0 else 0 if i == 2 else np.pi
-                    goal_positions[i] = 1.57*np.sin(data.time * time_step + phase)
+                    goal_positions[i] = 1.57 * np.sin(2*np.pi * freq_even * data.time + phase)
+                    if data.ctrl[i] < goal_positions[i]:
+                        data.ctrl[i] += 0.3925
+                    else:
+                        data.ctrl[i] -= 0.3925
                 elif i in [1, 3]:
                     # Generate the sine wave for these actuators
                     phase = -np.pi/2 if i == 1 else np.pi/2
-                    goal_positions[i] = 3.14*np.sin(data.time * time_step + phase)
+                    goal_positions[i] = 3.14 * np.sin(2*np.pi * freq_odd * data.time + phase)
 
                     # Move the actuator towards the goal position
+                    # Separate the data distribution updation for even and odd
                     if data.ctrl[i] < goal_positions[i]:
-                        data.ctrl[i] += 0.05
+                        data.ctrl[i] += 0.3925
                     else:
-                        data.ctrl[i] -= 0.05
+                        data.ctrl[i] -= 0.3925
 
                 # Add Gaussian noise
                 noise = np.random.normal(0, std_dev)

@@ -27,18 +27,45 @@ try:
     errors = {dxl_id: 0 for dxl_id in DXL_ID_LIST}
     last_errors = {dxl_id: 0 for dxl_id in DXL_ID_LIST}
     while True:
-        # Randomly select the number of Dynamixels to actuate
-        num_actuators = random.choice([1,2,2,2,3,3,3,4,4,4,5,5,5])
-        # Randomly select the Dynamixel IDs to actuate
-        actuator_ids = random.sample(DXL_ID_LIST, num_actuators)
-        # Randomly select the direction of actuation for each selected Dynamixel
-        directions = [random.choice(["clockwise", "anticlockwise"]) for _ in range(num_actuators)]
-        # Randomly select the speed of actuation for each selected Dynamixel
-        speeds = [random.randint(50, 200) for _ in range(num_actuators)]
-        # Randomly select the angle of actuation for each selected Dynamixel
-        angles = [random.randint(ANGLE_RANGES[dxl_id][0], ANGLE_RANGES[dxl_id][1]) for dxl_id in actuator_ids]
-        # Randomly select the torque for each selected Dynamixel
-        torques = [random.randint(10, 100) for _ in range(num_actuators)]
+            # for i in range(num_actuators):
+            #     if i in [0, 2, 4]:
+            #         pass
+            #         # # Generate the sine wave for these actuators
+            #         phase = -np.pi if i == 0 else 0 if i == 2 else np.pi
+            #         goal_positions[i] = 1.57 * np.sin(2*np.pi * freq_even * data.time + phase)
+            #         if data.ctrl[i] < goal_positions[i]:
+            #             data.ctrl[i] += 0.3925
+            #         else:
+            #             data.ctrl[i] -= 0.3925
+            #     elif i in [1, 3]:
+            #         # Generate the sine wave for these actuators
+            #         phase = -np.pi/2 if i == 1 else np.pi/2
+            #         goal_positions[i] = 3.14 * np.sin(2*np.pi * freq_odd * data.time + phase)
+
+            #         # Move the actuator towards the goal position
+            #         # Separate the data distribution updation for even and odd
+            #         if data.ctrl[i] < goal_positions[i]:
+            #             data.ctrl[i] += 0.3925
+            #         else:
+            #             data.ctrl[i] -= 0.3925
+
+            #     # Add Gaussian noise
+            #     noise = np.random.normal(0, std_dev)
+            #     data.ctrl[i] += noise
+
+            
+        # # Randomly select the number of Dynamixels to actuate
+        # num_actuators = random.choice([1,2,2,2,3,3,3,4,4,4,5,5,5])
+        # # Randomly select the Dynamixel IDs to actuate
+        # actuator_ids = random.sample(DXL_ID_LIST, num_actuators)
+        # # Randomly select the direction of actuation for each selected Dynamixel
+        # directions = [random.choice(["clockwise", "anticlockwise"]) for _ in range(num_actuators)]
+        # # Randomly select the speed of actuation for each selected Dynamixel
+        # speeds = [random.randint(50, 200) for _ in range(num_actuators)]
+        # # Randomly select the angle of actuation for each selected Dynamixel
+        # angles = [random.randint(ANGLE_RANGES[dxl_id][0], ANGLE_RANGES[dxl_id][1]) for dxl_id in actuator_ids]
+        # # Randomly select the torque for each selected Dynamixel
+        # torques = [random.randint(10, 100) for _ in range(num_actuators)]
 
         # Write goal position, torque and speed for selected Dynamixels
         for dxl_id, direction, speed, angle, torque in zip(actuator_ids, directions, speeds, angles, torques):
@@ -81,7 +108,7 @@ try:
 
         # Wait for keyboard interrupt or random time interval
         try:
-            keyboard.wait('esc', suppress=True)
+            keyboard.wait('q', suppress=True)
             break
         except:
             pass

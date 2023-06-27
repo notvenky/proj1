@@ -5,13 +5,13 @@
         <!-- Joint -->
         <joint name="asdf" pos="0 0 0" type="free" damping="0.1" armature="0.005" frictionloss="0.01"/>
         <!-- Base Link -->
-        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base_link"/>
+        <geom name = "green_leg" pos = "0 0 0" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base_link"/>
         
         <!-- Green Leg Holder -->
         <body name="Green_Leg_Holder" pos="0.3235 -0.23065 0" quat="0.5 -0.5 0.5 -0.5" gravcomp="0">
           <inertial pos="0.0172732 -1.71313e-05 -0.0312874" quat="0.707094 0.00279184 0.00136492 0.707112" mass="0.101" diaginertia="1.71483e-05 1.52784e-05 1.18772e-05"/>
           <joint name="Green_Leg_Final_Joint" pos="0 0 0" axis="1 0 0" damping="0.1" armature="0.005" frictionloss="0.01"/>
-          <geom type="mesh" rgba="0.8 0.8 0.9 1" mesh="green_leg_holder"/>
+          <geom name = "Green_Leg_Holder" pos = "0 0 0" type="mesh" rgba="0.8 0.8 0.9 1" mesh="green_leg_holder"/>
           
           <!-- Central Link -->
           <body name="Central_Link" pos="0.017 0 -0.1045" quat="0.707107 0 0 0.707107" gravcomp="0">

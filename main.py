@@ -2,6 +2,8 @@
 # create instance of tasks class
 # create environment and pass task into it
 # import mujoco as mj
+# grail@10.19.188.62
+
 from dm_control import mujoco
 import PIL.Image
 import numpy as np
@@ -24,26 +26,32 @@ task = Wriggly(
 )
 
 
-env = control.Environment(physics, task, legacy_step=False)
+env = control.Environment(physics, task, legacy_step=True)
 
 # env = composer.Environment(
 #     task=task,
 #     time_limit=10,
 #     random_state=np.random.RandomState(42),
 #     strip_singleton_obs_buffer_dim=True,
-# ) 
+# )
+ 
 env.reset()
 pixels = []
 for camera_id in range(2):
   pixels.append(env.physics.render(camera_id=camera_id, width=480))
 PIL.Image.fromarray(np.hstack(pixels))
+
+
 # import matplotlib.pyplot as plt
 # plt.imshow(pixels[-1])
 # plt.show()
-# ret = env.step([0,0,0,0,0.])
-# print(ret)
 
+ret = env.step([0,0,0,0,0.])
+print(ret)
+    
 action_spec = env.action_spec()
+
+
 
 # Define a uniform random policy.
 def random_policy(time_step):
@@ -54,3 +62,6 @@ def random_policy(time_step):
 
 # Launch the viewer application.
 viewer.launch(env, policy=random_policy)
+
+
+import torch
