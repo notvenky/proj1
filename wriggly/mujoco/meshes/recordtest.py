@@ -1,6 +1,6 @@
 import cv2
 
-cap = cv2.VideoCapture(4) # Change the number if your camera is not the default one
+cap = cv2.VideoCapture(0) # Change the number if your camera is not the default one
 
 # Define the codec and create a VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID') # You can use others like 'MJPG', 'X264' etc.
