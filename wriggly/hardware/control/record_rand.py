@@ -21,7 +21,9 @@ with open('count.json', 'r') as f:
     data = json.load(f)
     count = data['count']
 
-cap = cv2.VideoCapture(4) 
+#cap = cv2.VideoCapture(4) 
+
+cap = cv2.VideoCapture(0)
 
 # Define the codec and create a VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID') 
