@@ -46,6 +46,7 @@ try:
             # Write goal position
             dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_POSITION, int(goal_position))
 
+
             write_counter += 1
 
             # Write to log file every WRITE_FREQ iterations
