@@ -1941,3 +1941,1001 @@ Timestamp,Dynamixel ID,Direction,Speed,Torque,Angle
 2023-06-28 12:33:06.831766,[[22, 20, 21, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],62,74,1678
 2023-06-28 12:33:07.951581,[[11, 12, 22]],[['clockwise', 'clockwise', 'clockwise']],166,89,3535
 2023-06-28 12:33:09.071666,[[11, 12, 20, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],57,81,2013
+Timestamp,Dynamixel ID,Direction,Speed,Torque,Angle
+2023-06-28 12:37:13.285026,[[21, 12, 20, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise']],187,92,1213
+2023-06-28 12:37:14.532987,[[20, 11, 12]],[['clockwise', 'anticlockwise', 'anticlockwise']],65,83,3117
+2023-06-28 12:37:15.300902,[[20, 22, 11, 12, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],62,30,1901
+2023-06-28 12:37:16.388745,[[21, 22, 20, 12, 11]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],189,11,1568
+2023-06-28 12:37:17.460808,[[11, 22]],[['clockwise', 'anticlockwise']],186,100,1298
+2023-06-28 12:37:18.724729,[[12, 21, 22]],[['anticlockwise', 'anticlockwise', 'clockwise']],161,95,3368
+2023-06-28 12:37:20.084612,[[12, 21, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],130,80,3454
+2023-06-28 12:37:21.348501,[[20, 22]],[['anticlockwise', 'anticlockwise']],82,30,2648
+2023-06-28 12:37:22.660404,[[12, 21, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],186,20,1719
+2023-06-28 12:37:23.828523,[[12, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise']],173,34,2654
+2023-06-28 12:37:25.012523,[[22, 21, 12, 11]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],184,80,2357
+2023-06-28 12:37:26.356359,[[11, 22]],[['clockwise', 'anticlockwise']],195,82,3591
+2023-06-28 12:37:27.732248,[[21]],[['clockwise']],68,29,2201
+2023-06-28 12:37:28.852310,[[12, 20, 21]],[['anticlockwise', 'anticlockwise', 'clockwise']],172,94,2158
+2023-06-28 12:37:29.860239,[[11]],[['clockwise']],54,79,1798
+2023-06-28 12:37:31.252144,[[12, 11, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],65,93,1893
+2023-06-28 12:37:32.308128,[[21, 12, 22, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],187,29,1478
+2023-06-28 12:37:33.332080,[[21, 12]],[['clockwise', 'clockwise']],73,78,2359
+2023-06-28 12:37:34.500080,[[21, 20, 22, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],63,87,1893
+2023-06-28 12:37:35.715937,[[11, 22]],[['anticlockwise', 'clockwise']],116,30,698
+2023-06-28 12:37:36.963913,[[20, 21]],[['clockwise', 'anticlockwise']],59,99,2635
+2023-06-28 12:37:38.163652,[[22, 12, 20, 21, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],164,41,2160
+2023-06-28 12:37:39.251802,[[12, 21]],[['anticlockwise', 'anticlockwise']],165,58,2945
+2023-06-28 12:37:39.987757,[[11, 12, 20]],[['anticlockwise', 'clockwise', 'clockwise']],199,42,2153
+2023-06-28 12:37:40.979702,[[11, 12, 20, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],90,72,2286
+2023-06-28 12:37:42.003650,[[22, 12]],[['clockwise', 'clockwise']],198,32,1222
+2023-06-28 12:37:42.707606,[[21, 12, 11, 20, 22]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],134,41,2858
+2023-06-28 12:37:43.491394,[[12, 22, 20, 21, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],83,81,2720
+2023-06-28 12:37:44.675595,[[20, 21]],[['anticlockwise', 'anticlockwise']],136,78,2638
+2023-06-28 12:37:45.699463,[[12, 21]],[['anticlockwise', 'clockwise']],162,86,2854
+2023-06-28 12:37:46.739325,[[12, 21, 20]],[['clockwise', 'anticlockwise', 'clockwise']],108,43,2063
+2023-06-28 12:37:47.859444,[[12, 11]],[['clockwise', 'anticlockwise']],98,11,1653
+2023-06-28 12:37:48.931238,[[12, 11, 21, 22, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],114,36,1423
+2023-06-28 12:37:50.243321,[[20]],[['clockwise']],190,58,2216
+2023-06-28 12:37:51.315241,[[20, 11]],[['anticlockwise', 'clockwise']],171,11,1916
+2023-06-28 12:37:52.195014,[[22, 21, 20, 11, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],124,23,1682
+2023-06-28 12:37:53.090974,[[22, 11, 12, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],176,42,2007
+2023-06-28 12:37:53.971092,[[20, 11, 12]],[['anticlockwise', 'anticlockwise', 'clockwise']],189,52,175
+2023-06-28 12:37:55.283029,[[12, 11, 21, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],126,51,1121
+2023-06-28 12:37:56.082949,[[11, 12, 21, 22, 20]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],195,74,1580
+2023-06-28 12:37:57.282909,[[20, 21, 12, 11, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],88,84,983
+2023-06-28 12:37:58.162984,[[21, 20, 12]],[['clockwise', 'anticlockwise', 'clockwise']],106,48,3002
+2023-06-28 12:37:59.202836,[[22, 11, 21]],[['clockwise', 'clockwise', 'clockwise']],105,71,2231
+2023-06-28 12:38:00.178785,[[12, 21, 11, 20, 22]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],107,44,2256
+2023-06-28 12:38:01.298617,[[22, 11]],[['clockwise', 'clockwise']],170,66,2852
+2023-06-28 12:38:02.258769,[[21, 20, 12, 22]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],165,40,2529
+2023-06-28 12:38:03.106632,[[12, 11, 21, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],56,37,2976
+2023-06-28 12:38:04.050597,[[12, 21, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],118,47,860
+2023-06-28 12:38:04.962379,[[11]],[['anticlockwise']],136,10,1540
+2023-06-28 12:38:05.906601,[[22, 11, 21, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],156,80,484
+2023-06-28 12:38:07.170450,[[21, 12, 11, 22, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],133,24,1046
+2023-06-28 12:38:08.370276,[[20, 11, 21]],[['clockwise', 'clockwise', 'anticlockwise']],143,70,2409
+2023-06-28 12:38:09.506288,[[12, 22, 21, 20, 11]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],87,34,2500
+2023-06-28 12:38:10.434396,[[22, 11, 20]],[['clockwise', 'clockwise', 'clockwise']],199,20,1872
+2023-06-28 12:38:11.570180,[[22, 20, 12, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],125,43,2453
+2023-06-28 12:38:12.498236,[[20, 22]],[['clockwise', 'anticlockwise']],188,92,755
+2023-06-28 12:38:13.810198,[[12, 20, 11, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],168,91,1381
+2023-06-28 12:38:14.914001,[[21, 11, 12]],[['anticlockwise', 'clockwise', 'anticlockwise']],166,96,2940
+2023-06-28 12:38:16.017910,[[12, 21]],[['clockwise', 'anticlockwise']],109,71,2310
+2023-06-28 12:38:17.025867,[[22, 20, 11, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],178,54,1962
+2023-06-28 12:38:18.225943,[[22, 12, 20, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],149,41,1737
+2023-06-28 12:38:19.569931,[[20, 12, 11, 22, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],199,13,2924
+2023-06-28 12:38:20.577715,[[21]],[['anticlockwise']],95,79,2774
+2023-06-28 12:38:21.905774,[[12, 20, 21, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],156,62,1391
+2023-06-28 12:38:22.673668,[[21, 12, 11, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],68,95,2330
+2023-06-28 12:38:23.793490,[[11, 20, 22, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],89,45,2326
+2023-06-28 12:38:25.137444,[[20, 11]],[['clockwise', 'clockwise']],163,54,2863
+2023-06-28 12:38:25.985559,[[21, 11]],[['anticlockwise', 'clockwise']],189,81,1073
+2023-06-28 12:38:27.329488,[[11, 22, 12]],[['anticlockwise', 'anticlockwise', 'clockwise']],194,38,3037
+2023-06-28 12:38:28.097462,[[12, 11, 22, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],81,53,2206
+2023-06-28 12:38:28.977281,[[11, 21, 22]],[['clockwise', 'clockwise', 'clockwise']],78,46,3011
+2023-06-28 12:38:30.081416,[[11, 21, 22, 12, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],171,33,2230
+2023-06-28 12:38:30.993329,[[21, 20, 22, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],115,35,1360
+2023-06-28 12:38:31.729250,[[22, 20, 12, 11, 21]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],61,63,1973
+2023-06-28 12:38:32.849307,[[22, 21, 11, 12, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],111,50,2927
+2023-06-28 12:38:34.081114,[[22, 21, 11, 12, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],76,77,2390
+2023-06-28 12:38:35.136938,[[22, 12]],[['clockwise', 'clockwise']],196,14,3597
+2023-06-28 12:38:36.353039,[[12, 11]],[['clockwise', 'anticlockwise']],168,58,2731
+2023-06-28 12:38:37.376970,[[22]],[['clockwise']],76,11,3403
+2023-06-28 12:38:38.369066,[[20, 11, 22]],[['anticlockwise', 'clockwise', 'anticlockwise']],80,22,1423
+2023-06-28 12:38:39.153043,[[12, 21, 22]],[['clockwise', 'clockwise', 'clockwise']],83,98,807
+2023-06-28 12:38:40.096973,[[12, 20, 11, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],56,56,2945
+2023-06-28 12:38:41.312806,[[11, 22]],[['anticlockwise', 'clockwise']],66,25,2062
+2023-06-28 12:38:42.144843,[[12]],[['clockwise']],196,25,32
+2023-06-28 12:38:43.264813,[[20, 12]],[['anticlockwise', 'clockwise']],100,48,271
+2023-06-28 12:38:44.464727,[[12, 22, 20]],[['clockwise', 'anticlockwise', 'clockwise']],120,50,1622
+2023-06-28 12:38:45.488728,[[20, 22]],[['anticlockwise', 'clockwise']],98,38,959
+2023-06-28 12:38:46.544683,[[11, 22]],[['clockwise', 'anticlockwise']],115,90,2152
+2023-06-28 12:38:47.760617,[[20, 11, 12, 21, 22]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],149,69,2895
+2023-06-28 12:38:49.152434,[[20, 21, 11, 22, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],138,83,1348
+2023-06-28 12:38:50.288375,[[20, 12, 22, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],195,70,2413
+2023-06-28 12:38:51.120327,[[11, 21]],[['anticlockwise', 'anticlockwise']],151,34,1881
+2023-06-28 12:38:51.920393,[[21, 20, 12]],[['clockwise', 'clockwise', 'anticlockwise']],139,95,773
+2023-06-28 12:38:53.024347,[[22, 21, 12, 20, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],198,23,2289
+2023-06-28 12:38:53.952261,[[20, 21, 12, 22]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],95,30,3092
+2023-06-28 12:38:54.752233,[[21, 20, 11]],[['clockwise', 'clockwise', 'anticlockwise']],72,57,2142
+2023-06-28 12:38:55.648017,[[11, 12, 21, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],159,57,2876
+2023-06-28 12:38:56.944178,[[22, 20]],[['clockwise', 'anticlockwise']],94,76,2325
+2023-06-28 12:38:58.016121,[[11, 20, 12]],[['anticlockwise', 'clockwise', 'clockwise']],155,30,2202
+2023-06-28 12:38:59.024044,[[12, 22]],[['clockwise', 'clockwise']],83,95,2388
+2023-06-28 12:39:00.016039,[[20, 11, 21, 22, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],157,39,1544
+2023-06-28 12:39:00.767949,[[11, 20, 22]],[['anticlockwise', 'anticlockwise', 'clockwise']],118,48,3801
+2023-06-28 12:39:01.519892,[[22, 12, 21]],[['clockwise', 'clockwise', 'anticlockwise']],188,18,1543
+2023-06-28 12:39:02.719764,[[20, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise']],75,33,1635
+2023-06-28 12:39:03.967803,[[20, 11, 21, 22, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],119,26,1086
+2023-06-28 12:39:05.039715,[[20, 12]],[['anticlockwise', 'clockwise']],118,99,3406
+2023-06-28 12:39:06.047563,[[20, 21, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],55,84,2045
+2023-06-28 12:39:06.847656,[[12, 21]],[['anticlockwise', 'anticlockwise']],199,76,1889
+2023-06-28 12:39:08.111603,[[12, 22, 20, 21, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],96,92,2153
+2023-06-28 12:39:09.087404,[[12, 11, 22, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],108,56,2939
+2023-06-28 12:39:10.159441,[[20, 11, 21, 12, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],70,62,2701
+2023-06-28 12:39:11.311246,[[12, 20, 21]],[['anticlockwise', 'clockwise', 'anticlockwise']],198,47,2523
+2023-06-28 12:39:12.271205,[[22, 20]],[['anticlockwise', 'anticlockwise']],184,28,2137
+2023-06-28 12:39:13.135265,[[20, 21]],[['anticlockwise', 'anticlockwise']],186,47,2129
+2023-06-28 12:39:13.935204,[[22, 21, 12, 20, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],170,80,2914
+2023-06-28 12:39:15.071150,[[11, 12, 21]],[['anticlockwise', 'clockwise', 'anticlockwise']],116,56,2758
+2023-06-28 12:39:16.367055,[[21, 11, 20]],[['clockwise', 'clockwise', 'clockwise']],55,78,1295
+2023-06-28 12:39:17.534965,[[11]],[['clockwise']],79,72,1866
+2023-06-28 12:39:18.862922,[[20, 12, 11, 21, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],180,57,2208
+2023-06-28 12:39:20.286794,[[11, 22]],[['anticlockwise', 'clockwise']],120,16,3023
+2023-06-28 12:39:21.470742,[[21, 11, 20, 22, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],109,33,589
+2023-06-28 12:39:22.142786,[[21, 22]],[['anticlockwise', 'anticlockwise']],59,75,1250
+2023-06-28 12:39:23.326510,[[22, 21, 11, 12, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],191,18,2061
+2023-06-28 12:39:24.414448,[[21, 22]],[['anticlockwise', 'anticlockwise']],195,73,2152
+2023-06-28 12:39:25.438359,[[11, 12, 22, 20, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],155,66,1174
+2023-06-28 12:39:26.606298,[[12]],[['clockwise']],128,43,4085
+2023-06-28 12:39:27.870230,[[11, 12, 21, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],130,63,1946
+2023-06-28 12:39:29.214141,[[12, 21, 22, 20, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],54,44,2323
+2023-06-28 12:39:30.350066,[[11, 12, 22, 20]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],106,73,1734
+2023-06-28 12:39:31.422139,[[11, 12]],[['clockwise', 'clockwise']],81,13,2786
+2023-06-28 12:39:32.510065,[[22, 11, 12]],[['clockwise', 'clockwise', 'clockwise']],113,83,2548
+2023-06-28 12:39:33.389994,[[20, 21]],[['clockwise', 'clockwise']],94,76,2038
+2023-06-28 12:39:34.285936,[[12]],[['anticlockwise']],173,54,2442
+2023-06-28 12:39:35.421871,[[11, 12]],[['clockwise', 'anticlockwise']],55,35,3522
+2023-06-28 12:39:36.397824,[[11, 20, 12, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],155,58,1263
+2023-06-28 12:39:37.517611,[[11, 12, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],64,17,698
+2023-06-28 12:39:38.493574,[[12, 22, 21, 20, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],160,68,1650
+2023-06-28 12:39:39.597647,[[11, 20, 21, 22, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],158,68,1611
+2023-06-28 12:39:40.461454,[[21, 11]],[['clockwise', 'clockwise']],66,67,2932
+2023-06-28 12:39:41.405439,[[12, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise']],186,47,2167
+2023-06-28 12:39:42.669452,[[11]],[['clockwise']],100,63,1580
+2023-06-28 12:39:43.869396,[[22, 12, 20, 11, 21]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],131,55,1528
+2023-06-28 12:39:44.797160,[[20, 11, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],66,19,1793
+2023-06-28 12:39:46.013212,[[20, 11, 12, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],183,83,3063
+2023-06-28 12:39:47.389158,[[22, 20]],[['anticlockwise', 'anticlockwise']],76,37,1927
+2023-06-28 12:39:48.652926,[[12, 21, 22]],[['clockwise', 'anticlockwise', 'clockwise']],92,70,2568
+2023-06-28 12:39:49.868859,[[21, 20]],[['anticlockwise', 'clockwise']],166,85,2276
+2023-06-28 12:39:50.828787,[[21, 11, 12, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],150,44,2039
+2023-06-28 12:39:51.788823,[[12, 20]],[['clockwise', 'anticlockwise']],131,28,2082
+2023-06-28 12:39:53.068769,[[20, 12, 11]],[['anticlockwise', 'anticlockwise', 'clockwise']],90,74,2943
+2023-06-28 12:39:54.252689,[[11, 22, 21, 20, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],147,31,3731
+2023-06-28 12:39:55.276423,[[12, 22, 20, 21, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],71,25,2600
+2023-06-28 12:39:56.284478,[[20, 12]],[['clockwise', 'anticlockwise']],109,27,2692
+2023-06-28 12:39:57.164521,[[11, 12, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],72,16,3659
+2023-06-28 12:39:58.092313,[[20, 21, 12, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],153,28,2477
+2023-06-28 12:39:59.388208,[[20, 11]],[['anticlockwise', 'clockwise']],185,43,2650
+2023-06-28 12:40:00.172202,[[20, 21, 22, 11, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],108,41,2606
+2023-06-28 12:40:01.004335,[[21, 11, 20, 22]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],130,56,3523
+2023-06-28 12:40:01.740200,[[20, 11]],[['anticlockwise', 'clockwise']],163,28,1636
+2023-06-28 12:40:02.972224,[[12, 21, 22]],[['clockwise', 'clockwise', 'anticlockwise']],160,40,3111
+2023-06-28 12:40:04.012132,[[21, 12, 11]],[['anticlockwise', 'clockwise', 'anticlockwise']],174,33,3034
+2023-06-28 12:40:04.939929,[[12, 11, 21]],[['anticlockwise', 'anticlockwise', 'clockwise']],167,25,2397
+2023-06-28 12:40:05.979981,[[21, 11, 20, 12, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],167,96,1590
+2023-06-28 12:40:07.307752,[[20, 22, 21]],[['anticlockwise', 'clockwise', 'anticlockwise']],157,58,2682
+2023-06-28 12:40:08.523693,[[22, 11, 21]],[['anticlockwise', 'clockwise', 'clockwise']],65,34,1221
+2023-06-28 12:40:09.899612,[[12, 22, 11, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],123,59,1576
+2023-06-28 12:40:10.715680,[[12, 21, 20, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],78,97,2656
+2023-06-28 12:40:11.867622,[[12, 22, 11, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],69,71,1952
+2023-06-28 12:40:12.859514,[[11, 22, 21]],[['anticlockwise', 'clockwise', 'clockwise']],155,79,1865
+2023-06-28 12:40:13.771363,[[22]],[['clockwise']],153,13,4032
+2023-06-28 12:40:14.939286,[[20, 21, 11, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],79,13,3319
+2023-06-28 12:40:16.011241,[[22, 20, 21, 11, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],124,36,319
+2023-06-28 12:40:16.907193,[[11]],[['clockwise']],111,21,2898
+2023-06-28 12:40:17.691197,[[21, 20, 12]],[['anticlockwise', 'clockwise', 'clockwise']],128,58,1917
+2023-06-28 12:40:18.795035,[[12, 11, 20, 21, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],137,59,399
+2023-06-28 12:40:19.659020,[[12]],[['anticlockwise']],185,78,1239
+2023-06-28 12:40:21.018859,[[11, 21]],[['anticlockwise', 'anticlockwise']],144,20,2398
+2023-06-28 12:40:22.170970,[[21, 22, 11, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],117,46,3150
+2023-06-28 12:40:23.050879,[[22, 20, 12, 11, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],131,27,2029
+2023-06-28 12:40:24.234677,[[21, 11, 20, 22, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],72,99,3005
+2023-06-28 12:40:25.418665,[[21, 22, 11]],[['clockwise', 'anticlockwise', 'clockwise']],78,19,2827
+2023-06-28 12:40:26.426570,[[20, 11, 21, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],92,85,1424
+2023-06-28 12:40:27.370521,[[21]],[['clockwise']],155,94,1888
+2023-06-28 12:40:28.410597,[[11, 20]],[['clockwise', 'anticlockwise']],83,63,2668
+2023-06-28 12:40:29.274518,[[12, 11, 20, 22, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],125,75,2686
+2023-06-28 12:40:30.282270,[[21, 20, 11, 22, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],132,76,2092
+2023-06-28 12:40:31.114443,[[22]],[['anticlockwise']],163,81,397
+2023-06-28 12:40:32.154350,[[12, 20, 21, 11, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],81,73,2819
+2023-06-28 12:40:33.354234,[[11, 22]],[['clockwise', 'anticlockwise']],132,10,2507
+2023-06-28 12:40:34.234080,[[21, 11]],[['anticlockwise', 'anticlockwise']],99,34,1770
+2023-06-28 12:40:35.145992,[[20, 11]],[['clockwise', 'clockwise']],86,64,2627
+2023-06-28 12:40:36.410058,[[20, 11]],[['clockwise', 'clockwise']],147,50,1547
+2023-06-28 12:40:37.562010,[[12, 20, 22, 21, 11]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],57,78,2441
+2023-06-28 12:40:38.265905,[[22, 21, 20, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],139,59,2288
+2023-06-28 12:40:39.609707,[[11, 20, 12]],[['anticlockwise', 'anticlockwise', 'clockwise']],129,20,2088
+2023-06-28 12:40:40.873672,[[12, 21, 20]],[['anticlockwise', 'anticlockwise', 'clockwise']],172,82,2314
+2023-06-28 12:40:41.641787,[[21]],[['anticlockwise']],138,22,2863
+2023-06-28 12:40:42.601679,[[12, 20, 21, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],147,61,754
+2023-06-28 12:40:43.625610,[[11]],[['clockwise']],132,85,1926
+2023-06-28 12:40:44.905359,[[20]],[['clockwise']],92,99,1501
+2023-06-28 12:40:46.130393,[[22, 12]],[['clockwise', 'anticlockwise']],112,76,3695
+2023-06-28 12:40:47.319258,[[12, 11, 21, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],181,69,1395
+2023-06-28 12:40:48.207110,[[20]],[['clockwise']],88,10,2054
+2023-06-28 12:40:49.579498,[[11, 20]],[['anticlockwise', 'clockwise']],118,54,3053
+2023-06-28 12:40:50.889319,[[22, 12, 11, 21, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],186,68,1536
+2023-06-28 12:40:52.225199,[[21, 12, 11]],[['clockwise', 'anticlockwise', 'clockwise']],194,74,2901
+2023-06-28 12:40:53.631608,[[11, 21, 20, 12, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],88,48,1166
+2023-06-28 12:40:54.565989,[[12, 20, 21, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],63,44,2254
+2023-06-28 12:40:55.654372,[[21, 12, 20, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],124,70,1406
+2023-06-28 12:40:57.174845,[[22, 21, 20, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],129,38,1507
+2023-06-28 12:40:58.499926,[[22, 21]],[['anticlockwise', 'anticlockwise']],69,63,2015
+2023-06-28 12:40:59.474729,[[21, 11, 20, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],73,25,2454
+2023-06-28 12:41:00.765076,[[22, 21, 20]],[['anticlockwise', 'clockwise', 'anticlockwise']],93,61,2858
+2023-06-28 12:41:02.230631,[[21, 20]],[['clockwise', 'clockwise']],143,85,1184
+2023-06-28 12:41:03.431233,[[12, 11, 22]],[['clockwise', 'anticlockwise', 'clockwise']],75,78,553
+2023-06-28 12:41:04.679703,[[21]],[['clockwise']],164,42,1672
+2023-06-28 12:41:05.999945,[[12, 21]],[['clockwise', 'clockwise']],138,16,1361
+2023-06-28 12:41:07.141224,[[20, 11, 12, 22]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],158,88,1447
+2023-06-28 12:41:08.400630,[[11, 22]],[['anticlockwise', 'anticlockwise']],51,71,1763
+2023-06-28 12:41:09.890736,[[12, 11, 21, 22, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],186,95,3065
+2023-06-28 12:41:11.069644,[[20, 21, 12, 11, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],184,63,3690
+2023-06-28 12:41:12.180524,[[11, 12, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],59,85,2552
+2023-06-28 12:41:13.641199,[[11, 20]],[['clockwise', 'clockwise']],189,45,1367
+2023-06-28 12:41:14.627695,[[22, 11]],[['clockwise', 'clockwise']],72,26,2518
+2023-06-28 12:41:15.642241,[[11, 22, 12]],[['anticlockwise', 'clockwise', 'clockwise']],79,88,465
+2023-06-28 12:41:17.120494,[[12, 20, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],139,11,1964
+2023-06-28 12:41:18.078921,[[11, 20]],[['clockwise', 'anticlockwise']],191,83,2884
+2023-06-28 12:41:19.364243,[[22, 12]],[['clockwise', 'anticlockwise']],184,36,4050
+2023-06-28 12:41:20.660606,[[12, 20]],[['anticlockwise', 'anticlockwise']],96,19,2570
+2023-06-28 12:41:21.537090,[[20, 21, 11, 12, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],200,74,651
+2023-06-28 12:41:22.576217,[[20, 12]],[['clockwise', 'clockwise']],67,17,3652
+2023-06-28 12:41:23.888622,[[22, 11, 20, 12, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],145,35,2601
+2023-06-28 12:41:25.064609,[[22, 20, 11, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],102,43,1091
+2023-06-28 12:41:26.622046,[[12, 20]],[['anticlockwise', 'clockwise']],150,93,2024
+2023-06-28 12:41:27.799173,[[12, 22, 11, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],190,12,2964
+2023-06-28 12:41:28.958905,[[12, 11, 20]],[['clockwise', 'anticlockwise', 'clockwise']],142,76,2252
+2023-06-28 12:41:30.401151,[[11, 22, 21, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],91,59,1342
+2023-06-28 12:41:31.617995,[[20, 22, 21, 11, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],112,31,63
+2023-06-28 12:41:32.592550,[[21, 22, 12, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],199,21,1102
+2023-06-28 12:41:33.328419,[[22, 20, 12, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],160,75,1728
+2023-06-28 12:41:34.352465,[[12, 11, 20, 21, 22]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],133,100,459
+2023-06-28 12:41:35.712406,[[22, 11, 21, 12, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],186,61,2501
+2023-06-28 12:41:36.704334,[[20, 12, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],61,37,1912
+2023-06-28 12:41:37.552274,[[12, 20, 21, 22, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],141,49,1524
+2023-06-28 12:41:38.304220,[[21, 20, 12]],[['anticlockwise', 'anticlockwise', 'clockwise']],73,89,2065
+2023-06-28 12:41:39.376185,[[22, 11, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],190,10,1571
+2023-06-28 12:41:40.400236,[[22, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise']],152,25,1272
+2023-06-28 12:41:41.312051,[[20, 11, 21, 12, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],198,98,2930
+2023-06-28 12:41:42.447977,[[12, 11, 20, 22, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],181,88,1491
+2023-06-28 12:41:43.199946,[[12, 11]],[['clockwise', 'anticlockwise']],114,58,1451
+Timestamp,Dynamixel ID,Direction,Speed,Torque,Angle
+2023-06-28 12:43:13.450572,[[21, 12]],[['anticlockwise', 'anticlockwise']],149,63,521
+2023-06-28 12:43:14.554497,[[22, 11, 12, 21, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],84,56,2577
+2023-06-28 12:43:15.594581,[[11, 21, 20, 22, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],139,22,3816
+2023-06-28 12:43:16.538478,[[12, 20, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],59,55,2334
+2023-06-28 12:43:17.482402,[[21, 11, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],129,73,2025
+2023-06-28 12:43:18.650354,[[22, 12, 20]],[['clockwise', 'clockwise', 'clockwise']],77,48,2490
+2023-06-28 12:43:20.010407,[[20, 11, 12]],[['clockwise', 'anticlockwise', 'anticlockwise']],100,54,14
+2023-06-28 12:43:21.098209,[[21, 12]],[['anticlockwise', 'clockwise']],142,32,1199
+2023-06-28 12:43:22.266052,[[11, 21, 12, 22]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],63,80,726
+2023-06-28 12:43:23.146118,[[22, 12, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],51,67,2968
+2023-06-28 12:43:24.090086,[[20, 22]],[['anticlockwise', 'anticlockwise']],110,26,4007
+2023-06-28 12:43:25.193974,[[11, 12, 22]],[['clockwise', 'anticlockwise', 'clockwise']],97,43,2648
+2023-06-28 12:43:26.377789,[[21, 12, 20, 11, 22]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],58,19,3066
+2023-06-28 12:43:27.193690,[[21, 22, 11, 20, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],171,10,1428
+2023-06-28 12:43:28.489637,[[20, 12, 22, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],199,29,2904
+2023-06-28 12:43:29.689716,[[20, 22, 11, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],103,30,3671
+2023-06-28 12:43:30.665685,[[12, 21, 11]],[['clockwise', 'clockwise', 'anticlockwise']],105,64,2806
+2023-06-28 12:43:31.673632,[[11, 21]],[['clockwise', 'anticlockwise']],182,32,1444
+2023-06-28 12:43:32.681518,[[12, 22, 20]],[['anticlockwise', 'clockwise', 'clockwise']],80,88,2725
+2023-06-28 12:43:33.721475,[[22, 12, 20, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],118,40,2611
+2023-06-28 12:43:34.585481,[[20]],[['anticlockwise']],154,84,1990
+2023-06-28 12:43:35.737460,[[12, 22, 11, 21]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise']],186,84,2855
+2023-06-28 12:43:36.953245,[[12]],[['anticlockwise']],114,11,744
+2023-06-28 12:43:37.977237,[[21, 20, 12, 22, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],167,58,2061
+2023-06-28 12:43:39.145087,[[22, 20, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],176,37,1431
+2023-06-28 12:43:39.961288,[[20, 22]],[['anticlockwise', 'clockwise']],94,47,1060
+2023-06-28 12:43:40.841121,[[21]],[['anticlockwise']],84,23,2672
+2023-06-28 12:43:41.897074,[[22, 12, 11, 21, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],121,91,2632
+2023-06-28 12:43:43.112888,[[11, 12]],[['anticlockwise', 'clockwise']],63,23,1511
+2023-06-28 12:43:44.072911,[[11, 22, 12]],[['clockwise', 'anticlockwise', 'clockwise']],70,94,3939
+2023-06-28 12:43:45.160915,[[11, 22]],[['anticlockwise', 'anticlockwise']],181,16,1709
+2023-06-28 12:43:46.216865,[[12]],[['clockwise']],194,83,2170
+2023-06-28 12:43:47.272705,[[22, 12, 11, 20, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],112,58,2311
+2023-06-28 12:43:48.280606,[[12, 22, 20]],[['anticlockwise', 'clockwise', 'anticlockwise']],106,24,2287
+2023-06-28 12:43:49.672650,[[11, 20, 21]],[['clockwise', 'clockwise', 'clockwise']],76,35,2629
+2023-06-28 12:43:50.856373,[[22, 11, 21, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],121,42,2679
+2023-06-28 12:43:51.864452,[[22, 12, 20]],[['clockwise', 'clockwise', 'clockwise']],82,13,2238
+2023-06-28 12:43:53.240353,[[12, 20]],[['anticlockwise', 'clockwise']],136,68,2049
+2023-06-28 12:43:54.168366,[[12, 21, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],149,44,3441
+2023-06-28 12:43:55.192260,[[12, 21, 20, 11, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],195,40,1899
+2023-06-28 12:43:56.312044,[[22, 11, 20]],[['anticlockwise', 'clockwise', 'clockwise']],193,76,2054
+2023-06-28 12:43:57.496079,[[12, 20]],[['clockwise', 'anticlockwise']],142,44,2012
+2023-06-28 12:43:58.504101,[[11, 22, 20, 21, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],186,36,3281
+2023-06-28 12:43:59.784038,[[22, 11, 21, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],185,31,2527
+2023-06-28 12:44:00.584035,[[21, 20, 11, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],102,42,2531
+2023-06-28 12:44:01.527861,[[20, 22]],[['anticlockwise', 'anticlockwise']],83,79,2357
+2023-06-28 12:44:02.535940,[[11, 20]],[['clockwise', 'anticlockwise']],179,65,2274
+2023-06-28 12:44:03.671899,[[22, 20, 11, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],61,27,1994
+2023-06-28 12:44:04.535635,[[11, 12, 22, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],88,19,2479
+2023-06-28 12:44:05.575709,[[21, 11]],[['clockwise', 'clockwise']],70,53,2814
+2023-06-28 12:44:06.471677,[[20, 11, 21]],[['anticlockwise', 'clockwise', 'clockwise']],161,75,2353
+2023-06-28 12:44:07.287477,[[12, 20]],[['clockwise', 'anticlockwise']],85,38,1676
+2023-06-28 12:44:08.215537,[[12, 20, 21, 22, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],70,91,2121
+2023-06-28 12:44:09.351355,[[22, 12, 20]],[['clockwise', 'clockwise', 'anticlockwise']],190,18,2824
+2023-06-28 12:44:10.311452,[[21, 11]],[['clockwise', 'clockwise']],154,60,2857
+2023-06-28 12:44:11.399272,[[21, 12]],[['clockwise', 'clockwise']],105,90,795
+2023-06-28 12:44:12.167216,[[12, 22]],[['clockwise', 'clockwise']],126,14,4083
+2023-06-28 12:44:13.415221,[[12, 11, 22]],[['anticlockwise', 'anticlockwise', 'clockwise']],196,28,604
+2023-06-28 12:44:14.183199,[[11, 22, 20, 12, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],184,58,1790
+2023-06-28 12:44:15.015031,[[22, 20]],[['anticlockwise', 'clockwise']],129,72,1126
+2023-06-28 12:44:16.070988,[[21, 20]],[['clockwise', 'anticlockwise']],183,23,2949
+2023-06-28 12:44:17.094920,[[11, 20, 22]],[['clockwise', 'anticlockwise', 'anticlockwise']],190,86,111
+2023-06-28 12:44:18.263062,[[22, 12, 21, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],162,100,1545
+2023-06-28 12:44:19.398951,[[20, 22, 21]],[['anticlockwise', 'clockwise', 'clockwise']],52,55,1114
+2023-06-28 12:44:20.294728,[[20, 12]],[['clockwise', 'clockwise']],68,88,406
+2023-06-28 12:44:21.510708,[[22, 21]],[['anticlockwise', 'anticlockwise']],175,15,2656
+2023-06-28 12:44:22.342616,[[12, 22, 21, 11, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],113,26,2959
+2023-06-28 12:44:23.702568,[[20, 21, 12, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],64,56,2212
+2023-06-28 12:44:24.870558,[[20, 12]],[['anticlockwise', 'clockwise']],184,71,2440
+2023-06-28 12:44:25.846466,[[21, 11, 22, 12, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],72,27,1159
+2023-06-28 12:44:27.142331,[[21, 20]],[['anticlockwise', 'anticlockwise']],69,82,1257
+2023-06-28 12:44:28.054386,[[20, 21, 12, 22, 11]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],97,47,2354
+2023-06-28 12:44:29.142189,[[22, 20]],[['anticlockwise', 'anticlockwise']],58,42,1267
+2023-06-28 12:44:30.134417,[[21, 11]],[['anticlockwise', 'clockwise']],197,87,1193
+2023-06-28 12:44:30.934214,[[20, 21]],[['clockwise', 'clockwise']],169,38,2483
+2023-06-28 12:44:32.150215,[[22, 20, 11, 21, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],154,18,3666
+2023-06-28 12:44:33.254107,[[22, 21]],[['anticlockwise', 'clockwise']],179,67,1086
+2023-06-28 12:44:34.245985,[[20, 12, 11, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],53,100,1150
+2023-06-28 12:44:35.366017,[[21, 22, 11, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],85,38,2463
+2023-06-28 12:44:36.278007,[[21]],[['clockwise']],172,83,2456
+2023-06-28 12:44:37.605911,[[21]],[['clockwise']],66,36,1706
+2023-06-28 12:44:38.613795,[[12]],[['anticlockwise']],100,55,3507
+2023-06-28 12:44:39.733732,[[20, 11, 22, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],163,44,2828
+2023-06-28 12:44:40.917693,[[21, 11, 20, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],81,43,3097
+2023-06-28 12:44:41.637655,[[22, 11, 20, 12, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],113,10,1136
+2023-06-28 12:44:42.917385,[[11, 12]],[['clockwise', 'clockwise']],185,12,1393
+2023-06-28 12:44:43.861546,[[11, 22, 12, 21, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],175,31,1045
+2023-06-28 12:44:44.693487,[[12, 20]],[['clockwise', 'anticlockwise']],163,59,2942
+2023-06-28 12:44:46.005207,[[21, 12, 20]],[['clockwise', 'clockwise', 'anticlockwise']],165,26,2280
+2023-06-28 12:44:46.901206,[[12, 11, 21]],[['clockwise', 'anticlockwise', 'anticlockwise']],98,93,2660
+2023-06-28 12:44:47.845111,[[12, 20, 21, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],108,24,109
+2023-06-28 12:44:48.789242,[[12, 21, 22, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],149,51,2631
+2023-06-28 12:44:50.037072,[[11]],[['anticlockwise']],154,66,1278
+2023-06-28 12:44:50.917111,[[20, 11, 12, 22]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],135,55,1729
+2023-06-28 12:44:51.941044,[[11, 12, 22, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],162,99,2727
+2023-06-28 12:44:53.204996,[[11, 20, 21, 22, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],200,69,2003
+2023-06-28 12:44:54.500811,[[20, 21, 22, 12, 11]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],114,93,1130
+2023-06-28 12:44:55.332783,[[12, 11, 21, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],192,97,2300
+2023-06-28 12:44:56.308788,[[22, 20]],[['anticlockwise', 'anticlockwise']],122,29,2721
+2023-06-28 12:44:57.220658,[[21, 22]],[['clockwise', 'anticlockwise']],125,65,1973
+2023-06-28 12:44:58.292719,[[20, 11, 22, 12, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],96,15,2853
+2023-06-28 12:44:59.188471,[[20, 21, 12, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],182,78,2746
+2023-06-28 12:45:00.100608,[[11, 20]],[['clockwise', 'anticlockwise']],100,85,1922
+2023-06-28 12:45:01.108622,[[22, 21]],[['clockwise', 'anticlockwise']],120,62,1944
+2023-06-28 12:45:02.292344,[[11, 20, 22]],[['anticlockwise', 'clockwise', 'clockwise']],185,87,2089
+2023-06-28 12:45:03.124386,[[22, 11, 20, 12, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],91,12,2095
+2023-06-28 12:45:04.452304,[[22, 11, 20, 12, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],134,43,1607
+2023-06-28 12:45:05.524224,[[20, 22, 21, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise']],195,36,417
+2023-06-28 12:45:06.788142,[[21, 11, 22, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],50,31,2337
+2023-06-28 12:45:07.844210,[[12, 11, 20]],[['clockwise', 'clockwise', 'clockwise']],114,11,1069
+2023-06-28 12:45:09.108111,[[11, 22, 21, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],109,61,102
+2023-06-28 12:45:10.259964,[[12, 22]],[['clockwise', 'clockwise']],194,60,1419
+2023-06-28 12:45:11.251996,[[21, 11, 12, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],167,87,312
+2023-06-28 12:45:12.387758,[[11, 12, 20, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],121,39,1180
+2023-06-28 12:45:13.187905,[[20, 12]],[['anticlockwise', 'clockwise']],153,75,271
+2023-06-28 12:45:14.211739,[[12, 20, 22, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],183,99,1406
+2023-06-28 12:45:15.267777,[[12, 21]],[['anticlockwise', 'clockwise']],52,29,1707
+2023-06-28 12:45:16.099763,[[20, 12, 11, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],176,75,1860
+2023-06-28 12:45:17.171694,[[20, 12]],[['clockwise', 'clockwise']],176,89,3054
+2023-06-28 12:45:18.083625,[[12]],[['anticlockwise']],106,45,764
+2023-06-28 12:45:18.947453,[[11, 21, 12, 22, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],65,17,1608
+2023-06-28 12:45:20.163504,[[12, 21, 22, 11, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],155,34,3027
+2023-06-28 12:45:21.091340,[[11, 20]],[['clockwise', 'anticlockwise']],93,50,2544
+2023-06-28 12:45:22.051395,[[20, 11, 21]],[['anticlockwise', 'clockwise', 'clockwise']],61,16,1513
+2023-06-28 12:45:23.379319,[[20, 21, 11, 22, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],194,13,543
+2023-06-28 12:45:24.323108,[[11]],[['anticlockwise']],83,32,1201
+2023-06-28 12:45:25.379242,[[22, 21]],[['clockwise', 'anticlockwise']],55,12,1445
+2023-06-28 12:45:26.323168,[[11, 20, 22, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],140,64,2552
+2023-06-28 12:45:27.298966,[[21, 20, 22, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],55,61,174
+2023-06-28 12:45:28.323111,[[12]],[['clockwise']],97,27,1384
+2023-06-28 12:45:29.570851,[[20, 12, 22, 21, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],192,14,2025
+2023-06-28 12:45:30.755006,[[11, 21]],[['clockwise', 'anticlockwise']],129,43,3013
+2023-06-28 12:45:31.714775,[[21, 11]],[['clockwise', 'clockwise']],165,77,1399
+2023-06-28 12:45:32.690794,[[12, 22]],[['clockwise', 'anticlockwise']],151,83,1280
+2023-06-28 12:45:33.682785,[[21]],[['anticlockwise']],70,47,2256
+2023-06-28 12:45:35.026709,[[12, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise']],95,67,3896
+2023-06-28 12:45:36.146488,[[12, 22, 20, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],66,98,2101
+2023-06-28 12:45:37.250583,[[12, 21, 22]],[['clockwise', 'anticlockwise', 'clockwise']],159,70,2200
+2023-06-28 12:45:38.530560,[[11, 21]],[['clockwise', 'clockwise']],155,79,1842
+2023-06-28 12:45:39.522435,[[11]],[['anticlockwise']],117,24,2453
+2023-06-28 12:45:40.626422,[[21, 22, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],158,74,1171
+2023-06-28 12:45:41.570213,[[12, 22, 20]],[['anticlockwise', 'clockwise', 'clockwise']],168,67,1368
+2023-06-28 12:45:42.562160,[[12, 22]],[['clockwise', 'anticlockwise']],102,30,228
+2023-06-28 12:45:43.506185,[[12, 21, 11, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],107,31,3417
+2023-06-28 12:45:44.241990,[[22]],[['anticlockwise']],166,99,3068
+2023-06-28 12:45:45.522069,[[11, 20]],[['anticlockwise', 'anticlockwise']],173,67,1735
+2023-06-28 12:45:46.610014,[[21, 20, 12, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],175,35,2108
+2023-06-28 12:45:47.825977,[[21, 20]],[['clockwise', 'clockwise']],131,16,2629
+2023-06-28 12:45:48.881904,[[12, 11]],[['clockwise', 'clockwise']],62,39,3059
+2023-06-28 12:45:49.601731,[[21, 12]],[['clockwise', 'clockwise']],138,94,2894
+2023-06-28 12:45:50.929702,[[20, 21, 11, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],117,59,2711
+2023-06-28 12:45:51.889811,[[21, 20, 22]],[['clockwise', 'clockwise', 'clockwise']],109,13,3350
+2023-06-28 12:45:52.961560,[[12, 11, 21, 22, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],61,46,2381
+2023-06-28 12:45:54.065646,[[12, 21, 11, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],67,75,1931
+2023-06-28 12:45:55.185517,[[12, 20, 21, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],146,42,1161
+2023-06-28 12:45:56.241432,[[21, 22, 12]],[['clockwise', 'anticlockwise', 'anticlockwise']],187,18,1651
+2023-06-28 12:45:57.569343,[[21]],[['anticlockwise']],181,52,3043
+2023-06-28 12:45:58.641377,[[22, 21, 12, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],52,29,2653
+2023-06-28 12:45:59.761263,[[12]],[['clockwise']],95,93,424
+2023-06-28 12:46:00.945246,[[22, 12, 20, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise']],112,50,1331
+2023-06-28 12:46:01.953209,[[11, 22, 12, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],196,96,1859
+2023-06-28 12:46:02.929155,[[21, 22]],[['clockwise', 'clockwise']],195,45,1446
+2023-06-28 12:46:03.729069,[[21, 12, 11, 22, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],154,92,1710
+2023-06-28 12:46:04.577064,[[11, 20, 21]],[['clockwise', 'clockwise', 'anticlockwise']],112,87,1468
+2023-06-28 12:46:05.680983,[[21, 20]],[['clockwise', 'clockwise']],135,82,1834
+2023-06-28 12:46:06.912907,[[21, 22, 20]],[['clockwise', 'anticlockwise', 'anticlockwise']],160,90,2751
+2023-06-28 12:46:08.048764,[[21, 12, 22, 11, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],83,20,2272
+2023-06-28 12:46:08.960675,[[20, 11]],[['anticlockwise', 'anticlockwise']],108,29,3056
+2023-06-28 12:46:10.032688,[[11, 12, 22, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],138,30,1682
+2023-06-28 12:46:11.152668,[[20, 12, 11, 21, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],64,26,857
+2023-06-28 12:46:12.256645,[[21, 22, 12, 20, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],150,76,1983
+2023-06-28 12:46:13.200446,[[11, 12]],[['clockwise', 'anticlockwise']],180,49,4052
+2023-06-28 12:46:14.160488,[[12, 21]],[['anticlockwise', 'clockwise']],56,95,1970
+2023-06-28 12:46:14.992352,[[20, 12, 11]],[['anticlockwise', 'clockwise', 'clockwise']],180,94,2853
+2023-06-28 12:46:16.080317,[[12, 11, 22, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],111,32,2193
+2023-06-28 12:46:17.152129,[[22, 21, 11, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],96,10,1230
+2023-06-28 12:46:18.272290,[[11, 22, 12, 20, 21]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],148,68,2823
+2023-06-28 12:46:19.344245,[[11, 21, 20, 12, 22]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],134,88,380
+2023-06-28 12:46:20.448091,[[11, 12, 21]],[['clockwise', 'clockwise', 'anticlockwise']],129,73,1150
+2023-06-28 12:46:21.391993,[[20, 12, 22]],[['clockwise', 'anticlockwise', 'clockwise']],58,40,2094
+2023-06-28 12:46:22.672013,[[22, 12, 21]],[['clockwise', 'anticlockwise', 'clockwise']],167,56,1870
+2023-06-28 12:46:23.839960,[[12, 11]],[['clockwise', 'anticlockwise']],67,45,2835
+2023-06-28 12:46:24.895981,[[21, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise']],137,84,2978
+2023-06-28 12:46:25.823830,[[22, 21]],[['anticlockwise', 'clockwise']],176,60,2914
+2023-06-28 12:46:26.863765,[[12, 11, 22]],[['clockwise', 'anticlockwise', 'anticlockwise']],85,50,3504
+2023-06-28 12:46:27.887791,[[12, 11, 22, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],190,93,2996
+2023-06-28 12:46:29.087734,[[11]],[['anticlockwise']],107,21,2778
+2023-06-28 12:46:30.239580,[[12, 11, 22]],[['clockwise', 'anticlockwise', 'anticlockwise']],58,10,2139
+2023-06-28 12:46:31.375461,[[11, 12, 21, 22, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],106,76,1698
+2023-06-28 12:46:32.687456,[[11, 21]],[['anticlockwise', 'anticlockwise']],64,68,1666
+2023-06-28 12:46:33.647543,[[22, 11, 20]],[['anticlockwise', 'clockwise', 'clockwise']],170,38,2629
+2023-06-28 12:46:34.783392,[[22, 11, 20, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],159,19,1256
+2023-06-28 12:46:35.855311,[[11, 22, 12, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],188,36,2640
+2023-06-28 12:46:36.703266,[[11, 20]],[['anticlockwise', 'clockwise']],51,46,1144
+2023-06-28 12:46:37.759270,[[20, 21]],[['anticlockwise', 'clockwise']],142,45,1309
+2023-06-28 12:46:38.638988,[[11, 20, 21, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],114,100,2093
+2023-06-28 12:46:39.695075,[[22, 11]],[['anticlockwise', 'anticlockwise']],191,83,2731
+2023-06-28 12:46:40.670975,[[21, 22, 20]],[['anticlockwise', 'clockwise', 'clockwise']],177,96,1333
+2023-06-28 12:46:41.759016,[[20, 11]],[['anticlockwise', 'clockwise']],63,42,2445
+2023-06-28 12:46:42.766997,[[21, 20, 12]],[['clockwise', 'clockwise', 'anticlockwise']],106,71,2015
+2023-06-28 12:46:43.598856,[[21, 11, 20, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],156,54,3698
+2023-06-28 12:46:44.846705,[[11, 20, 22, 12, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],76,81,1973
+2023-06-28 12:46:45.758714,[[12, 20]],[['anticlockwise', 'clockwise']],90,33,2649
+2023-06-28 12:46:46.910707,[[11, 22, 21, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],123,93,2141
+2023-06-28 12:46:47.678541,[[20, 11, 12, 21, 22]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],162,71,3885
+2023-06-28 12:46:48.750525,[[22, 20, 12]],[['clockwise', 'clockwise', 'clockwise']],87,63,481
+2023-06-28 12:46:49.774488,[[20, 22, 21, 11, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],101,79,3688
+2023-06-28 12:46:50.974398,[[22, 11, 20, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],127,10,945
+2023-06-28 12:46:51.838373,[[21, 22, 11, 12, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],111,21,1326
+2023-06-28 12:46:52.910372,[[22, 12, 20]],[['clockwise', 'clockwise', 'clockwise']],102,52,2944
+2023-06-28 12:46:53.902305,[[11, 12, 21]],[['anticlockwise', 'anticlockwise', 'clockwise']],175,22,1851
+2023-06-28 12:46:54.958254,[[22, 20]],[['clockwise', 'anticlockwise']],55,71,1577
+2023-06-28 12:46:55.934274,[[20, 12, 22, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],117,45,2923
+2023-06-28 12:46:56.974275,[[21]],[['clockwise']],72,74,1227
+2023-06-28 12:46:57.934060,[[12, 20, 21, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],185,57,2206
+2023-06-28 12:46:59.118141,[[22, 11, 21, 20]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],110,42,2013
+2023-06-28 12:47:00.045957,[[21, 22, 11, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],150,80,3919
+2023-06-28 12:47:01.389945,[[11, 22, 12, 20, 21]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],149,73,2080
+2023-06-28 12:47:02.365925,[[12, 22, 20]],[['clockwise', 'clockwise', 'anticlockwise']],67,13,1303
+2023-06-28 12:47:03.421753,[[12, 20, 11]],[['clockwise', 'clockwise', 'anticlockwise']],81,76,2742
+2023-06-28 12:47:04.621828,[[21, 20]],[['anticlockwise', 'anticlockwise']],176,68,1834
+2023-06-28 12:47:05.869710,[[22, 12, 20]],[['clockwise', 'anticlockwise', 'clockwise']],140,93,2188
+2023-06-28 12:47:06.973666,[[20, 22]],[['clockwise', 'clockwise']],135,19,4047
+2023-06-28 12:47:07.869512,[[11, 20, 21, 12, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],191,56,2683
+2023-06-28 12:47:09.021368,[[12, 11]],[['clockwise', 'clockwise']],163,20,1468
+2023-06-28 12:47:10.013380,[[11, 12, 21]],[['clockwise', 'clockwise', 'anticlockwise']],81,19,1954
+2023-06-28 12:47:11.117294,[[12, 21, 20]],[['clockwise', 'clockwise', 'anticlockwise']],137,76,1830
+2023-06-28 12:47:12.125374,[[20, 21, 12, 22, 11]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],166,16,2494
+2023-06-28 12:47:13.309310,[[11, 22]],[['clockwise', 'clockwise']],68,90,1446
+2023-06-28 12:47:14.733130,[[21]],[['clockwise']],56,93,2896
+2023-06-28 12:47:15.821200,[[22, 11, 20, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],186,85,1584
+2023-06-28 12:47:16.541147,[[12, 11, 21]],[['clockwise', 'anticlockwise', 'anticlockwise']],152,91,1949
+2023-06-28 12:47:17.581085,[[12, 11, 20]],[['anticlockwise', 'clockwise', 'clockwise']],115,93,1754
+2023-06-28 12:47:18.749017,[[21, 11]],[['clockwise', 'clockwise']],102,87,2487
+2023-06-28 12:47:19.788828,[[22, 12, 20]],[['clockwise', 'anticlockwise', 'clockwise']],177,63,2461
+2023-06-28 12:47:20.748807,[[22, 20, 21, 11]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],168,69,1043
+2023-06-28 12:47:22.044746,[[22, 12]],[['clockwise', 'anticlockwise']],93,63,1332
+2023-06-28 12:47:23.244682,[[11, 21, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],152,44,381
+2023-06-28 12:47:24.460703,[[11, 22]],[['clockwise', 'clockwise']],174,14,2294
+2023-06-28 12:47:25.596529,[[22, 12, 21, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],67,70,3023
+2023-06-28 12:47:26.956459,[[12, 21, 11, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],174,10,45
+2023-06-28 12:47:27.916473,[[11, 12, 20]],[['clockwise', 'anticlockwise', 'anticlockwise']],155,54,2547
+2023-06-28 12:47:28.892375,[[12, 11, 21, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],160,37,1573
+2023-06-28 12:47:29.692439,[[20, 22, 12]],[['anticlockwise', 'anticlockwise', 'clockwise']],164,78,1015
+2023-06-28 12:47:30.892358,[[20, 11, 12]],[['clockwise', 'clockwise', 'anticlockwise']],132,34,2237
+2023-06-28 12:47:31.900283,[[20, 21, 11, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],61,20,1093
+2023-06-28 12:47:32.668252,[[20, 12, 11]],[['anticlockwise', 'clockwise', 'clockwise']],180,86,1450
+2023-06-28 12:47:33.372090,[[12, 11]],[['clockwise', 'clockwise']],190,72,2920
+2023-06-28 12:47:34.140050,[[11, 12, 20, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise']],127,70,3343
+2023-06-28 12:47:35.036183,[[12, 22, 21, 11, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],186,28,1766
+2023-06-28 12:47:36.332045,[[11, 12]],[['anticlockwise', 'anticlockwise']],70,37,1162
+2023-06-28 12:47:37.275805,[[11]],[['anticlockwise']],93,83,2865
+2023-06-28 12:47:38.235968,[[12, 20, 22, 11, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],106,23,1660
+2023-06-28 12:47:39.387869,[[11, 22, 12, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],50,75,2428
+2023-06-28 12:47:40.699753,[[20, 21]],[['clockwise', 'clockwise']],140,85,1205
+2023-06-28 12:47:41.739703,[[20, 11, 22, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],161,85,1852
+2023-06-28 12:47:42.939652,[[21, 11, 22, 12, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],156,17,2451
+2023-06-28 12:47:44.107610,[[11, 20]],[['clockwise', 'anticlockwise']],189,43,1988
+2023-06-28 12:47:45.147558,[[21]],[['anticlockwise']],164,13,2103
+2023-06-28 12:47:46.315381,[[12, 20, 21, 22, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],153,69,2481
+2023-06-28 12:47:47.259456,[[21]],[['anticlockwise']],100,96,1369
+2023-06-28 12:47:48.315278,[[21, 11, 12]],[['anticlockwise', 'clockwise', 'clockwise']],131,73,2725
+2023-06-28 12:47:49.355223,[[11, 21]],[['clockwise', 'clockwise']],159,21,1060
+2023-06-28 12:47:50.331279,[[11, 21, 22, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],59,29,1931
+2023-06-28 12:47:51.211225,[[21, 11]],[['anticlockwise', 'anticlockwise']],118,33,2989
+2023-06-28 12:47:52.075054,[[21, 12, 11]],[['clockwise', 'anticlockwise', 'anticlockwise']],101,54,3020
+2023-06-28 12:47:52.859066,[[12, 21, 20, 11, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],50,19,1051
+2023-06-28 12:47:53.819078,[[22, 21]],[['anticlockwise', 'clockwise']],50,69,1697
+2023-06-28 12:47:54.794893,[[22, 20, 11, 12, 21]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],74,27,2423
+2023-06-28 12:47:56.139039,[[20, 11, 22, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],188,65,1035
+2023-06-28 12:47:57.146824,[[12, 21, 20]],[['anticlockwise', 'clockwise', 'clockwise']],166,31,2985
+2023-06-28 12:47:58.458705,[[22, 11, 20, 12, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],116,54,1606
+2023-06-28 12:47:59.754652,[[21, 22, 11, 12, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],192,98,2609
+2023-06-28 12:48:00.842609,[[20, 22, 21, 11]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],173,11,1361
+2023-06-28 12:48:01.818650,[[20, 22, 21]],[['anticlockwise', 'clockwise', 'anticlockwise']],81,22,1309
+2023-06-28 12:48:02.634734,[[21, 12]],[['clockwise', 'anticlockwise']],178,22,2394
+2023-06-28 12:48:03.834603,[[11, 21]],[['clockwise', 'clockwise']],90,30,2394
+2023-06-28 12:48:05.098432,[[20, 12, 21]],[['anticlockwise', 'clockwise', 'anticlockwise']],72,13,1031
+2023-06-28 12:48:06.106339,[[11, 21, 22, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise']],191,100,1599
+2023-06-28 12:48:07.434430,[[21]],[['anticlockwise']],50,23,3054
+2023-06-28 12:48:08.682169,[[11]],[['clockwise']],82,34,2449
+2023-06-28 12:48:09.722090,[[21, 11, 22, 12, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],77,60,2680
+2023-06-28 12:48:10.586031,[[21, 22]],[['clockwise', 'clockwise']],88,72,2759
+2023-06-28 12:48:11.641975,[[20, 11, 21]],[['clockwise', 'anticlockwise', 'anticlockwise']],148,77,2835
+2023-06-28 12:48:12.714088,[[12, 22, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],58,70,2783
+2023-06-28 12:48:13.898104,[[11]],[['clockwise']],180,46,2110
+2023-06-28 12:48:14.762009,[[21, 12, 22, 11, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],149,90,2293
+2023-06-28 12:48:15.737823,[[22, 12, 11, 20, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],185,60,1977
+2023-06-28 12:48:16.937888,[[11, 22]],[['clockwise', 'anticlockwise']],114,74,1373
+2023-06-28 12:48:17.705753,[[22, 11, 20, 12, 21]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],58,29,1143
+2023-06-28 12:48:18.649757,[[21, 11]],[['clockwise', 'anticlockwise']],190,29,1395
+2023-06-28 12:48:19.577706,[[11, 22, 21, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],122,20,2543
+2023-06-28 12:48:21.017622,[[12, 20, 21, 22, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],161,89,1291
+2023-06-28 12:48:22.281624,[[22]],[['clockwise']],194,32,3221
+2023-06-28 12:48:23.513609,[[21, 11, 20, 12, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],126,80,1587
+2023-06-28 12:48:24.921468,[[12, 21, 20, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],159,14,2105
+2023-06-28 12:48:25.961458,[[21, 11, 12, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],146,11,670
+2023-06-28 12:48:27.177211,[[20, 22, 21, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],98,95,2421
+2023-06-28 12:48:27.993192,[[21]],[['anticlockwise']],54,18,1889
+2023-06-28 12:48:28.937288,[[11, 21]],[['clockwise', 'clockwise']],164,98,1250
+2023-06-28 12:48:30.137042,[[22, 11, 20, 21, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],174,88,2506
+2023-06-28 12:48:30.985176,[[12, 21]],[['clockwise', 'clockwise']],139,87,1134
+2023-06-28 12:48:32.041122,[[22, 21, 20, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],108,16,1672
+2023-06-28 12:48:32.984949,[[22]],[['clockwise']],50,41,355
+2023-06-28 12:48:34.120868,[[20, 22, 11]],[['clockwise', 'anticlockwise', 'clockwise']],173,54,2218
+2023-06-28 12:48:35.224927,[[22, 11, 12]],[['clockwise', 'clockwise', 'anticlockwise']],69,15,2947
+2023-06-28 12:48:36.520864,[[22, 12, 11, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],152,52,1486
+2023-06-28 12:48:37.608783,[[20, 22, 11, 21, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],179,89,2047
+2023-06-28 12:48:38.920701,[[12, 11]],[['anticlockwise', 'clockwise']],89,48,1458
+2023-06-28 12:48:39.832710,[[20, 11]],[['anticlockwise', 'clockwise']],174,17,1718
+2023-06-28 12:48:40.808639,[[12, 21, 22, 20, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],167,98,1735
+2023-06-28 12:48:41.704509,[[21, 11, 22, 20, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],116,31,2134
+2023-06-28 12:48:42.648545,[[21, 20, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],170,77,2642
+2023-06-28 12:48:44.024326,[[21, 12, 20]],[['clockwise', 'anticlockwise', 'anticlockwise']],55,56,1107
+2023-06-28 12:48:45.000286,[[12, 22, 11, 21, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],135,58,2218
+2023-06-28 12:48:45.864348,[[22, 12, 11, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],197,19,2417
+2023-06-28 12:48:47.064292,[[21]],[['anticlockwise']],52,90,2853
+2023-06-28 12:48:48.184218,[[12, 21, 11, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],181,82,1732
+2023-06-28 12:48:49.272047,[[12, 21, 20, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],108,26,1215
+2023-06-28 12:48:50.296055,[[21, 12]],[['clockwise', 'anticlockwise']],198,22,2292
+2023-06-28 12:48:51.448023,[[21, 20, 22, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],64,81,976
+2023-06-28 12:48:52.487979,[[12, 20, 22, 21, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],72,43,1735
+2023-06-28 12:48:53.175816,[[11, 12]],[['clockwise', 'anticlockwise']],113,77,1654
+2023-06-28 12:48:54.119910,[[22, 21, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],133,41,1577
+2023-06-28 12:48:55.159836,[[20, 12, 21, 11, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],145,64,4030
+2023-06-28 12:48:56.231757,[[22, 11, 21, 20, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],110,81,1003
+2023-06-28 12:48:57.527667,[[20, 21, 22, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],178,13,1391
+2023-06-28 12:48:58.311673,[[12, 20, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],123,84,2044
+2023-06-28 12:48:59.351575,[[12, 22, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],192,90,1518
+2023-06-28 12:49:00.199563,[[20, 21, 22, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],137,30,3073
+2023-06-28 12:49:01.415323,[[22, 11, 20]],[['anticlockwise', 'anticlockwise', 'clockwise']],184,48,1757
+2023-06-28 12:49:02.455441,[[21, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise']],186,92,1760
+2023-06-28 12:49:03.639363,[[11, 12, 21, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],187,53,574
+2023-06-28 12:49:04.519190,[[22, 11]],[['anticlockwise', 'anticlockwise']],95,40,1640
+2023-06-28 12:49:05.895262,[[20, 22, 21, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],165,63,1622
+2023-06-28 12:49:07.127200,[[22, 11, 12, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],95,47,2417
+2023-06-28 12:49:08.039141,[[22, 11, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],131,95,808
+2023-06-28 12:49:08.887081,[[11, 21]],[['clockwise', 'anticlockwise']],132,99,2673
+2023-06-28 12:49:10.039062,[[12, 22, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],107,40,2804
+2023-06-28 12:49:11.095008,[[11, 21, 12, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],115,53,3043
+2023-06-28 12:49:12.262857,[[20, 12]],[['anticlockwise', 'clockwise']],94,86,2371
+2023-06-28 12:49:13.318776,[[11, 12, 20, 21]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],102,41,3066
+2023-06-28 12:49:14.374821,[[21, 12]],[['clockwise', 'clockwise']],112,73,1935
+2023-06-28 12:49:15.478628,[[20, 11, 21]],[['clockwise', 'anticlockwise', 'clockwise']],164,34,2566
+2023-06-28 12:49:16.550550,[[22, 20]],[['clockwise', 'anticlockwise']],78,19,1997
+2023-06-28 12:49:17.590484,[[12, 20, 21, 11, 22]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],101,44,143
+2023-06-28 12:49:18.806436,[[22, 20, 21]],[['anticlockwise', 'clockwise', 'anticlockwise']],137,63,2891
+2023-06-28 12:49:20.038344,[[20, 11, 22, 21, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],183,85,1022
+2023-06-28 12:49:21.030340,[[20]],[['clockwise']],112,65,1934
+2023-06-28 12:49:21.926294,[[20, 22, 21]],[['clockwise', 'anticlockwise', 'clockwise']],171,35,2431
+2023-06-28 12:49:22.934318,[[12, 22, 20, 21]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],189,76,2016
+2023-06-28 12:49:23.894218,[[20, 12, 22]],[['clockwise', 'clockwise', 'clockwise']],95,42,1793
+2023-06-28 12:49:24.870153,[[12, 22, 21]],[['anticlockwise', 'anticlockwise', 'clockwise']],184,85,1246
+2023-06-28 12:49:26.262170,[[20, 21, 22, 12, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],92,78,1579
+2023-06-28 12:49:27.125990,[[11, 21, 22, 20, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],151,25,1726
+2023-06-28 12:49:28.038103,[[20, 22]],[['anticlockwise', 'clockwise']],90,66,2304
+2023-06-28 12:49:29.142084,[[22, 20, 21, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],110,21,974
+2023-06-28 12:49:30.054042,[[21, 20, 12]],[['clockwise', 'clockwise', 'anticlockwise']],83,41,1452
+2023-06-28 12:49:31.141897,[[22, 20, 21, 12, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],186,10,2685
+2023-06-28 12:49:32.373775,[[21]],[['clockwise']],113,48,1866
+2023-06-28 12:49:33.477824,[[11]],[['anticlockwise']],90,38,2727
+2023-06-28 12:49:34.533835,[[12, 22, 11, 20, 21]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],80,34,1028
+2023-06-28 12:49:35.477580,[[11, 22]],[['anticlockwise', 'clockwise']],68,87,2931
+2023-06-28 12:49:36.693634,[[22, 12, 21]],[['clockwise', 'anticlockwise', 'clockwise']],78,19,2861
+2023-06-28 12:49:37.781578,[[22, 21, 20, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],200,80,555
+2023-06-28 12:49:38.533424,[[20, 22, 12]],[['clockwise', 'clockwise', 'anticlockwise']],88,90,3034
+2023-06-28 12:49:39.573331,[[12, 11, 21]],[['clockwise', 'anticlockwise', 'clockwise']],187,23,2234
+2023-06-28 12:49:40.757478,[[11, 20, 22]],[['clockwise', 'clockwise', 'clockwise']],140,12,997
+2023-06-28 12:49:41.909419,[[11, 21, 12, 22]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],98,18,2575
+2023-06-28 12:49:43.061340,[[20, 22, 11]],[['clockwise', 'clockwise', 'clockwise']],90,47,1769
+2023-06-28 12:49:44.085317,[[11, 12, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],56,82,2092
+2023-06-28 12:49:45.029282,[[22, 20, 12, 21, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],174,31,1658
+2023-06-28 12:49:45.957069,[[12, 11, 21, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],153,91,3032
+2023-06-28 12:49:46.933046,[[21, 11, 22]],[['clockwise', 'clockwise', 'clockwise']],107,28,1147
+2023-06-28 12:49:48.068959,[[22]],[['clockwise']],70,93,1832
+2023-06-28 12:49:49.301005,[[11, 12, 21, 22, 20]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],128,28,1166
+2023-06-28 12:49:50.404838,[[20, 11, 21, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],175,90,174
+2023-06-28 12:49:51.604886,[[11, 20, 12, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],57,37,1352
+2023-06-28 12:49:53.012683,[[11, 21, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],173,88,2027
+2023-06-28 12:49:54.100732,[[20, 11, 21]],[['clockwise', 'clockwise', 'anticlockwise']],194,33,1149
+2023-06-28 12:49:55.060608,[[11, 21, 20]],[['clockwise', 'clockwise', 'clockwise']],105,54,1245
+2023-06-28 12:49:56.276665,[[22, 20, 21]],[['clockwise', 'anticlockwise', 'anticlockwise']],142,87,1175
+2023-06-28 12:49:57.140450,[[20, 12, 21, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],93,52,3215
+2023-06-28 12:49:58.308573,[[21, 11, 12, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],56,66,1371
+2023-06-28 12:49:59.044421,[[12, 21]],[['clockwise', 'anticlockwise']],64,45,2471
+2023-06-28 12:49:59.940352,[[11, 20, 21, 22, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],67,41,3759
+2023-06-28 12:50:00.916365,[[12, 22, 21, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],174,18,1259
+2023-06-28 12:50:02.164339,[[22, 21, 11, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],168,68,1361
+2023-06-28 12:50:03.252268,[[11, 22, 21]],[['anticlockwise', 'anticlockwise', 'clockwise']],140,94,2712
+2023-06-28 12:50:04.404256,[[21, 12]],[['anticlockwise', 'anticlockwise']],105,85,436
+2023-06-28 12:50:05.332171,[[12, 20, 11, 22, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],63,83,1398
+2023-06-28 12:50:06.276098,[[12, 21, 20, 22, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],121,79,1628
+2023-06-28 12:50:07.475933,[[11, 12]],[['anticlockwise', 'clockwise']],68,51,2180
+2023-06-28 12:50:08.259910,[[22, 21]],[['anticlockwise', 'anticlockwise']],131,82,2125
+2023-06-28 12:50:09.347911,[[11, 21, 12, 22, 20]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],60,78,2859
+2023-06-28 12:50:10.595743,[[11, 22, 12, 20, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],111,60,2204
+2023-06-28 12:50:11.731869,[[22, 11, 12, 20]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],158,13,1133
+2023-06-28 12:50:12.931725,[[12, 20, 22]],[['clockwise', 'clockwise', 'anticlockwise']],68,85,2866
+2023-06-28 12:50:13.923697,[[22, 12, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],138,70,1465
+2023-06-28 12:50:14.899629,[[11, 22, 21, 20, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],50,58,2677
+2023-06-28 12:50:15.811611,[[12, 22, 20]],[['clockwise', 'clockwise', 'clockwise']],195,15,2673
+2023-06-28 12:50:16.627561,[[21, 11, 20, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],71,45,1769
+2023-06-28 12:50:17.651404,[[20, 12, 22]],[['anticlockwise', 'clockwise', 'anticlockwise']],128,93,3643
+2023-06-28 12:50:18.851472,[[22, 12]],[['clockwise', 'anticlockwise']],176,25,2618
+2023-06-28 12:50:20.115316,[[12, 11, 22]],[['clockwise', 'anticlockwise', 'clockwise']],150,97,3672
+2023-06-28 12:50:21.219333,[[12, 22]],[['anticlockwise', 'anticlockwise']],181,59,950
+2023-06-28 12:50:22.323160,[[21, 22, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],122,95,1261
+2023-06-28 12:50:23.443265,[[20, 22, 11, 21, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],153,46,2542
+2023-06-28 12:50:24.627129,[[21, 22, 12, 11, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],161,66,1224
+2023-06-28 12:50:25.475094,[[12, 20]],[['clockwise', 'anticlockwise']],95,100,1315
+2023-06-28 12:50:26.307038,[[12]],[['clockwise']],71,33,2622
+2023-06-28 12:50:27.491028,[[21, 20]],[['anticlockwise', 'anticlockwise']],112,90,2387
+2023-06-28 12:50:28.338767,[[11, 20, 22, 21, 12]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],198,96,1274
+2023-06-28 12:50:29.474781,[[20, 22, 21, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],50,79,2730
+2023-06-28 12:50:30.354833,[[21, 22, 20, 12, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],91,93,1159
+2023-06-28 12:50:31.314834,[[12, 21, 20, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],162,68,2594
+2023-06-28 12:50:32.066631,[[12, 11, 20]],[['anticlockwise', 'clockwise', 'anticlockwise']],193,32,1150
+2023-06-28 12:50:33.282700,[[22, 21, 20, 11, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],150,81,3463
+2023-06-28 12:50:34.322508,[[22, 20]],[['clockwise', 'anticlockwise']],73,43,1083
+2023-06-28 12:50:35.330505,[[20, 22, 12, 11, 21]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],194,36,2881
+2023-06-28 12:50:36.322534,[[22, 12, 11, 20, 21]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],169,68,2732
+2023-06-28 12:50:37.138359,[[12, 22, 21, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],163,33,2146
+2023-06-28 12:50:38.434418,[[21, 22, 20, 11, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],91,63,3202
+2023-06-28 12:50:39.634240,[[12]],[['anticlockwise']],56,48,2238
+2023-06-28 12:50:40.802127,[[11]],[['anticlockwise']],189,41,1798
+2023-06-28 12:50:41.890313,[[11, 22]],[['anticlockwise', 'clockwise']],154,16,2129
+2023-06-28 12:50:42.818081,[[21, 20, 22]],[['anticlockwise', 'anticlockwise', 'clockwise']],191,25,2032
+2023-06-28 12:50:43.874013,[[22, 12, 21]],[['anticlockwise', 'anticlockwise', 'clockwise']],200,51,2276
+2023-06-28 12:50:44.898058,[[21, 11, 12]],[['anticlockwise', 'anticlockwise', 'clockwise']],66,25,1570
+2023-06-28 12:50:45.793922,[[21, 20, 12, 22, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],173,14,1502
+2023-06-28 12:50:46.945978,[[22, 12, 11, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],93,91,1809
+2023-06-28 12:50:47.809820,[[22, 20, 11]],[['clockwise', 'anticlockwise', 'anticlockwise']],163,66,1860
+2023-06-28 12:50:48.897857,[[11]],[['clockwise']],51,93,1326
+2023-06-28 12:50:50.145692,[[20, 21]],[['clockwise', 'clockwise']],53,41,2728
+2023-06-28 12:50:51.393789,[[11, 22, 20]],[['clockwise', 'anticlockwise', 'anticlockwise']],126,75,1993
+2023-06-28 12:50:52.385750,[[20, 12, 11, 21, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],78,31,2061
+2023-06-28 12:50:53.633681,[[20, 21, 12, 11]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],126,90,1286
+2023-06-28 12:50:54.865596,[[11, 21, 12, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],93,39,168
+2023-06-28 12:50:55.905431,[[20, 21, 11, 22, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],164,38,1065
+2023-06-28 12:50:56.913362,[[11, 20, 21, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise']],176,24,2469
+2023-06-28 12:50:58.017318,[[12, 22, 20, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],167,72,1717
+2023-06-28 12:50:59.201243,[[11, 12]],[['clockwise', 'anticlockwise']],69,39,2097
+2023-06-28 12:51:00.497288,[[21]],[['anticlockwise']],120,34,2117
+2023-06-28 12:51:01.457245,[[21, 11]],[['anticlockwise', 'clockwise']],71,50,1773
+2023-06-28 12:51:02.625186,[[12, 22, 20, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],104,40,2029
+2023-06-28 12:51:03.953126,[[11]],[['anticlockwise']],73,49,2550
+2023-06-28 12:51:05.152940,[[21, 22]],[['clockwise', 'clockwise']],144,69,497
+2023-06-28 12:51:06.432990,[[11, 20]],[['clockwise', 'anticlockwise']],53,80,2522
+2023-06-28 12:51:07.472832,[[12, 21]],[['anticlockwise', 'clockwise']],187,90,1750
+2023-06-28 12:51:08.544914,[[22, 21, 11, 20, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],52,83,3087
+2023-06-28 12:51:09.328731,[[20, 12, 11, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],142,31,1927
+2023-06-28 12:51:10.336659,[[22, 12, 21, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],173,30,1807
+2023-06-28 12:51:11.504610,[[12, 11, 20, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],65,22,1377
+2023-06-28 12:51:12.640557,[[11, 12]],[['clockwise', 'clockwise']],173,84,2220
+2023-06-28 12:51:13.424592,[[12, 11]],[['clockwise', 'clockwise']],81,33,2490
+2023-06-28 12:51:14.384547,[[20, 21, 22]],[['clockwise', 'anticlockwise', 'clockwise']],102,98,482
+2023-06-28 12:51:15.616474,[[22, 12, 11, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],69,62,3005
+2023-06-28 12:51:16.784525,[[20, 21, 12, 22, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],70,75,2371
+2023-06-28 12:51:17.728291,[[21, 22, 12, 11, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],93,14,2066
+2023-06-28 12:51:18.880318,[[11, 12, 21, 22]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],163,39,3535
+2023-06-28 12:51:19.968297,[[12, 22, 20]],[['clockwise', 'anticlockwise', 'anticlockwise']],110,89,1309
+2023-06-28 12:51:20.928291,[[22, 21, 12]],[['clockwise', 'anticlockwise', 'anticlockwise']],83,32,40
+2023-06-28 12:51:21.936078,[[12, 20]],[['clockwise', 'clockwise']],106,76,1359
+2023-06-28 12:51:23.040115,[[20]],[['anticlockwise']],183,38,3039
+2023-06-28 12:51:23.871978,[[21, 12, 20]],[['clockwise', 'clockwise', 'clockwise']],162,70,2264
+2023-06-28 12:51:24.991948,[[20, 11]],[['anticlockwise', 'anticlockwise']],143,44,1956
+2023-06-28 12:51:25.792030,[[11, 22, 20, 21, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],195,85,1342
+2023-06-28 12:51:27.151754,[[21, 22, 20, 12, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],166,46,1619
+2023-06-28 12:51:28.591753,[[12, 22, 11]],[['clockwise', 'clockwise', 'clockwise']],105,77,2372
+2023-06-28 12:51:29.551674,[[11, 21, 22, 20, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],173,37,208
+2023-06-28 12:51:30.719630,[[22, 20, 11, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],152,19,2064
+2023-06-28 12:51:32.063525,[[21, 12, 11, 20, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],54,77,3167
+2023-06-28 12:51:33.151435,[[22, 12, 21, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],108,46,1714
+2023-06-28 12:51:34.271547,[[20, 22, 11]],[['anticlockwise', 'clockwise', 'clockwise']],143,74,2260
+2023-06-28 12:51:35.199489,[[12]],[['clockwise']],50,92,3555
+2023-06-28 12:51:36.447337,[[20, 12, 22]],[['clockwise', 'anticlockwise', 'clockwise']],86,99,1129
+2023-06-28 12:51:37.567247,[[11, 20]],[['clockwise', 'clockwise']],122,32,2623
+2023-06-28 12:51:38.591316,[[11, 21, 20, 22, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],70,50,1099
+2023-06-28 12:51:39.823300,[[11, 22]],[['clockwise', 'clockwise']],132,90,608
+2023-06-28 12:51:40.927098,[[12, 11, 22, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],195,19,2647
+2023-06-28 12:51:41.967047,[[20, 22, 11, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],178,95,1439
+2023-06-28 12:51:43.150870,[[22]],[['clockwise']],140,58,1058
+2023-06-28 12:51:44.158887,[[22, 11, 21, 20, 12]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],155,60,3125
+2023-06-28 12:51:45.054898,[[21, 12, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],143,47,2600
+2023-06-28 12:51:46.046973,[[20, 11, 22]],[['clockwise', 'clockwise', 'anticlockwise']],174,96,392
+2023-06-28 12:51:47.230804,[[11, 22]],[['anticlockwise', 'clockwise']],51,96,1897
+2023-06-28 12:51:48.206851,[[12, 22, 21]],[['anticlockwise', 'clockwise', 'anticlockwise']],51,81,2512
+2023-06-28 12:51:49.374657,[[21]],[['anticlockwise']],158,82,2014
+2023-06-28 12:51:50.414719,[[20, 21, 11, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],141,40,618
+2023-06-28 12:51:51.326535,[[11, 22, 20, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],194,12,204
+2023-06-28 12:51:52.446485,[[11, 20, 22, 21]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],135,13,2088
+2023-06-28 12:51:53.550565,[[12, 22]],[['anticlockwise', 'clockwise']],146,13,3911
+2023-06-28 12:51:54.398403,[[21, 20, 11, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],89,55,3332
+2023-06-28 12:51:55.182346,[[11, 12, 20, 22, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],62,91,2892
+2023-06-28 12:51:56.302313,[[20, 11, 12, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],111,59,1491
+2023-06-28 12:51:57.406251,[[21, 12, 22]],[['anticlockwise', 'anticlockwise', 'clockwise']],50,82,3716
+2023-06-28 12:51:58.158076,[[21, 22, 20, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],182,12,2923
+2023-06-28 12:51:59.022147,[[21, 12, 11, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],82,65,3613
+2023-06-28 12:51:59.790045,[[21, 20, 12, 22]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],148,59,1169
+2023-06-28 12:52:00.782087,[[12, 20, 21, 22]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],89,75,394
+2023-06-28 12:52:01.678178,[[22, 20, 12, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],177,60,1285
+2023-06-28 12:52:02.797949,[[20, 12, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],139,32,1814
+2023-06-28 12:52:04.029946,[[11, 22, 12, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],59,67,2612
+2023-06-28 12:52:05.325923,[[21, 22, 12]],[['clockwise', 'anticlockwise', 'clockwise']],100,98,2072
+2023-06-28 12:52:06.573848,[[21, 22, 11]],[['clockwise', 'anticlockwise', 'clockwise']],84,36,2005
+2023-06-28 12:52:07.725798,[[20, 11, 21, 22, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],170,52,1712
+2023-06-28 12:52:08.733639,[[11, 22, 20, 21, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],51,82,1005
+2023-06-28 12:52:09.661725,[[21, 22]],[['anticlockwise', 'anticlockwise']],74,72,1724
+2023-06-28 12:52:10.685585,[[21, 12, 20, 11]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],111,73,2498
+2023-06-28 12:52:11.821471,[[12, 20, 11]],[['anticlockwise', 'clockwise', 'anticlockwise']],89,36,1101
+2023-06-28 12:52:12.637551,[[11, 21, 12, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],70,67,145
+2023-06-28 12:52:13.565425,[[21, 12, 20, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],70,100,2205
+2023-06-28 12:52:14.941349,[[12, 22]],[['clockwise', 'clockwise']],105,97,2040
+2023-06-28 12:52:16.061439,[[11, 20]],[['anticlockwise', 'anticlockwise']],195,66,2055
+2023-06-28 12:52:16.893372,[[12, 21, 22]],[['anticlockwise', 'anticlockwise', 'clockwise']],62,87,2297
+2023-06-28 12:52:17.629324,[[22, 21, 12, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],137,32,1887
+2023-06-28 12:52:18.429165,[[20, 22]],[['clockwise', 'anticlockwise']],75,78,510
+2023-06-28 12:52:19.437175,[[22, 21, 12]],[['anticlockwise', 'clockwise', 'clockwise']],78,79,2578
+2023-06-28 12:52:20.461183,[[11]],[['clockwise']],191,56,2347
+2023-06-28 12:52:21.549081,[[20]],[['clockwise']],110,87,1207
+2023-06-28 12:52:22.733046,[[22, 20, 12, 11, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],193,93,1194
+2023-06-28 12:52:23.660834,[[11, 20, 22]],[['anticlockwise', 'clockwise', 'clockwise']],138,81,4089
+2023-06-28 12:52:24.380945,[[20, 12, 11, 22, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],98,89,1784
+2023-06-28 12:52:25.548866,[[12, 22, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],113,100,3047
+2023-06-28 12:52:26.348801,[[22, 12, 11]],[['anticlockwise', 'anticlockwise', 'clockwise']],83,76,2059
+2023-06-28 12:52:27.628769,[[20, 21, 11, 22]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],70,17,1704
+2023-06-28 12:52:28.828511,[[12, 22, 11, 20, 21]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],96,51,1159
+2023-06-28 12:52:29.820686,[[22, 11, 12]],[['anticlockwise', 'clockwise', 'anticlockwise']],144,44,441
+2023-06-28 12:52:30.972584,[[21, 11, 20]],[['clockwise', 'clockwise', 'anticlockwise']],77,28,2954
+2023-06-28 12:52:32.060533,[[20, 12, 22]],[['clockwise', 'anticlockwise', 'clockwise']],114,56,2932
+2023-06-28 12:52:33.212470,[[20, 11, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],139,10,2516
+2023-06-28 12:52:34.156446,[[20, 11, 22, 12, 21]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],56,18,1492
+2023-06-28 12:52:34.988384,[[22, 11]],[['clockwise', 'clockwise']],96,99,1071
+2023-06-28 12:52:36.108403,[[11, 22, 12, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],134,67,1733
+2023-06-28 12:52:37.164182,[[21]],[['anticlockwise']],112,14,2387
+2023-06-28 12:52:38.284110,[[11, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise']],163,69,3574
+2023-06-28 12:52:39.340118,[[21]],[['anticlockwise']],177,44,1145
+2023-06-28 12:52:40.188202,[[20, 12]],[['anticlockwise', 'clockwise']],195,68,1191
+2023-06-28 12:52:41.276056,[[12, 20]],[['clockwise', 'clockwise']],158,36,2371
+2023-06-28 12:52:42.235944,[[22, 21, 12, 11, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],102,58,1560
+2023-06-28 12:52:43.436059,[[22, 11, 21, 12, 20]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],88,62,1177
+2023-06-28 12:52:44.443821,[[21, 20, 22]],[['clockwise', 'clockwise', 'anticlockwise']],146,22,2113
+2023-06-28 12:52:45.259789,[[22, 12, 21, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],137,33,1784
+2023-06-28 12:52:46.507787,[[22, 11, 20, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],143,62,2986
+2023-06-28 12:52:47.339776,[[20, 22, 21]],[['anticlockwise', 'clockwise', 'clockwise']],87,21,2235
+2023-06-28 12:52:48.411602,[[21, 12]],[['anticlockwise', 'clockwise']],123,61,3773
+2023-06-28 12:52:49.323586,[[21, 12, 11, 20, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],118,74,3751
+2023-06-28 12:52:50.299651,[[12, 20, 22, 21, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],141,23,1315
+2023-06-28 12:52:51.291653,[[12, 22, 20, 11]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],180,31,2458
+2023-06-28 12:52:52.331465,[[11, 21, 20]],[['clockwise', 'anticlockwise', 'anticlockwise']],66,70,2224
+2023-06-28 12:52:53.259562,[[11, 20]],[['clockwise', 'clockwise']],137,71,1785
+2023-06-28 12:52:54.555394,[[22, 20, 12, 21]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],81,60,2452
+2023-06-28 12:52:55.819256,[[12, 20, 21, 22]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise']],95,60,2938
+2023-06-28 12:52:57.083331,[[21, 12, 22, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],138,79,1639
+2023-06-28 12:52:58.011057,[[22, 21, 20, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],135,55,1806
+2023-06-28 12:52:58.987195,[[21, 12, 11, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],182,51,2548
+2023-06-28 12:52:59.915164,[[12, 21, 20, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],58,16,2799
+2023-06-28 12:53:00.763138,[[21, 11, 20, 22, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],122,86,1858
+2023-06-28 12:53:02.171043,[[20, 12, 22]],[['clockwise', 'clockwise', 'anticlockwise']],183,67,472
+2023-06-28 12:53:03.146999,[[11, 20]],[['clockwise', 'anticlockwise']],87,24,2106
+2023-06-28 12:53:04.282826,[[11, 21, 22, 12, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],104,40,1404
+2023-06-28 12:53:05.514856,[[20, 21, 22, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],134,37,320
+2023-06-28 12:53:06.314812,[[11, 20, 21]],[['clockwise', 'clockwise', 'anticlockwise']],114,13,3026
+2023-06-28 12:53:07.274738,[[22, 21]],[['clockwise', 'anticlockwise']],159,61,2050
+2023-06-28 12:53:08.218654,[[11, 20]],[['clockwise', 'anticlockwise']],50,76,1336
+2023-06-28 12:53:09.018776,[[22, 12]],[['anticlockwise', 'anticlockwise']],111,22,3606
+2023-06-28 12:53:10.170436,[[22, 11]],[['clockwise', 'clockwise']],69,16,2309
+2023-06-28 12:53:10.874470,[[22, 21]],[['anticlockwise', 'anticlockwise']],188,20,2532
+2023-06-28 12:53:12.026379,[[22]],[['clockwise']],110,90,2482
+2023-06-28 12:53:12.938345,[[11, 21, 12, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],196,25,3003
+2023-06-28 12:53:13.978287,[[12, 21, 11, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],133,20,2894
+2023-06-28 12:53:15.002382,[[21, 20, 11, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],103,88,1200
+2023-06-28 12:53:16.058139,[[22, 11, 12, 20, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],70,66,2173
+2023-06-28 12:53:17.146132,[[20, 12, 21, 11, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],170,26,3917
+2023-06-28 12:53:18.346206,[[21, 22, 11]],[['anticlockwise', 'clockwise', 'clockwise']],103,70,2847
+2023-06-28 12:53:19.418189,[[11, 22, 12, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],73,11,1057
+2023-06-28 12:53:20.473994,[[22, 20, 11, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],82,15,1439
+2023-06-28 12:53:21.722080,[[22]],[['clockwise']],139,88,907
+2023-06-28 12:53:22.521990,[[12, 21, 11, 20, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],82,84,3918
+2023-06-28 12:53:23.801866,[[22, 20, 11, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],59,64,1274
+2023-06-28 12:53:24.857858,[[22, 11, 12, 20, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],158,43,1415
+2023-06-28 12:53:25.977645,[[22, 11, 12, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],149,55,2784
+2023-06-28 12:53:26.921767,[[21, 11, 20]],[['anticlockwise', 'clockwise', 'clockwise']],140,37,2859
+2023-06-28 12:53:28.217681,[[20, 11, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],71,94,721
+2023-06-28 12:53:29.017646,[[20, 21, 11]],[['anticlockwise', 'clockwise', 'clockwise']],158,41,2385
+2023-06-28 12:53:30.153510,[[12, 11]],[['clockwise', 'anticlockwise']],98,79,1268
+2023-06-28 12:53:30.985615,[[22, 12, 20, 21, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],181,91,2288
+2023-06-28 12:53:31.993469,[[22, 12, 21, 20, 11]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],157,98,2905
+2023-06-28 12:53:33.241502,[[21, 12]],[['clockwise', 'clockwise']],175,26,1384
+2023-06-28 12:53:34.201386,[[11, 20, 22, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],124,44,613
+2023-06-28 12:53:35.145211,[[11, 12, 22, 21, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],154,24,1348
+2023-06-28 12:53:35.977318,[[20, 21]],[['anticlockwise', 'clockwise']],166,44,1819
+2023-06-28 12:53:36.985226,[[11, 21]],[['clockwise', 'anticlockwise']],79,57,2941
+2023-06-28 12:53:37.913122,[[21, 22]],[['clockwise', 'anticlockwise']],179,80,744
+2023-06-28 12:53:38.649205,[[11, 22, 21]],[['clockwise', 'anticlockwise', 'anticlockwise']],105,50,1306
+2023-06-28 12:53:39.641121,[[12, 22, 20, 11, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],65,41,1962
+2023-06-28 12:53:40.777072,[[22]],[['clockwise']],136,11,3928
+2023-06-28 12:53:41.816900,[[22, 11, 20]],[['clockwise', 'anticlockwise', 'anticlockwise']],65,67,3032
+2023-06-28 12:53:42.712886,[[22, 12, 21]],[['clockwise', 'anticlockwise', 'anticlockwise']],137,47,2433
+2023-06-28 12:53:43.656873,[[21, 22, 12, 11, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],72,46,1957
+2023-06-28 12:53:44.824835,[[21, 11, 12, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],188,100,2456
+2023-06-28 12:53:45.960720,[[22, 12, 11, 21, 20]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],199,77,2413
+2023-06-28 12:53:46.712768,[[20, 11]],[['clockwise', 'clockwise']],97,93,1591
+2023-06-28 12:53:47.784682,[[21, 12, 22, 20, 11]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],184,95,2388
+2023-06-28 12:53:48.808647,[[12, 11, 22]],[['anticlockwise', 'clockwise', 'clockwise']],162,47,608
+2023-06-28 12:53:49.880571,[[22, 12, 21, 11, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],130,41,1504
+2023-06-28 12:53:50.872522,[[22, 20]],[['anticlockwise', 'anticlockwise']],86,59,1218
+2023-06-28 12:53:51.800427,[[20, 11, 12, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],140,76,2352
+2023-06-28 12:53:52.888521,[[12, 21, 20, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],188,100,3929
+2023-06-28 12:53:54.232242,[[22]],[['anticlockwise']],174,23,3742
+2023-06-28 12:53:55.160322,[[20, 12, 21, 11, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],127,34,695
+2023-06-28 12:53:56.392179,[[21, 11]],[['clockwise', 'clockwise']],196,69,1748
+2023-06-28 12:53:57.576157,[[22, 11]],[['anticlockwise', 'clockwise']],175,61,1420
+2023-06-28 12:53:58.504043,[[12, 22, 21, 20, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],145,14,1889
+2023-06-28 12:53:59.432084,[[21]],[['clockwise']],57,89,2742
+2023-06-28 12:54:00.503861,[[11]],[['clockwise']],148,88,1568
+2023-06-28 12:54:01.655949,[[12, 22, 11, 20, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],172,28,3036
+2023-06-28 12:54:02.599949,[[21, 22, 11, 12, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],163,57,2845
+2023-06-28 12:54:03.383793,[[12, 22, 20, 11, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],146,18,1607
+2023-06-28 12:54:04.567849,[[11, 22, 21, 12, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],108,83,2101
+2023-06-28 12:54:05.719706,[[12, 11, 20, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise']],110,48,2369
+2023-06-28 12:54:06.807688,[[22, 20]],[['anticlockwise', 'anticlockwise']],185,19,1385
+2023-06-28 12:54:08.007721,[[22, 12, 11]],[['anticlockwise', 'clockwise', 'anticlockwise']],53,34,2668
+2023-06-28 12:54:09.255650,[[21, 20]],[['anticlockwise', 'anticlockwise']],120,47,1110
+2023-06-28 12:54:10.535506,[[11, 12, 21, 20, 22]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],76,74,1164
+2023-06-28 12:54:11.399499,[[20, 11, 22, 12, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],124,98,1531
+2023-06-28 12:54:12.503409,[[22, 12, 21, 11]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],167,63,2367
+2023-06-28 12:54:13.559326,[[20, 22, 11, 21, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],169,78,612
+2023-06-28 12:54:14.551307,[[12, 22, 21, 11, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],96,87,2009
+2023-06-28 12:54:15.623299,[[21, 11, 12, 20, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],113,91,592
+2023-06-28 12:54:16.887075,[[12, 21, 22]],[['anticlockwise', 'clockwise', 'clockwise']],83,32,1782
+2023-06-28 12:54:17.831080,[[20, 22]],[['clockwise', 'clockwise']],129,25,248
+2023-06-28 12:54:18.727071,[[21, 20, 22, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],150,40,1720
+2023-06-28 12:54:19.846984,[[20, 11, 22]],[['anticlockwise', 'clockwise', 'clockwise']],185,45,1757
+2023-06-28 12:54:20.838973,[[20]],[['anticlockwise']],175,45,2372
+2023-06-28 12:54:21.878952,[[12, 20, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],96,24,3255
+2023-06-28 12:54:23.238741,[[22, 21, 20]],[['anticlockwise', 'clockwise', 'clockwise']],72,81,2053
+2023-06-28 12:54:24.342874,[[21, 11, 20, 22, 12]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],168,62,2234
+2023-06-28 12:54:25.494920,[[20, 22, 21]],[['clockwise', 'clockwise', 'anticlockwise']],190,33,2413
+2023-06-28 12:54:26.646803,[[11]],[['anticlockwise']],166,39,2810
+2023-06-28 12:54:27.846602,[[21, 22, 12, 11]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],54,34,2496
+2023-06-28 12:54:28.790667,[[12, 21, 11, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],92,67,1794
+2023-06-28 12:54:30.006585,[[21, 20, 11, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise']],91,63,1624
+2023-06-28 12:54:31.158506,[[11, 12, 20, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],101,75,2616
+2023-06-28 12:54:32.262446,[[22, 11]],[['anticlockwise', 'anticlockwise']],68,83,1825
+2023-06-28 12:54:33.174395,[[12, 22]],[['anticlockwise', 'anticlockwise']],89,91,2814
+2023-06-28 12:54:34.182184,[[12, 21, 22]],[['anticlockwise', 'clockwise', 'clockwise']],51,45,732
+2023-06-28 12:54:35.126135,[[11, 12]],[['anticlockwise', 'anticlockwise']],192,27,3906
+2023-06-28 12:54:36.310114,[[21, 20, 22, 12]],[['clockwise', 'clockwise', 'clockwise', 'clockwise']],189,28,507
+2023-06-28 12:54:37.334206,[[20]],[['clockwise']],108,48,1169
+2023-06-28 12:54:38.374041,[[21, 11, 12]],[['clockwise', 'anticlockwise', 'anticlockwise']],150,23,3654
+2023-06-28 12:54:39.525992,[[22, 12, 11, 21, 20]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],108,29,2566
+2023-06-28 12:54:40.486102,[[11, 20, 22, 21, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'clockwise']],156,78,2909
+2023-06-28 12:54:41.318078,[[12, 22]],[['clockwise', 'anticlockwise']],66,45,3941
+2023-06-28 12:54:42.405965,[[11, 12, 20, 22]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],169,96,391
+2023-06-28 12:54:43.413832,[[21, 22, 11, 12, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],51,93,1583
+2023-06-28 12:54:44.533732,[[22, 20, 12]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],151,16,1630
+2023-06-28 12:54:45.925676,[[22, 11, 21]],[['anticlockwise', 'anticlockwise', 'clockwise']],182,81,1773
+2023-06-28 12:54:47.013599,[[12, 22, 11, 20, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],122,100,2045
+2023-06-28 12:54:47.909686,[[11, 20, 12, 21, 22]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],51,95,3353
+2023-06-28 12:54:49.269479,[[12, 22]],[['anticlockwise', 'anticlockwise']],126,77,1421
+2023-06-28 12:54:50.277496,[[22]],[['clockwise']],184,89,802
+2023-06-28 12:54:51.301483,[[22, 21]],[['clockwise', 'clockwise']],74,72,2795
+2023-06-28 12:54:52.565381,[[21, 22, 11]],[['clockwise', 'anticlockwise', 'anticlockwise']],64,82,1531
+2023-06-28 12:54:53.701250,[[12, 20]],[['anticlockwise', 'anticlockwise']],146,88,3042
+2023-06-28 12:54:54.837304,[[21, 20]],[['clockwise', 'clockwise']],87,78,2892
+2023-06-28 12:54:56.005255,[[21, 12, 22, 20, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],122,54,1182
+2023-06-28 12:54:57.173155,[[11, 22]],[['anticlockwise', 'clockwise']],136,50,2965
+2023-06-28 12:54:58.229105,[[21, 22, 11]],[['clockwise', 'clockwise', 'anticlockwise']],89,16,1090
+2023-06-28 12:54:59.381053,[[21, 11, 12, 22, 20]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],97,93,2897
+2023-06-28 12:55:00.356910,[[20, 11]],[['anticlockwise', 'clockwise']],124,79,1544
+2023-06-28 12:55:01.332871,[[21, 12, 11, 22, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],181,73,1906
+2023-06-28 12:55:02.196874,[[11, 22, 20, 21]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],108,52,2707
+2023-06-28 12:55:03.508758,[[12, 20]],[['clockwise', 'anticlockwise']],97,53,2690
+2023-06-28 12:55:04.516744,[[20, 12, 21, 22, 11]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'anticlockwise']],128,36,3026
+2023-06-28 12:55:05.508837,[[21, 22, 20, 11, 12]],[['clockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],164,50,3816
+2023-06-28 12:55:06.292623,[[20, 22, 11]],[['clockwise', 'clockwise', 'clockwise']],113,80,2382
+2023-06-28 12:55:07.220713,[[11, 20, 22, 12, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],93,51,3001
+2023-06-28 12:55:08.196636,[[22, 11, 21, 12, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],196,40,2736
+2023-06-28 12:55:09.140500,[[11, 22, 21, 20]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],133,64,1025
+2023-06-28 12:55:10.100587,[[11]],[['anticlockwise']],148,87,2837
+2023-06-28 12:55:11.156440,[[21, 20, 22, 11, 12]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],157,84,2451
+2023-06-28 12:55:12.484302,[[21, 11, 12]],[['anticlockwise', 'clockwise', 'clockwise']],72,14,2067
+2023-06-28 12:55:13.604415,[[12, 11, 22, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],164,55,1693
+2023-06-28 12:55:14.580349,[[20, 12, 21]],[['anticlockwise', 'clockwise', 'anticlockwise']],170,39,2075
+2023-06-28 12:55:15.668333,[[12, 21]],[['clockwise', 'clockwise']],154,17,1534
+2023-06-28 12:55:16.788189,[[12, 20, 22, 21]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],59,58,1540
+2023-06-28 12:55:17.828157,[[22, 20, 21, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise']],121,14,2547
+2023-06-28 12:55:18.915938,[[22, 21, 11, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],154,74,1521
+2023-06-28 12:55:20.259997,[[21, 11, 22, 12]],[['clockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],154,18,180
+2023-06-28 12:55:21.652008,[[20, 11, 22, 21]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],138,22,1775
+2023-06-28 12:55:22.643942,[[21]],[['anticlockwise']],62,71,1947
+2023-06-28 12:55:24.019890,[[12, 21, 11, 20, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],74,68,3209
+2023-06-28 12:55:25.187665,[[21, 11, 12]],[['anticlockwise', 'clockwise', 'clockwise']],162,41,1769
+2023-06-28 12:55:26.595572,[[22, 11, 20]],[['clockwise', 'clockwise', 'clockwise']],173,18,2987
+2023-06-28 12:55:27.427661,[[12, 11, 20]],[['clockwise', 'clockwise', 'anticlockwise']],86,98,2306
+2023-06-28 12:55:28.579429,[[20, 12]],[['clockwise', 'anticlockwise']],180,89,4051
+2023-06-28 12:55:29.747506,[[12, 21]],[['anticlockwise', 'clockwise']],114,72,1999
+2023-06-28 12:55:30.531508,[[12, 20, 22]],[['clockwise', 'clockwise', 'clockwise']],100,35,3366
+2023-06-28 12:55:31.939460,[[11, 12, 21, 20, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],161,38,4023
+2023-06-28 12:55:32.867423,[[12, 21]],[['anticlockwise', 'clockwise']],62,81,2355
+2023-06-28 12:55:33.763418,[[22, 20, 21]],[['anticlockwise', 'anticlockwise', 'clockwise']],127,24,1834
+2023-06-28 12:55:34.883367,[[22]],[['anticlockwise']],188,19,1498
+2023-06-28 12:55:36.083318,[[11, 22]],[['clockwise', 'anticlockwise']],77,70,1551
+2023-06-28 12:55:37.123097,[[22, 12]],[['clockwise', 'anticlockwise']],199,55,139
+2023-06-28 12:55:38.275008,[[21]],[['clockwise']],83,56,1989
+2023-06-28 12:55:39.506893,[[20]],[['anticlockwise']],99,23,1722
+2023-06-28 12:55:40.675026,[[11, 20]],[['clockwise', 'clockwise']],127,79,1628
+2023-06-28 12:55:41.842953,[[11]],[['clockwise']],160,81,2881
+2023-06-28 12:55:43.058963,[[22, 12, 21, 11, 20]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],152,43,1952
+2023-06-28 12:55:44.082859,[[11, 21, 20, 12, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],131,61,3761
+2023-06-28 12:55:45.042786,[[20]],[['anticlockwise']],86,13,1344
+2023-06-28 12:55:45.890722,[[12, 22, 11, 20, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],175,97,1515
+2023-06-28 12:55:46.706697,[[22, 12]],[['clockwise', 'clockwise']],192,38,1737
+2023-06-28 12:55:47.730563,[[22, 12]],[['anticlockwise', 'anticlockwise']],114,86,2089
+2023-06-28 12:55:48.514614,[[22, 20]],[['anticlockwise', 'anticlockwise']],182,14,2166
+2023-06-28 12:55:49.810592,[[12, 11, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],150,58,3593
+2023-06-28 12:55:51.026490,[[22, 11, 20, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],71,33,1710
+2023-06-28 12:55:52.050365,[[21, 20, 22, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],64,73,277
+2023-06-28 12:55:52.882303,[[22, 11, 12, 20, 21]],[['anticlockwise', 'clockwise', 'clockwise', 'clockwise', 'clockwise']],111,60,2974
+2023-06-28 12:55:53.938401,[[11, 21, 20]],[['anticlockwise', 'anticlockwise', 'clockwise']],65,62,2545
+2023-06-28 12:55:55.106188,[[20, 21]],[['anticlockwise', 'clockwise']],118,83,2301
+2023-06-28 12:55:56.130246,[[22, 11, 20, 12, 21]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],119,73,2690
+2023-06-28 12:55:57.426081,[[21, 12, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],94,77,2705
+2023-06-28 12:55:58.274146,[[11, 21, 12, 22]],[['clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],59,91,2234
+2023-06-28 12:55:59.218062,[[11, 21, 20]],[['anticlockwise', 'clockwise', 'anticlockwise']],84,31,1635
+2023-06-28 12:56:00.354019,[[11, 21, 12, 20]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise']],89,40,1885
+2023-06-28 12:56:01.601972,[[21, 12, 20, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise']],71,82,1630
+2023-06-28 12:56:02.593886,[[11]],[['anticlockwise']],100,28,2732
+2023-06-28 12:56:03.633874,[[12, 21, 11, 22, 20]],[['clockwise', 'clockwise', 'anticlockwise', 'clockwise', 'clockwise']],162,53,2126
+2023-06-28 12:56:04.705784,[[11, 21, 22]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],74,27,977
+2023-06-28 12:56:05.585772,[[12, 21, 11, 22, 20]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],53,92,1491
+2023-06-28 12:56:06.881609,[[11, 20, 21, 12, 22]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],73,71,2693
+2023-06-28 12:56:07.985540,[[21, 11]],[['clockwise', 'anticlockwise']],100,88,1160
+2023-06-28 12:56:08.753410,[[11, 20, 22, 21, 12]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],88,25,1158
+2023-06-28 12:56:09.777461,[[12, 22, 21, 11]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],86,72,2423
+2023-06-28 12:56:10.801517,[[20, 12, 21, 11, 22]],[['clockwise', 'anticlockwise', 'clockwise', 'clockwise', 'clockwise']],117,41,195
+2023-06-28 12:56:11.921471,[[12, 11, 21]],[['anticlockwise', 'anticlockwise', 'anticlockwise']],99,28,1141
+2023-06-28 12:56:13.121399,[[11, 20, 21, 22, 12]],[['clockwise', 'anticlockwise', 'clockwise', 'anticlockwise', 'clockwise']],192,87,7
+2023-06-28 12:56:14.513329,[[12, 21, 22]],[['clockwise', 'anticlockwise', 'anticlockwise']],178,38,3258
+2023-06-28 12:56:15.425290,[[12, 20, 22]],[['clockwise', 'clockwise', 'clockwise']],106,58,1313
+2023-06-28 12:56:16.209115,[[12, 11]],[['clockwise', 'anticlockwise']],200,92,1300
+2023-06-28 12:56:17.457194,[[21, 12, 11]],[['clockwise', 'clockwise', 'anticlockwise']],65,66,2913
+2023-06-28 12:56:18.449135,[[11]],[['clockwise']],124,100,2319
+2023-06-28 12:56:19.424961,[[21, 11, 20, 22, 12]],[['anticlockwise', 'anticlockwise', 'clockwise', 'clockwise', 'anticlockwise']],146,31,1126
+2023-06-28 12:56:20.704910,[[21, 12, 22, 20, 11]],[['anticlockwise', 'clockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],139,54,2250
