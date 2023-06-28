@@ -2,6 +2,7 @@ import random
 import numpy as np
 import mujoco as mj
 import math
+import csv
 
 def main():
     max_width = 200
@@ -68,6 +69,10 @@ def main():
                 data.ctrl[i] += noise
 
                 #TODO: Cable Tension
+            # Log actuator positions to a csv file
+            with open('actuator_positions.csv', 'a', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerow(data.ctrl)
 
             mj.mj_step(model, data)
 
