@@ -6,6 +6,7 @@ import time
 import keyboard
 from config import *
 import datetime
+import numpy as np
 
 # Check if the media directory exists, if not, create it
 if not os.path.exists('media'):
@@ -28,7 +29,7 @@ cap2 = cv2.VideoCapture(2) # for the NUC, second
 
 # Define the codec and create a VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID') 
-out = cv2.VideoWriter(f'media/video_{count}.avi', fourcc, 20.0, (640, 480)) 
+out = cv2.VideoWriter(f'media/video_{count}.avi', fourcc, 20.0, (1280, 480)) 
 
 WRITE_FREQ = 2
 write_counter = 0
@@ -47,12 +48,16 @@ try:
     errors = {dxl_id: 0 for dxl_id in DXL_ID_LIST}
     last_errors = {dxl_id: 0 for dxl_id in DXL_ID_LIST}
     while True:
-        # Record video frame
-        ret, frame = cap1.read() 
-        ret, frame = cap2.read()
-        if ret==True:
+                
+
+        # inside the while True: loop
+        ret1, frame1 = cap1.read() 
+        ret2, frame2 = cap2.read()
+        if ret1 and ret2:
+            # Concatenate both frames horizontally
+            frame = np.concatenate((frame1, frame2), axis=1)
             out.write(frame) 
-            cv2.imshow('frame',frame)
+            cv2.imshow('frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'): 
                 break
 
