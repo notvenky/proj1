@@ -44,7 +44,7 @@ try:
         errors[dxl_id] += error
         derivative = error - last_errors[dxl_id]
         #goal_position = current_positions[dxl_id] + KP * error + KI * errors[dxl_id] + KD * derivative
-        goal_position = goal_positions[20]
+        goal_position = 1024
 
         for dxl_id in DXL_ID_LIST:
             # Write goal current, torque and speed
