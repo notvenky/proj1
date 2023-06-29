@@ -46,11 +46,11 @@ try:
         #goal_position = current_positions[dxl_id] + KP * error + KI * errors[dxl_id] + KD * derivative
         goal_position = 1024
 
-        for dxl_id in DXL_ID_LIST:
+        #for dxl_id in DXL_ID_LIST:
             # Write goal current, torque and speed
             #dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_CURRENT, int(goal_current))
             #dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_SPEED, speed)
-            dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_POSITION, goal_position)
+        dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_POSITION, goal_position)
             #dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_CURRENT, torque)
 
 
