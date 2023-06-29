@@ -37,20 +37,20 @@ try:
             elif dxl_id in [12, 21]:  # Assuming these are the equivalent of [1, 3] in the simulation
                 phase = -np.pi/2 if dxl_id == 12 else np.pi/2
                 goal_positions[dxl_id] = 2048 * np.sin(2*np.pi * freq_odd * time.time() + phase) + 2048
-        for dxl_id in DXL_ID_LIST:
-            print(dxl_id)
+
         # Calculate error and apply PID control to set goal position
         error = goal_positions[dxl_id] - current_positions[dxl_id]
         errors[dxl_id] += error
         derivative = error - last_errors[dxl_id]
         #goal_position = current_positions[dxl_id] + KP * error + KI * errors[dxl_id] + KD * derivative
-        goal_position = goal_positions[dxl_id]
+        #goal_position = goal_positions[dxl_id]
 
-        # Write goal current, torque and speed
-        #dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_CURRENT, int(goal_current))
-        #dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_SPEED, speed)
-        dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_POSITION, goal_position)
-        #dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_CURRENT, torque)
+        for dxl_id in DXL_ID_LIST:
+            # Write goal current, torque and speed
+            #dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_CURRENT, int(goal_current))
+            #dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_SPEED, speed)
+            dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_POSITION, goal_positions[dxl_id])
+            #dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_CURRENT, torque)
 
 
         write_counter += 1
@@ -63,7 +63,7 @@ try:
             # Write to log file
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
             with open('log.txt', 'a') as f:
-                f.write('{}, {}, {}, {}\n'.format(timestamp, dxl_id, goal_position, error))
+                f.write('{}, {}, {}, {}\n'.format(timestamp, dxl_id, goal_positions, error))
 
         # Read present position and current for all Dynamixels
         for dxl_id in DXL_ID_LIST:
