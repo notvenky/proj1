@@ -65,6 +65,7 @@ try:
         derivative = error - last_errors[dxl_id]
         goal_current = KP * error + KI * errors[dxl_id] + KD * derivative
         last_errors[dxl_id] = error
+        print(goal_position)
 
         # Write goal current, torque and speed
         dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_CURRENT, int(goal_current))
