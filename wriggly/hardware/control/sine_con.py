@@ -36,6 +36,7 @@ try:
                 goal_positions[dxl_id] = 1024 * np.sin(2*np.pi * freq_even * time.time() + phase) + 2048
             elif dxl_id in [12, 21]:  # Assuming these are the equivalent of [1, 3] in the simulation
                 phase = -np.pi/2 if dxl_id == 12 else np.pi/2
+                goal_positions[dxl_id] = 2048 * np.sin(2*np.pi * freq_odd * time.time() + phase) + 2048
 
         print(goal_positions)
         # Calculate error and apply PID control to set goal position
