@@ -1,9 +1,9 @@
 import threading
-import sine_full
+import rand_sine
 import plot_sine
 
 def run_concurrently():
-    thread1 = threading.Thread(target=sine_full.main)
+    thread1 = threading.Thread(target=rand_sine.main)
     thread2 = threading.Thread(target=plot_sine.animate)
 
     thread1.start()

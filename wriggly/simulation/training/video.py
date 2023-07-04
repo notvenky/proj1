@@ -23,7 +23,7 @@ class VideoRecorder:
         self.frames = []
         self.enabled = self.save_dir is not None and enabled
         self.record(env)
-
+ 
     def record(self, env):
         if self.enabled:
             if hasattr(env, 'physics'):
