@@ -127,10 +127,7 @@ try:
         time.sleep(random.uniform(0.1, 0.5))
 
 except KeyboardInterrupt:
-    pass
-
-finally:
-    # Release video recorder and close video window
+    # Save the video immediately on keyboard interrupt
     cap1.release()
     cap2.release()
     out.release()
@@ -140,19 +137,6 @@ finally:
     count += 1
     with open('count.json', 'w') as f:
         json.dump({'count': count}, f)
-
-    # Disable Dynamixel torque
-    for dxl_id in DXL_ID_LIST:
-        dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, dxl_id, ADDR_PRO_TORQUE_ENABLE, 0)
-        if dxl_comm_result != COMM_SUCCESS:
-            print(packetHandler.getTxRxResult(dxl_comm_result))
-        elif dxl_error != 0:
-            print(packetHandler.getRxPacketError(dxl_error))
-        else:
-            print("Dynamixel %d torque has been successfully disabled" % DXL_ID_LIST[i])
-
-    # Close port
-    portHandler.closePort()
 
     # Compress the video using ffmpeg
     time.sleep(1)  # Add a delay to allow the video file to be saved
@@ -167,3 +151,16 @@ finally:
         os.remove(input_video)
     else:
         print(f"File '{input_video}' does not exist.")
+    
+    #Disable Dynamixel torque
+    for dxl_id in DXL_ID_LIST:
+        dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, dxl_id, ADDR_PRO_TORQUE_ENABLE, 0)
+        if dxl_comm_result != COMM_SUCCESS:
+            print(packetHandler.getTxRxResult(dxl_comm_result))
+        elif dxl_error != 0:
+            print(packetHandler.getRxPacketError(dxl_error))
+        else:
+            print("Dynamixel %d torque has been successfully disabled" % DXL_ID_LIST[i])
+
+    #Close port
+    portHandler.closePort()
