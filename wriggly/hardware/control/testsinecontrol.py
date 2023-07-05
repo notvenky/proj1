@@ -91,7 +91,7 @@ try:
 
         # Wait until all Dynamixels reach the goal positions
         if all_reached_goal:
-            time.sleep(0.1)
+            time.sleep(random(0.1,0.5))
 
 except KeyboardInterrupt:
     print("Keyboard interrupt detected. Exiting...")
