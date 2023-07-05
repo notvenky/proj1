@@ -24,6 +24,9 @@ try:
     last_errors = {dxl_id: 0 for dxl_id in DXL_ID_LIST}
 
     while True:
+        goal_positions = {}  # Store goal positions for each Dynamixel
+
+        # Set goal positions for all Dynamixels
         for dxl_id in DXL_ID_LIST:
             if dxl_id in [11, 20, 22]:
                 phase = -1
@@ -37,37 +40,53 @@ try:
             else:
                 print("Dynamixel ID %d goal position set to: %d" % (dxl_id, goal_position))
 
-            dxl_present_position, dxl_comm_result, dxl_error = packetHandler.read4ByteTxRx(portHandler, dxl_id, ADDR_PRO_PRESENT_POSITION)
-            if dxl_comm_result == COMM_SUCCESS and dxl_error == 0:
-                current_positions[dxl_id] = dxl_present_position
-                angle = current_positions[dxl_id]
-                error = goal_position - angle
+            goal_positions[dxl_id] = goal_position  # Store goal position
 
-                # PID control
-                p = KP * error
-                i = KI * (errors[dxl_id] + error)
-                d = KD * (error - last_errors[dxl_id])
+        # Wait for Dynamixels to reach goal positions
+        all_reached_goal = False
+        while not all_reached_goal:
+            all_reached_goal = True  # Assume all Dynamixels have reached their goal positions
 
-                speed = int(p + i + d)
-                speed = np.clip(speed, -1023, 1023)
+            # Check current positions and update errors
+            for dxl_id in DXL_ID_LIST:
+                dxl_present_position, dxl_comm_result, dxl_error = packetHandler.read4ByteTxRx(portHandler, dxl_id, ADDR_PRO_PRESENT_POSITION)
+                if dxl_comm_result == COMM_SUCCESS and dxl_error == 0:
+                    current_positions[dxl_id] = dxl_present_position
+                    angle = current_positions[dxl_id]
+                    goal_position = goal_positions[dxl_id]
+                    error = goal_position - angle
 
-                dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_SPEED, speed)
-                if dxl_comm_result != COMM_SUCCESS or dxl_error != 0:
-                    print("Failed to set goal speed for Dynamixel ID %d" % dxl_id)
-                else:
-                    print("Dynamixel ID %d goal speed set to: %d" % (dxl_id, speed))
+                    # PID control
+                    p = KP * error
+                    i = KI * (errors[dxl_id] + error)
+                    d = KD * (error - last_errors[dxl_id])
 
-                # Log data
-                timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                direction = "CW" if phase == 1 else "CCW"
-                torque = 0  # You may need to read and log the actual torque if available
-                log_data = f"{timestamp},{dxl_id},{direction},{speed},{torque},{angle}\n"
-                with open('log.txt', 'a') as f:
-                    f.write(log_data)
+                    speed = int(p + i + d)
+                    speed = np.clip(speed, -1023, 1023)
 
-                # Update error and last error
-                errors[dxl_id] += error
-                last_errors[dxl_id] = error
+                    dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_SPEED, speed)
+                    if dxl_comm_result != COMM_SUCCESS or dxl_error != 0:
+                        print("Failed to set goal speed for Dynamixel ID %d" % dxl_id)
+                    else:
+                        print("Dynamixel ID %d goal speed set to: %d" % (dxl_id, speed))
+
+                    # Log data
+                    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                    direction = "CW" if phase == 1 else "CCW"
+                    torque = 0  # You may need to read and log the actual torque if available
+                    log_data = f"{timestamp},{dxl_id},{direction},{speed},{torque},{angle}\n"
+                    with open('log.txt', 'a') as f:
+                        f.write(log_data)
+
+                    # Update error and last error
+                    errors[dxl_id] += error
+                    last_errors[dxl_id] = error
+
+                    # Check if goal position is reached
+                    if abs(error) > POSITION_THRESHOLD:
+                        all_reached_goal = False
+
+            time.sleep(0.1)
 
         write_counter += 1
         if write_counter >= WRITE_FREQ:
