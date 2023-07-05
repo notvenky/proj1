@@ -154,12 +154,13 @@ finally:
     # Close port
     portHandler.closePort()
 
-# Compress the video using ffmpeg
-input_video = f'/home/grail/Desktop/venky/proj1/wriggly/hardware/control/media/video_{count}.avi'
-output_video = f'/home/grail/Desktop/venky/proj1/wriggly/hardware/control/media/compressed_video_{count}.mp4'
+    # Compress the video using ffmpeg
+    time.sleep(1)  # Add a delay to allow the video file to be saved
+    input_video = f'media/video_{count}.avi'
+    output_video = f'media/compressed_video_{count}.mp4'
 
-ffmpeg_cmd = f'ffmpeg -i {input_video} -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k {output_video}'
-subprocess.run(ffmpeg_cmd, shell=True)
+    ffmpeg_cmd = f'ffmpeg -i {input_video} -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k {output_video}'
+    subprocess.run(ffmpeg_cmd, shell=True)
 
-# Remove the original uncompressed video
-os.remove(input_video)
+    # Remove the original uncompressed video
+    os.remove(input_video)
