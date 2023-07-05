@@ -79,6 +79,9 @@ try:
                 errors[dxl_id] += error
                 last_errors[dxl_id] = error
 
+            # Add a delay of 0.5 seconds between each sequence of action commands
+            time.sleep(0.5)
+
         write_counter += 1
         if write_counter >= WRITE_FREQ:
             # Save log data to disk
