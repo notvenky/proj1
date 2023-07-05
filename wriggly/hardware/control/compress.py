@@ -159,8 +159,11 @@ finally:
     input_video = f'media/video_{count}.avi'
     output_video = f'media/compressed_video_{count}.mp4'
 
-    ffmpeg_cmd = f'ffmpeg -i {input_video} -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k {output_video}'
-    subprocess.run(ffmpeg_cmd, shell=True)
+    if os.path.exists(input_video):
+        ffmpeg_cmd = f'ffmpeg -i {input_video} -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k {output_video}'
+        subprocess.run(ffmpeg_cmd, shell=True)
 
-    # Remove the original uncompressed video
-    os.remove(input_video)
+        # Remove the original uncompressed video
+        os.remove(input_video)
+    else:
+        print(f"File '{input_video}' does not exist.")
