@@ -140,7 +140,7 @@ except KeyboardInterrupt:
 
     # Compress the video using ffmpeg
     time.sleep(1)  # Add a delay to allow the video file to be saved
-    input_video = f'media/video_{count}.avi'
+    input_video = f'media/video_{count-1}.avi'
     output_video = f'media/compressed_video_{count}.mp4'
 
     if os.path.exists(input_video):
