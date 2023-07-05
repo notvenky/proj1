@@ -144,7 +144,7 @@ except KeyboardInterrupt:
     output_video = f'media/compressed_video_{count-1}.mp4'
 
     if os.path.exists(input_video):
-        ffmpeg_cmd = f'ffmpeg -i {input_video} -c:v libx264 -crf 32 -preset veryfast -c:a aac -b:a 128k {output_video}'
+        ffmpeg_cmd = f'ffmpeg -i {input_video} -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k {output_video}'
         subprocess.run(ffmpeg_cmd, shell=True)
 
         # Remove the original uncompressed video
