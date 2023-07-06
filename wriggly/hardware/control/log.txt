@@ -17116,3 +17116,13 @@ Timestamp,Dynamixel ID,Direction,Speed,Torque,Angle
 2023-07-05 19:29:00.076462,[[11, 20]],[['anticlockwise', 'anticlockwise']],122,35,1791
 2023-07-05 19:29:01.036364,[[12, 20, 22, 11, 21]],[['clockwise', 'clockwise', 'clockwise', 'anticlockwise', 'clockwise']],107,84,1983
 2023-07-05 19:29:02.156177,[[21, 22, 20]],[['clockwise', 'anticlockwise', 'clockwise']],166,52,2435
+Timestamp,Dynamixel ID,Direction,Speed,Torque,Angle
+2023-07-05 20:21:20.818030,[[21, 22, 20, 12, 11]],[['anticlockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],116,11,2792
+2023-07-05 20:21:21.809997,[[11, 20, 21, 22, 12]],[['anticlockwise', 'clockwise', 'anticlockwise', 'anticlockwise', 'anticlockwise']],63,31,469
+2023-07-05 20:21:22.817922,[[11, 22]],[['clockwise', 'clockwise']],87,63,3242
+2023-07-05 20:21:23.953741,[[21, 20]],[['anticlockwise', 'clockwise']],53,87,2786
+Timestamp,Dynamixel ID,Direction,Speed,Torque,Angle
+2023-07-05 20:22:12.215190,[[11, 12]],[['anticlockwise', 'anticlockwise']],139,38,2510
+2023-07-05 20:22:13.079020,[[20, 12, 21, 22, 11]],[['clockwise', 'anticlockwise', 'anticlockwise', 'clockwise', 'anticlockwise']],80,73,2142
+2023-07-05 20:22:14.407136,[[12, 21, 22]],[['clockwise', 'clockwise', 'anticlockwise']],181,37,2727
+2023-07-05 20:22:15.590931,[[21]],[['anticlockwise']],147,31,2874
