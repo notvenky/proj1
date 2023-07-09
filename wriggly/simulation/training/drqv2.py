@@ -3,6 +3,7 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 import hydra
+import datetime
 import numpy as np
 import torch
 import torch.nn as nn
@@ -68,7 +69,7 @@ class Encoder(nn.Module):
 
 
 class MyActor(nn.Module):
-    def __init__(self, repr_dim, action_shape, feature_dim, hidden_dim):
+    def __init__(self, repr_dim, action_shape, feature_dim, hidden_dim, num_actuators):
         super().__init__()
 
         self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
@@ -80,6 +81,10 @@ class MyActor(nn.Module):
                                     nn.ReLU(inplace=True),
                                     nn.Linear(hidden_dim, action_shape[0]))
 
+        self.frequencies = nn.Parameter(torch.rand(num_actuators))
+        self.amplitudes = nn.Parameter(torch.rand(num_actuators))
+        self.phases = nn.Parameter(torch.rand(num_actuators))
+
         self.apply(utils.weight_init)
 
     def forward(self, obs, std):
@@ -89,6 +94,12 @@ class MyActor(nn.Module):
         mu = torch.tanh(mu)
         std = torch.ones_like(mu) * std
 
+        dist = utils.TruncatedNormal(mu, std)
+        # Apply oscillation
+        for i in range(mu.shape[-1]):
+            mu[:, i] += self.amplitudes[i] * torch.sin(2 * np.pi * self.frequencies[i] * datetime.time + self.phases[i])
+
+        std = torch.ones_like(mu) * std
         dist = utils.TruncatedNormal(mu, std)
         return dist
     
@@ -110,7 +121,7 @@ model = Oscilator()
 print(list(model.parameters()))
 #Addition
 
-class Critic(nn.Module):
+class MyCritic(nn.Module):
     def __init__(self, repr_dim, action_shape, feature_dim, hidden_dim):
         super().__init__()
 
@@ -155,9 +166,9 @@ class MyDrQV2Agent:
         self.actor = MyActor(self.encoder.repr_dim, action_shape, feature_dim,
                            hidden_dim).to(device)
 
-        self.critic = Critic(self.encoder.repr_dim, action_shape, feature_dim,
+        self.critic = MyCritic(self.encoder.repr_dim, action_shape, feature_dim,
                              hidden_dim).to(device)
-        self.critic_target = Critic(self.encoder.repr_dim, action_shape,
+        self.critic_target = MyCritic(self.encoder.repr_dim, action_shape,
                                     feature_dim, hidden_dim).to(device)
         self.critic_target.load_state_dict(self.critic.state_dict())
 
@@ -178,17 +189,17 @@ class MyDrQV2Agent:
         self.actor.train(training)
         self.critic.train(training)
 
-    def act(self, obs, step, eval_mode):
+    def act(self, obs, step, eval_mode, t):
         obs = torch.as_tensor(obs, device=self.device)
         obs = self.encoder(obs.unsqueeze(0))
         stddev = utils.schedule(self.stddev_schedule, step)
-        dist = self.actor(obs, stddev)
+        dist = self.actor(obs, t, stddev)
         if eval_mode:
             action = dist.mean
         else:
             action = dist.sample(clip=None)
             if step < self.num_expl_steps:
-                action.uniform_(-1.0, 1.0)
+                action.uniform_(-1.57, 1.57)
         return action.cpu().numpy()[0]
 
     def update_critic(self, obs, action, reward, discount, next_obs, step):
