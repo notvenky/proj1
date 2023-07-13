@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-import utils
+from . import utils
 
 
 class RandomShiftsAug(nn.Module):
@@ -69,82 +69,140 @@ class Encoder(nn.Module):
 
 
 class MyActor(nn.Module):
-    def __init__(self, repr_dim, action_shape, feature_dim, hidden_dim, num_actuators):
+    def __init__(self, frequencies, amplitudes, phases, num_actuators):
+        #repr_dim, action_shape, feature_dim, hidden_dim
         super().__init__()
 
-        self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
-                                   nn.LayerNorm(feature_dim), nn.Tanh())
+        # self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
+        #                            nn.LayerNorm(feature_dim), nn.Tanh())
 
-        self.policy = nn.Sequential(nn.Linear(feature_dim, hidden_dim),
-                                    nn.ReLU(inplace=True),
-                                    nn.Linear(hidden_dim, hidden_dim),
-                                    nn.ReLU(inplace=True),
-                                    nn.Linear(hidden_dim, action_shape[0]))
+        # self.policy = nn.Sequential(nn.Linear(feature_dim, hidden_dim),
+        #                             nn.ReLU(inplace=True),
+        #                             nn.Linear(hidden_dim, hidden_dim),
+        #                             nn.ReLU(inplace=True),
+        #                             nn.Linear(hidden_dim, action_shape[0]))
+        
+        # replace above nn with the parameters
 
-        self.frequencies = nn.Parameter(torch.rand(num_actuators))
-        self.amplitudes = nn.Parameter(torch.rand(num_actuators))
-        self.phases = nn.Parameter(torch.rand(num_actuators))
-
+        # self.frequencies = nn.Parameter(torch.rand(num_actuators)) # softplus/exp/
+        # self.amplitudes = nn.Parameter(torch.rand(num_actuators))  # tanh activation
+        # self.phases = nn.Parameter(torch.rand(num_actuators))
+        self.frequencies = nn.Parameter(frequencies) # softplus/exp/
+        self.amplitudes = nn.Parameter(amplitudes)  # tanh activation
+        self.phases = nn.Parameter(phases)
+        self.num_actuators = num_actuators
         self.apply(utils.weight_init)
+        self.range = torch.tensor([np.pi/2, np.pi, np.pi/2, np.pi, np.pi/2])
 
-    def forward(self, obs, std):
-        h = self.trunk(obs)
+    def true_params(self):
+        frequencies = F.softplus(self.frequencies)
+        amplitudes = F.tanh(self.amplitudes)
+        phases = self.phases
+        amplitudes *= self.range
+        return frequencies, amplitudes, phases
 
-        mu = self.policy(h)
-        mu = torch.tanh(mu)
-        std = torch.ones_like(mu) * std
+    def forward(self, obs, t, std):
+        # h = self.trunk(obs)
+    
+        # mu = self.policy(h) #init as zeros
+        # mu = torch.tanh(mu)
+        # std = torch.ones_like(mu) * std
 
-        dist = utils.TruncatedNormal(mu, std)
+        # dist = utils.TruncatedNormal(mu, std)
+        b = t.shape[0]
+        mu = torch.zeros(b,self.num_actuators,device= t.device)
+        f, a, p = self.true_params()
         # Apply oscillation
         for i in range(mu.shape[-1]):
-            mu[:, i] += self.amplitudes[i] * torch.sin(2 * np.pi * self.frequencies[i] * datetime.time + self.phases[i])
+            mu[:, i] = a[i] * torch.sin(2 * np.pi * f[i] * t + p[i])
 
         std = torch.ones_like(mu) * std
         dist = utils.TruncatedNormal(mu, std)
         return dist
     
-#Addition
-class Oscilator(torch.nn.Module):
-     def __init__(self):
-           super().__init__()
-           self.myparam = torch.nn.Parameter(torch.zeros(1))
+# #Addition
+# class Oscilator(torch.nn.Module):
+#      def __init__(self):
+#            super().__init__()
+#            self.myparam = torch.nn.Parameter(torch.zeros(1))
 
 
-class Oscilator(torch.nn.Module):
-     def __init__(self):
-         super().__init__()
-         self.myparam = torch.nn.Parameter(torch.zeros(1))
-     def forward(self, x):
-         return self.myparam * x
+# class Oscilator(torch.nn.Module):
+#      def __init__(self):
+#          super().__init__()
+#          self.myparam = torch.nn.Parameter(torch.zeros(1))
+#      def forward(self, x):
+#          return self.myparam * x
 
-model = Oscilator()
-print(list(model.parameters()))
+# model = Oscilator()
+# print(list(model.parameters()))
+
+    # num_actuators = model.nu
+    # goal_positions = [random.uniform(-1.57, 1.57) for _ in range(num_actuators)]
+    # #print(num_actuators)
+
+    # std_dev = 0.02  # Standard deviation of the Gaussian noise
+    # freq_even = 1
+    # freq_odd = 1
+
+    # while not mj.glfw.glfw.window_should_close(window):
+    #     simstart = data.time
+
+    #     while (data.time - simstart < 1.0 / 60.0):
+    #         # Update goal positions
+    #         for i in range(num_actuators):
+    #             if i in [0, 2, 4]:
+                    
+    #                 # # Generate the sine wave for these actuators
+    #                 phase = -np.pi if i == 0 else 0 if i == 2 else np.pi
+    #                 goal_positions[i] = 1.57 * np.sin(2*np.pi * freq_even * data.time + phase)
+    #                 if data.ctrl[i] < goal_positions[i]:
+    #                     data.ctrl[i] += 0.3925
+    #                 else:
+    #                     data.ctrl[i] -= 0.3925
+    #             elif i in [1, 3]:
+    #                 # Generate the sine wave for these actuators
+    #                 phase = -np.pi/2 if i == 1 else np.pi/2
+    #                 goal_positions[i] = 3.14 * np.sin(2*np.pi * freq_odd * data.time + phase)
+
+    #                 # Move the actuator towards the goal position
+    #                 # Separate the data distribution updation for even and odd
+    #                 if data.ctrl[i] < goal_positions[i]:
+    #                     data.ctrl[i] += 0.3925
+    #                 else:
+    #                     data.ctrl[i] -= 0.3925
+
+    #             # Add Gaussian noise
+    #             noise = np.random.normal(0, std_dev)
+    #             data.ctrl[i] += noise
+
 #Addition
 
 class MyCritic(nn.Module):
     def __init__(self, repr_dim, action_shape, feature_dim, hidden_dim):
         super().__init__()
 
-        self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
-                                   nn.LayerNorm(feature_dim), nn.Tanh())
+        # self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
+        #                            nn.LayerNorm(feature_dim), nn.Tanh())
 
         self.Q1 = nn.Sequential(
-            nn.Linear(feature_dim + action_shape[0], hidden_dim),
+            nn.Linear(feature_dim + 1 + action_shape[0], hidden_dim),
             nn.ReLU(inplace=True), nn.Linear(hidden_dim, hidden_dim),
             nn.ReLU(inplace=True), nn.Linear(hidden_dim, 1))
 
         self.Q2 = nn.Sequential(
-            nn.Linear(feature_dim + action_shape[0], hidden_dim),
+            nn.Linear(feature_dim + 1 + action_shape[0], hidden_dim),
             nn.ReLU(inplace=True), nn.Linear(hidden_dim, hidden_dim),
             nn.ReLU(inplace=True), nn.Linear(hidden_dim, 1))
 
         self.apply(utils.weight_init)
 
-    def forward(self, obs, action):
-        h = self.trunk(obs)
-        h_action = torch.cat([h, action], dim=-1)
+    def forward(self, obs, t, action):
+        #h = self.trunk(obs)
+        h_action = torch.cat([obs, t, action], dim=-1)
         q1 = self.Q1(h_action)
         q2 = self.Q2(h_action)
+
 
         return q1, q2
 
@@ -162,9 +220,10 @@ class MyDrQV2Agent:
         self.stddev_clip = stddev_clip
 
         # models
-        self.encoder = Encoder(obs_shape).to(device)
+        # self.encoder = Encoder(obs_shape).to(device)
         self.actor = MyActor(self.encoder.repr_dim, action_shape, feature_dim,
                            hidden_dim).to(device)
+        # remove encoder
 
         self.critic = MyCritic(self.encoder.repr_dim, action_shape, feature_dim,
                              hidden_dim).to(device)
@@ -173,25 +232,25 @@ class MyDrQV2Agent:
         self.critic_target.load_state_dict(self.critic.state_dict())
 
         # optimizers
-        self.encoder_opt = torch.optim.Adam(self.encoder.parameters(), lr=lr)
+        # self.encoder_opt = torch.optim.Adam(self.encoder.parameters(), lr=lr)
         self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=lr)
         self.critic_opt = torch.optim.Adam(self.critic.parameters(), lr=lr)
 
         # data augmentation
-        self.aug = RandomShiftsAug(pad=4)
+        #self.aug = RandomShiftsAug(pad=4)
 
         self.train()
         self.critic_target.train()
 
     def train(self, training=True):
         self.training = training
-        self.encoder.train(training)
+        #self.encoder.train(training)
         self.actor.train(training)
         self.critic.train(training)
 
     def act(self, obs, step, eval_mode, t):
         obs = torch.as_tensor(obs, device=self.device)
-        obs = self.encoder(obs.unsqueeze(0))
+        #obs = self.encoder(obs.unsqueeze(0))
         stddev = utils.schedule(self.stddev_schedule, step)
         dist = self.actor(obs, t, stddev)
         if eval_mode:
@@ -199,21 +258,21 @@ class MyDrQV2Agent:
         else:
             action = dist.sample(clip=None)
             if step < self.num_expl_steps:
-                action.uniform_(-1.57, 1.57)
+                action.uniform_(-1.57, 1.57) #was -1 to 1
         return action.cpu().numpy()[0]
 
-    def update_critic(self, obs, action, reward, discount, next_obs, step):
+    def update_critic(self, obs, t, action, reward, discount, next_obs, step):
         metrics = dict()
 
         with torch.no_grad():
             stddev = utils.schedule(self.stddev_schedule, step)
-            dist = self.actor(next_obs, stddev)
+            dist = self.actor(next_obs,t , stddev)
             next_action = dist.sample(clip=self.stddev_clip)
-            target_Q1, target_Q2 = self.critic_target(next_obs, next_action)
+            target_Q1, target_Q2 = self.critic_target(next_obs, t, next_action)
             target_V = torch.min(target_Q1, target_Q2)
             target_Q = reward + (discount * target_V)
 
-        Q1, Q2 = self.critic(obs, action)
+        Q1, Q2 = self.critic(obs, t, action)
         critic_loss = F.mse_loss(Q1, target_Q) + F.mse_loss(Q2, target_Q)
 
         if self.use_tb:
@@ -223,22 +282,22 @@ class MyDrQV2Agent:
             metrics['critic_loss'] = critic_loss.item()
 
         # optimize encoder and critic
-        self.encoder_opt.zero_grad(set_to_none=True)
+        #self.encoder_opt.zero_grad(set_to_none=True)
         self.critic_opt.zero_grad(set_to_none=True)
         critic_loss.backward()
         self.critic_opt.step()
-        self.encoder_opt.step()
+        #self.encoder_opt.step()
 
         return metrics
 
-    def update_actor(self, obs, step):
+    def update_actor(self, obs, t, step):
         metrics = dict()
 
         stddev = utils.schedule(self.stddev_schedule, step)
-        dist = self.actor(obs, stddev)
+        dist = self.actor(obs, t, stddev)
         action = dist.sample(clip=self.stddev_clip)
         log_prob = dist.log_prob(action).sum(-1, keepdim=True)
-        Q1, Q2 = self.critic(obs, action)
+        Q1, Q2 = self.critic(obs, t, action)
         Q = torch.min(Q1, Q2)
 
         actor_loss = -Q.mean()

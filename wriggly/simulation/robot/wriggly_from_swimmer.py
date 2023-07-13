@@ -98,16 +98,26 @@ class Wriggly(base.Task):
     """
     # Random joint angles:
     randomizers.randomize_limited_and_rotational_joints(physics, self.random)
+    
     # Random target position.
-    close_target = self.random.rand() < .2  # Probability of a close target.
-    target_box = .3 if close_target else 2
+    #close_target = self.random.rand() < .2  # Probability of a close target.
+    target_box = 1
     xpos, ypos = self.random.uniform(-target_box, target_box, size=2)
+    physics.named.data.qpos[0] = xpos
+    physics.named.data.qpos[1] = ypos
+    physics.named.data.qpos[2] = 0.5
+    #physics.step()
+
+
     physics.named.model.geom_pos['target', 'x'] = xpos
     physics.named.model.geom_pos['target', 'y'] = ypos
+    print(physics.named.data.qpos)
+    
     #physics.named.model.light_pos['target_light', 'x'] = xpos
     #physics.named.model.light_pos['target_light', 'y'] = ypos
 
     super().initialize_episode(physics)
+    print(physics.named.data.qpos)
 
   def get_observation(self, physics):
     """Returns an observation of joint angles, body velocities and target."""
@@ -115,13 +125,14 @@ class Wriggly(base.Task):
     obs['joints'] = physics.joints()
     #obs['to_target'] = physics.nose_to_target()
     obs['jointvel'] = physics.body_velocities()
+
+    obs['time'] = np.array(physics.data.time)
     return obs
 
   def get_reward(self, physics):
-    """Returns a smooth reward."""
-    target_size = physics.named.model.geom_size['target', 1]
-    #physics.nose_to_target_dist(),
-    return rewards.tolerance(physics.nose_to_target_dist(),
-                             bounds=(0, target_size),
-                             margin=5*target_size,
-                             sigmoid='long_tail')
+    current_xy = physics.named.data.qpos[0:2]
+    start_x = physics.named.model.geom_pos['target', 'x']
+    start_y = physics.named.model.geom_pos['target', 'y']
+    start_xy = np.array([start_x, start_y])
+    
+    return np.linalg.norm(start_xy - current_xy)
