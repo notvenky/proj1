@@ -97,27 +97,28 @@ class Wriggly(base.Task):
       physics: An instance of `Physics`.
     """
     # Random joint angles:
-    randomizers.randomize_limited_and_rotational_joints(physics, self.random)
-    
+    # randomizers.randomize_limited_and_rotational_joints(physics, self.random)
+    physics.named.data.qpos[7:] = 0.0
+
     # Random target position.
     #close_target = self.random.rand() < .2  # Probability of a close target.
     target_box = 1
     xpos, ypos = self.random.uniform(-target_box, target_box, size=2)
     physics.named.data.qpos[0] = xpos
     physics.named.data.qpos[1] = ypos
-    physics.named.data.qpos[2] = 0.5
+    physics.named.data.qpos[2] = 0.027
     #physics.step()
 
 
     physics.named.model.geom_pos['target', 'x'] = xpos
     physics.named.model.geom_pos['target', 'y'] = ypos
-    print(physics.named.data.qpos)
+    #print(physics.named.data.qpos)
     
     #physics.named.model.light_pos['target_light', 'x'] = xpos
     #physics.named.model.light_pos['target_light', 'y'] = ypos
 
     super().initialize_episode(physics)
-    print(physics.named.data.qpos)
+    #print(physics.named.data.qpos)
 
   def get_observation(self, physics):
     """Returns an observation of joint angles, body velocities and target."""
@@ -136,3 +137,62 @@ class Wriggly(base.Task):
     start_xy = np.array([start_x, start_y])
     
     return np.linalg.norm(start_xy - current_xy)
+  
+
+
+
+
+# from datetime import datetime
+# import csv
+# import heapq
+
+# # Logger class to handle logging tasks
+# class Logger:
+#   def __init__(self, path, top_k=5):
+#     self.path = path
+#     self.top_k = top_k
+#     self.data = []
+
+#   def add(self, reward, freq, amp, phase):
+#     # Use a negative reward for max heap
+#     heapq.heappush(self.data, (-reward, freq, amp, phase))
+#     if len(self.data) > self.top_k:
+#       heapq.heappop(self.data)
+
+#   def write(self):
+#     # Use datetime to distinguish each run
+#     with open(f"{self.path}/rewards_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.csv", 'w') as f:
+#       writer = csv.writer(f)
+#       writer.writerow(["reward", "frequency", "amplitude", "phase"])
+#       self.data.sort(reverse=True)
+#       for reward, freq, amp, phase in self.data:
+#         writer.writerow([-reward, freq, amp, phase])  # Convert reward back to positive
+
+# # ...
+
+# # Initialize logger
+# logger = Logger("/home/venky/proj1/wriggly/log", top_k=5)
+
+# for i in tqdm(range(num_params)):
+#   frequencies = torch.rand(num_actuators)  # softplus/exp/
+#   amplitudes = torch.rand(num_actuators)   # tanh activation
+#   phases = torch.rand(num_actuators)
+#   actor = MyActor(frequencies, amplitudes, phases, num_actuators)
+  
+#   # Store frequencies, amplitudes and phases
+#   all_frequencies[i] = frequencies.numpy()
+#   all_amplitudes[i] = amplitudes.numpy()
+#   all_phases[i] = phases.numpy()
+
+#   reward = evaluate(env, actor, runs_per_act, 2000)
+#   all_rewards[i] = reward 
+
+#   # Print frequencies, amplitudes, phases and rewards for each run
+#   for run in range(runs_per_act):
+#     print(f"Sample {i}, Run {run}: Frequencies {frequencies}, Amplitudes {amplitudes}, Phases {phases}, Reward {reward[run]}")
+    
+#     # Add reward to logger
+#     logger.add(reward[run], frequencies, amplitudes, phases)
+
+# # Write to log file at the end of each run
+# logger.write()

@@ -94,6 +94,9 @@ class MyActor(nn.Module):
         self.apply(utils.weight_init)
         self.range = torch.tensor([np.pi/2, np.pi, np.pi/2, np.pi, np.pi/2])
 
+    def underlying_params(self):
+        return self.frequencies, self.amplitudes, self.phases
+
     def true_params(self):
         frequencies = F.softplus(self.frequencies)
         amplitudes = F.tanh(self.amplitudes)
