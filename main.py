@@ -97,7 +97,7 @@ def my_policy(obs, ):
 # # Launch the viewer application.
 viewer.launch(env, policy=my_policy)
 num_params = 1000
-runs_per_act = 20
+runs_per_act = 10
 all_rewards = np.zeros((num_params, runs_per_act))
 
 # Define data structures to store frequencies, amplitudes and phases
@@ -126,13 +126,14 @@ for i in tqdm(range(num_params)):
   # all_amplitudes[i] = np.pi * amplitudes.numpy() if i % 2 == 0 else np.pi/2 * amplitudes.numpy()
   # all_phases[i] = phases.numpy()
 
-  reward = evaluate(env, actor, runs_per_act, 1000)
+  reward = evaluate(env, actor, runs_per_act, 5000) # for 10 seconds, since 0.002s for 1 step 
   all_rewards[i] = reward 
   top_rewards = []
 
   mean_reward = np.mean(reward)
   print(f"Sample {i} Frequency: {frequencies}, Amplitude: {amplitudes}, Phase: {phases}, Reward {mean_reward}")
-  print(max_reward)
+  # print(max_reward)
+  print(f"Max Reward: {max_reward}, Frequency: {max_reward_freq}, Amplitude: {max_reward_amp}, Phase: {max_reward_phase}")
 
 
 
@@ -157,8 +158,8 @@ for i in tqdm(range(num_params)):
   #     heapq.heappush(top_rewards, (-reward[run], frequencies.numpy(), amplitudes.numpy(), phases.numpy()))
 
 # Print the final rewards for all samples and runs
-with open('top_rewards.txt', 'w') as f:
-    f.write(f"Time: {datetime.time}, Reward: {max_reward}, Frequency: {max_reward_freq}, Amplitude: {max_reward_amp}, Phase: {max_reward_phase}\n")
+with open('top_rewards.txt', 'a') as f:
+    f.write(f"Time: {datetime.datetime.now().time()}, Reward: {max_reward}, Frequency: {max_reward_freq}, Amplitude: {max_reward_amp}, Phase: {max_reward_phase}\n")
 print(i, all_rewards)
 
 # Print maximum reward and corresponding frequency, amplitude, phase
