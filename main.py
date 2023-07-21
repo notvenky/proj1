@@ -95,7 +95,7 @@ def my_policy(obs, ):
 #                            size=action_spec.shape)
 
 # # Launch the viewer application.
-viewer.launch(env, policy=my_policy)
+# viewer.launch(env, policy=my_policy)
 num_params = 1000
 runs_per_act = 10
 all_rewards = np.zeros((num_params, runs_per_act))
@@ -181,5 +181,5 @@ def viz_policy(obs, ):
   action = dist.mean
   return action.squeeze().numpy()
 
-viewer.launch(env, policy = viz_policy)
+# viewer.launch(env, policy = viz_policy)
 
