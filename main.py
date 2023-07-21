@@ -3,12 +3,14 @@
 # create environment and pass task into it
 # import mujoco as mj
 # grail@10.19.188.62
+import os
+os.environ['MUJOCO_GL'] = 'egl'
 
 from dm_control import mujoco
 import torch
 import PIL.Image
 import numpy as np
-from dm_control import composer, viewer
+# from dm_control import composer, viewer
 from dm_control.rl import control
 from wriggly.simulation.robot.wriggly_from_swimmer import Wriggly, Physics
 from wriggly.simulation.training.drqv2 import MyActor
