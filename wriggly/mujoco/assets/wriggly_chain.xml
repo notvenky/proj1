@@ -2,9 +2,8 @@
   <worldbody>
     <!-- Green Leg -->
     <body name="green_leg">
-        <!-- Joint -->
+        <inertial pos="0.364397154664965 -0.247649999434367 -6.01260156101907E-09" quat="0.5 -0.5 0.5 -0.5" mass="0.06" diaginertia="5.02495112065811E-06 7.84051273383468E-06 1.03414373246399E-05"/>
         <joint name="free" pos="0 0 0" type="free" damping="0.1" armature="0.005"/>
-        <!-- Base Link -->
         <geom name = "green_leg" pos = "0 0 0" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base_link"/>
         
         <!-- Green Leg Holder -->
@@ -44,3 +43,12 @@
     </body>
   </worldbody>
 </mujoco>
+
+
+<!--body>
+  <inertial pos="0.364397154664965 -0.247649999434367 -6.01260156101907E-09" quat="1 0 0 0">
+    <mass mass="0.0302629231778384"/>
+    <inertia diaginertia="5.02495112065811E-06 7.84051273383468E-06 1.03414373246399E-05"/>
+  </inertial>
+  <geom type="plane" pos="0 0 0" quat="1 0 0 0"/>
+</body-->

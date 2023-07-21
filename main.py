@@ -113,10 +113,16 @@ max_reward_phase = None
 
 
 for i in tqdm(range(num_params)):
-  frequencies = torch.rand(num_actuators)  # softplus/exp/
+  frequencies = torch.rand(num_actuators) / 2 # softplus/exp/
   amplitudes = torch.rand(num_actuators)   # tanh activation
-  amplitudes[::2] = amplitudes[::2] * 1.57  # For 1st, 3rd, and 5th
-  amplitudes[1::2] = amplitudes[1::2] * 3.14  # For 2nd and 4th
+  amplitudes[0] = amplitudes[0] * 0.37 + 1.2 
+  amplitudes[1] = amplitudes[1] * 1.57  
+  amplitudes[2] = amplitudes[2] * 0.7 + 0.8 
+  amplitudes[3] = amplitudes[3] + 1.5
+  amplitudes[4] = amplitudes[4] * 0.7 + 0.8  
+
+  # amplitudes[::2] = amplitudes[::2] * 1.57  # For 1st, 3rd, and 5th
+  # amplitudes[1::2] = amplitudes[1::2] * 3.14  # For 2nd and 4th
   phases = torch.rand(num_actuators) * 2 * np.pi
   #np.pi for 1 and 3 np.p/2 for 0, 2 & 4
   actor = MyActor(frequencies, amplitudes, phases, num_actuators)
