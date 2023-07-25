@@ -98,7 +98,7 @@ def my_policy(obs, ):
 
 # # Launch the viewer application.
 # viewer.launch(env, policy=my_policy)
-num_params = 3000
+num_params = 100
 runs_per_act = 3
 all_rewards = np.zeros((num_params, runs_per_act))
 
@@ -134,7 +134,7 @@ for i in tqdm(range(num_params)):
   # all_amplitudes[i] = np.pi * amplitudes.numpy() if i % 2 == 0 else np.pi/2 * amplitudes.numpy()
   # all_phases[i] = phases.numpy()
 
-  reward = evaluate(env, actor, runs_per_act, 4000) # for 10 seconds, since 0.002s for 1 step 
+  reward = evaluate(env, actor, runs_per_act, 10000) # for 10 seconds, since 0.002s for 1 step 
   all_rewards[i] = reward 
   top_rewards = []
 
