@@ -77,30 +77,33 @@ for i in range(len(DXL_ID_LIST)):
     else:
         print("Dynamixel %d has been successfully set to initial position" % DXL_ID_LIST[i])
 
+
+# # Given data
+# frequencies = [0.7761, 0.5910, 0.6341, 0.5148, 0.9764]
+# amplitudes = [1.2208, 1.3715, 1.1716, 1.9119, 1.2246]
+# phases = [1.5270, 3.4190, 1.4527, 3.9914, 5.7299]
+
+# # Conversion factor for amplitudes
+# amplitude_conversion_factor = 2048 / 3.14
+
+# # Swap second last and last values in the lists
+# frequencies[-2], frequencies[-1] = frequencies[-1], frequencies[-2]
+# amplitudes[-2], amplitudes[-1] = amplitudes[-1], amplitudes[-2]
+# phases[-2], phases[-1] = phases[-1], phases[-2]
+
+# # Create dictionaries with the converted values
+# FREQUENCIES = {11: frequencies[0], 12: frequencies[1], 20: frequencies[2], 21: frequencies[3], 22: frequencies[4]}
+# AMPLITUDES = {11: int(amplitudes[0] * amplitude_conversion_factor), 12: int(amplitudes[1] * amplitude_conversion_factor),
+#               20: int(amplitudes[2] * amplitude_conversion_factor), 21: int(amplitudes[3] * amplitude_conversion_factor),
+#               22: int(amplitudes[4] * amplitude_conversion_factor)}
+# PHASES = {11: phases[0], 12: phases[1], 20: phases[2], 21: phases[3], 22: phases[4]}
+
+
 # Define frequencies, amplitudes, and phases for each Dynamixel
-FREQUENCIES = {
-    11: 0.3774,
-    12: 0.2280,
-    20: 0.1030,
-    21: 0.4668,  # Interchanged value with 22
-    22: 0.4670   # Interchanged value with 21
-}
+FREQUENCIES = {11: 0.7761, 12: 0.591, 20: 0.9764, 21: 0.5148, 22: 0.6341}
+AMPLITUDES = {11: 877, 12: 985, 20: 802, 21: 1309, 22: 862}
+PHASES = {11: 1.527, 12: 3.419, 20: 5.7299, 21: 3.9914, 22: 1.4527}
 
-AMPLITUDES = {
-    11: 688,
-    12: 1396,
-    20: 1014,
-    21: 65,      # Interchanged value with 22
-    22: 1932     # Interchanged value with 21
-}
-
-PHASES = {
-    11: 3.9576,
-    12: 2.5248,
-    20: 1.9755,
-    21: 3.9190,  # Interchanged value with 22
-    22: 6.0795   # Interchanged value with 21
-}
 
 # Constants
 PI = 3.1416
@@ -124,7 +127,7 @@ def oscillate_position(dxl_id, t):
     else:
         print("Dynamixel %d is oscillating at position: %d" % (dxl_id, position))
 
-# Oscillate each Dynamixel
+
 start_time = time.time()
 while True:
     current_time = time.time() - start_time
