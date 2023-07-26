@@ -98,7 +98,7 @@ def my_policy(obs, ):
 
 # # Launch the viewer application.
 # viewer.launch(env, policy=my_policy)
-num_params = 1000
+num_params = 2000
 runs_per_act = 3
 all_rewards = np.zeros((num_params, runs_per_act))
 
@@ -114,14 +114,23 @@ max_reward_amp = None
 max_reward_phase = None
 
 
+# for i in tqdm(range(num_params)):
+#   frequencies = torch.rand(num_actuators) / 2 # softplus/exp/
+#   amplitudes = torch.rand(num_actuators)   # tanh activation
+#   amplitudes[0] = amplitudes[0] * 0.37 + 1.2 
+#   amplitudes[1] = amplitudes[1] * 1.57  
+#   amplitudes[2] = amplitudes[2] * 0.7 + 0.8 
+#   amplitudes[3] = amplitudes[3] + 1.5
+#   amplitudes[4] = amplitudes[4] * 0.7 + 0.8  
+
 for i in tqdm(range(num_params)):
   frequencies = torch.rand(num_actuators) / 2 # softplus/exp/
   amplitudes = torch.rand(num_actuators)   # tanh activation
-  amplitudes[0] = amplitudes[0] * 0.37 + 1.2 
-  amplitudes[1] = amplitudes[1] * 1.57  
-  amplitudes[2] = amplitudes[2] * 0.7 + 0.8 
-  amplitudes[3] = amplitudes[3] + 1.5
-  amplitudes[4] = amplitudes[4] * 0.7 + 0.8  
+  amplitudes[0] = amplitudes[0] * 1.57
+  amplitudes[1] = amplitudes[1] * 3.14 
+  amplitudes[2] = amplitudes[2] * 1.57
+  amplitudes[3] = amplitudes[3] + 3.14
+  amplitudes[4] = amplitudes[4] * 1.57 
 
   # amplitudes[::2] = amplitudes[::2] * 1.57  # For 1st, 3rd, and 5th
   # amplitudes[1::2] = amplitudes[1::2] * 3.14  # For 2nd and 4th
@@ -134,7 +143,7 @@ for i in tqdm(range(num_params)):
   # all_amplitudes[i] = np.pi * amplitudes.numpy() if i % 2 == 0 else np.pi/2 * amplitudes.numpy()
   # all_phases[i] = phases.numpy()
 
-  reward = evaluate(env, actor, runs_per_act, 2000) # for 10 seconds, since 0.002s for 1 step 
+  reward = evaluate(env, actor, runs_per_act, 5000) # for 10 seconds, since 0.002s for 1 step 
   all_rewards[i] = reward 
   top_rewards = []
 
