@@ -129,7 +129,7 @@ for i in tqdm(range(num_params)):
   amplitudes[0] = amplitudes[0] * 1.57
   amplitudes[1] = amplitudes[1] * 3.14 
   amplitudes[2] = amplitudes[2] * 1.57
-  amplitudes[3] = amplitudes[3] + 3.14
+  amplitudes[3] = amplitudes[3] * 3.14
   amplitudes[4] = amplitudes[4] * 1.57 
 
   # amplitudes[::2] = amplitudes[::2] * 1.57  # For 1st, 3rd, and 5th
