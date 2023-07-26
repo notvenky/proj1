@@ -82,24 +82,24 @@ FREQUENCIES = {
     11: 0.3774,
     12: 0.2280,
     20: 0.1030,
-    21: 0.4670,
-    22: 0.4668
+    21: 0.4668,  # Interchanged value with 22
+    22: 0.4670   # Interchanged value with 21
 }
 
 AMPLITUDES = {
     11: 688,
     12: 1396,
     20: 1014,
-    21: 1932,
-    22: 65
+    21: 65,      # Interchanged value with 22
+    22: 1932     # Interchanged value with 21
 }
 
 PHASES = {
     11: 3.9576,
     12: 2.5248,
     20: 1.9755,
-    21: 6.0795,
-    22: 3.9190
+    21: 3.9190,  # Interchanged value with 22
+    22: 6.0795   # Interchanged value with 21
 }
 
 # Constants
