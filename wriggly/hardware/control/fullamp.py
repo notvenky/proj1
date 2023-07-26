@@ -10,9 +10,6 @@ amplitude_conversion_factor = 2048 / 3.14
 # paste_string = 'Frequency: tensor([0.4916, 0.2262, 0.4490, 0.4511, 0.3306]), Amplitude: tensor([1.5270, 1.4947, 0.8646, 0.8290, 1.4490]), Phase: tensor([0.7578, 2.0704, 0.4936, 5.0827, 1.1826])'
 paste_string = 'Max Reward: 3045.8996583303087, Frequency: tensor([0.3467, 0.4378, 0.4047, 0.2469, 0.3709]), Amplitude: tensor([1.5700, 3.1400, 1.5700, 3.1400, 1.5700]), Phase: tensor([1.0281, 5.9251, 0.2471, 2.2554, 1.2754])'
 
-COMMAND_FREQUENCY = 0.75
-COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
-
 tensor_values = re.findall('tensor\((.*?)\)', paste_string)
 frequency = eval(tensor_values[0])
 amplitude = [round(a * amplitude_conversion_factor) for a in eval(tensor_values[1])]
@@ -74,10 +71,26 @@ def oscillate_position(dxl_id, t):
     # else:
     #     print("Speed of Dynamixel %d has been changed to: %d" % (dxl_id, speed))
 
+COMMAND_FREQUENCY = 0.75
+COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
 
-start_time = time.time()
+# Assuming that you have five items in your DXL_ID_LIST
+COMMAND_FREQUENCIES = [0.75, 0.80, 0.85, 0.90, 0.95]
+COMMAND_PERIODS = [1.0 / freq for freq in COMMAND_FREQUENCIES]
+start_times = {dxl_id: time.time() for dxl_id in DXL_ID_LIST}
 while True:
-    current_time = time.time() - start_time
-    for dxl_id in DXL_ID_LIST:
-        oscillate_position(dxl_id, current_time)
-    time.sleep(COMMAND_PERIOD)
+    for i, dxl_id in enumerate(DXL_ID_LIST):
+        current_time = time.time() - start_times[dxl_id]
+        if current_time >= COMMAND_PERIODS[i]:
+            oscillate_position(dxl_id, current_time)
+            start_times[dxl_id] = time.time()
+    time.sleep(min(COMMAND_PERIODS))
+
+
+
+# start_time = time.time()
+# while True:
+#     current_time = time.time() - start_time
+#     for dxl_id in DXL_ID_LIST:
+#         oscillate_position(dxl_id, current_time)
+#     time.sleep(COMMAND_PERIOD)
