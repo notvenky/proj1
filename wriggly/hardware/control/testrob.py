@@ -3,6 +3,7 @@ import time
 import re
 from config import *
 
+
 amplitude_conversion_factor = 2048 / 3.14
 # paste_string = 'Frequency: tensor([0.4303, 0.4154, 0.4517, 0.3578, 0.2295]), Amplitude: tensor([1.3330, 1.2507, 0.8577, 2.2365, 0.8378]), Phase: tensor([2.1703, 1.8762, 0.6844, 6.2216, 1.6259])'
 # paste_string = 'Frequency: tensor([0.8931, 0.5379, 0.8978, 0.8667, 0.5517]), Amplitude: tensor([0.7955, 0.1553, 1.2340, 1.6642, 1.2335]), Phase: tensor([0.7258, 3.1937, 3.4631, 3.5404, 4.7361])'
@@ -49,15 +50,28 @@ def oscillate_position(dxl_id, t):
     phi = PHASES[dxl_id]
     
     position = MEAN_POSITION + A * np.sin(omega * t + phi)
+    speed = 330
 
-    # Write the position
+    # Write the position and speed
     dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_POSITION, int(position))
+    dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_SPEED, speed)
     if dxl_comm_result != COMM_SUCCESS:
         print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
     elif dxl_error != 0:
         print("%s" % packetHandler.getRxPacketError(dxl_error))
     else:
         print("Dynamixel %d is oscillating at position: %d" % (dxl_id, position))
+
+
+
+    # # Write goal speed
+    
+    # if dxl_comm_result != COMM_SUCCESS:
+    #     print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+    # elif dxl_error != 0:
+    #     print("%s" % packetHandler.getRxPacketError(dxl_error))
+    # else:
+    #     print("Speed of Dynamixel %d has been changed to: %d" % (dxl_id, speed))
 
 
 start_time = time.time()
