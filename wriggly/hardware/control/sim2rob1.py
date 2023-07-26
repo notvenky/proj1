@@ -83,8 +83,8 @@ for i in range(len(DXL_ID_LIST)):
 
 # Oscillator parameters
 AMPLITUDES = [0.5] * 5  # replace with your values
-FREQUENCIES = [0.5] * 5  # replace with your values
-PHASES = [0.0] * 5  # replace with your values
+FREQUENCIES = [1] * 5  # replace with your values
+PHASES = [1, 2, 3 ,4, 5]  # replace with your values
 
 # Initialize time
 start_time = time.time()
@@ -114,11 +114,17 @@ while True:
 
     goal_positions = []
     for i in range(len(DXL_ID_LIST)):
-        # Calculate goal position
         A = AMPLITUDES[i]
         freq = FREQUENCIES[i]
         phi = PHASES[i]
-        goal_position = int(A * np.sin(2 * np.pi * freq * elapsed_time + phi) * 2048 + 2048)
+        # get the corresponding range
+        min_range, max_range = ANGLE_RANGES[DXL_ID_LIST[i]]
+        mid_range = (max_range - min_range) / 2
+        goal_position = int(A * np.sin(2 * np.pi * freq * elapsed_time + phi) * mid_range + mid_range + min_range)
+        
+        # make sure goal_position is within the defined range
+        goal_position = max(min_range, min(max_range, goal_position))
+        
         goal_positions.append(goal_position)
 
         # Write goal position
