@@ -8,7 +8,8 @@ amplitude_conversion_factor = 2048 / 3.14
 # paste_string = 'Frequency: tensor([0.8931, 0.5379, 0.8978, 0.8667, 0.5517]), Amplitude: tensor([0.7955, 0.1553, 1.2340, 1.6642, 1.2335]), Phase: tensor([0.7258, 3.1937, 3.4631, 3.5404, 4.7361])'
 paste_string = 'Frequency: tensor([0.4916, 0.2262, 0.4490, 0.4511, 0.3306]), Amplitude: tensor([1.5270, 1.4947, 0.8646, 0.8290, 1.4490]), Phase: tensor([0.7578, 2.0704, 0.4936, 5.0827, 1.1826])'
 
-
+COMMAND_FREQUENCY = 1.5
+COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
 
 tensor_values = re.findall('tensor\((.*?)\)', paste_string)
 frequency = eval(tensor_values[0])
@@ -37,7 +38,7 @@ print('PHASES =', PHASES)
 
 
 # Constants
-PI = 3.1416
+PI = np.pi
 
 def oscillate_position(dxl_id, t):
     """
@@ -64,4 +65,4 @@ while True:
     current_time = time.time() - start_time
     for dxl_id in DXL_ID_LIST:
         oscillate_position(dxl_id, current_time)
-    time.sleep(2)
+    time.sleep(COMMAND_PERIOD)
