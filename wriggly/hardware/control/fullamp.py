@@ -74,23 +74,9 @@ def oscillate_position(dxl_id, t):
 COMMAND_FREQUENCY = 0.75
 COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
 
-# Assuming that you have five items in your DXL_ID_LIST
-COMMAND_FREQUENCIES = [0.75, 0.80, 0.85, 0.90, 0.95]
-COMMAND_PERIODS = [1.0 / freq for freq in COMMAND_FREQUENCIES]
-start_times = {dxl_id: time.time() for dxl_id in DXL_ID_LIST}
+start_time = time.time()
 while True:
-    for i, dxl_id in enumerate(DXL_ID_LIST):
-        current_time = time.time() - start_times[dxl_id]
-        if current_time >= COMMAND_PERIODS[i]:
-            oscillate_position(dxl_id, current_time)
-            start_times[dxl_id] = time.time()
-    time.sleep(min(COMMAND_PERIODS))
-
-
-
-# start_time = time.time()
-# while True:
-#     current_time = time.time() - start_time
-#     for dxl_id in DXL_ID_LIST:
-#         oscillate_position(dxl_id, current_time)
-#     time.sleep(COMMAND_PERIOD)
+    current_time = time.time() - start_time
+    for dxl_id in DXL_ID_LIST:
+        oscillate_position(dxl_id, current_time)
+    time.sleep(COMMAND_PERIOD)
