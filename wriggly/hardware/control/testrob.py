@@ -95,7 +95,7 @@ frequency[-1], frequency[-2] = frequency[-2], frequency[-1]
 amplitude[-1], amplitude[-2] = amplitude[-2], amplitude[-1]
 phase[-1], phase[-2] = phase[-2], phase[-1]
 
-keys = [11, 12, 22, 21, 20]
+keys = [11, 12, 20, 21, 22]
 FREQUENCIES = dict(zip(keys, frequency))
 AMPLITUDES = dict(zip(keys, amplitude))
 PHASES = dict(zip(keys, phase))
