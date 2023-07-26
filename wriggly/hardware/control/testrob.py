@@ -3,35 +3,6 @@ import time
 from dynamixel_sdk import *
 import re
 
-# Conversion factor for amplitudes
-amplitude_conversion_factor = 2048 / 3.14
-
-# Paste this string
-paste_string = 'Frequency: tensor([0.7761, 0.5910, 0.6341, 0.5148, 0.9764]), Amplitude: tensor([1.2208, 1.3715, 1.1716, 1.9119, 1.2246]), Phase: tensor([1.5270, 3.4190, 1.4527, 3.9914, 5.7299])'
-
-# Extract tensor values
-tensor_values = re.findall('tensor\((.*?)\)', paste_string)
-
-# Convert strings to lists
-frequency = eval(tensor_values[0])
-amplitude = [round(a * amplitude_conversion_factor) for a in eval(tensor_values[1])]
-phase = eval(tensor_values[2])
-
-# Swap second last and last values
-frequency[-1], frequency[-2] = frequency[-2], frequency[-1]
-amplitude[-1], amplitude[-2] = amplitude[-2], amplitude[-1]
-phase[-1], phase[-2] = phase[-2], phase[-1]
-
-# Convert lists to dictionaries
-keys = [11, 12, 22, 21, 20]
-FREQUENCIES = dict(zip(keys, frequency))
-AMPLITUDES = dict(zip(keys, amplitude))
-PHASES = dict(zip(keys, phase))
-
-print('FREQUENCIES =', FREQUENCIES)
-print('AMPLITUDES =', AMPLITUDES)
-print('PHASES =', PHASES)
-
 # Control table address
 ADDR_PRO_TORQUE_ENABLE = 64                  # Address for enabling the torque
 ADDR_PRO_GOAL_POSITION = 116                 # Address for goal position
@@ -110,7 +81,7 @@ for i in range(len(DXL_ID_LIST)):
 
 
 amplitude_conversion_factor = 2048 / 3.14
-paste_string = 'Frequency: tensor([0.1334, 0.9833, 0.1295, 0.4712, 0.4332]), Amplitude: tensor([1.2039, 3.1244, 1.0654, 2.3760, 1.2046]), Phase: tensor([1.4370, 2.5195, 5.8403, 5.6749, 0.7302])'
+paste_string = 'Frequency: tensor([0.4303, 0.4154, 0.4517, 0.3578, 0.2295]), Amplitude: tensor([1.3330, 1.2507, 0.8577, 2.2365, 0.8378]), Phase: tensor([2.1703, 1.8762, 0.6844, 6.2216, 1.6259])'
 
 tensor_values = re.findall('tensor\((.*?)\)', paste_string)
 
