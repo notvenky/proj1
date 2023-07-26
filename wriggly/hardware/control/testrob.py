@@ -1,7 +1,6 @@
 import numpy as np
 import time
 from dynamixel_sdk import *
-import torch
 import re
 
 # Conversion factor for amplitudes
