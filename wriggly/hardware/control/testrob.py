@@ -1,6 +1,37 @@
 import numpy as np
 import time
 from dynamixel_sdk import *
+import torch
+import re
+
+# Conversion factor for amplitudes
+amplitude_conversion_factor = 2048 / 3.14
+
+# Paste this string
+paste_string = 'Frequency: tensor([0.7761, 0.5910, 0.6341, 0.5148, 0.9764]), Amplitude: tensor([1.2208, 1.3715, 1.1716, 1.9119, 1.2246]), Phase: tensor([1.5270, 3.4190, 1.4527, 3.9914, 5.7299])'
+
+# Extract tensor values
+tensor_values = re.findall('tensor\((.*?)\)', paste_string)
+
+# Convert strings to lists
+frequency = eval(tensor_values[0])
+amplitude = [round(a * amplitude_conversion_factor) for a in eval(tensor_values[1])]
+phase = eval(tensor_values[2])
+
+# Swap second last and last values
+frequency[-1], frequency[-2] = frequency[-2], frequency[-1]
+amplitude[-1], amplitude[-2] = amplitude[-2], amplitude[-1]
+phase[-1], phase[-2] = phase[-2], phase[-1]
+
+# Convert lists to dictionaries
+keys = [11, 12, 22, 21, 20]
+FREQUENCIES = dict(zip(keys, frequency))
+AMPLITUDES = dict(zip(keys, amplitude))
+PHASES = dict(zip(keys, phase))
+
+print('FREQUENCIES =', FREQUENCIES)
+print('AMPLITUDES =', AMPLITUDES)
+print('PHASES =', PHASES)
 
 # Control table address
 ADDR_PRO_TORQUE_ENABLE = 64                  # Address for enabling the torque
@@ -78,31 +109,36 @@ for i in range(len(DXL_ID_LIST)):
         print("Dynamixel %d has been successfully set to initial position" % DXL_ID_LIST[i])
 
 
-# # Given data
-# frequencies = [0.7761, 0.5910, 0.6341, 0.5148, 0.9764]
-# amplitudes = [1.2208, 1.3715, 1.1716, 1.9119, 1.2246]
-# phases = [1.5270, 3.4190, 1.4527, 3.9914, 5.7299]
 
-# # Conversion factor for amplitudes
-# amplitude_conversion_factor = 2048 / 3.14
+amplitude_conversion_factor = 2048 / 3.14
+paste_string = 'Frequency: tensor([0.1334, 0.9833, 0.1295, 0.4712, 0.4332]), Amplitude: tensor([1.2039, 3.1244, 1.0654, 2.3760, 1.2046]), Phase: tensor([1.4370, 2.5195, 5.8403, 5.6749, 0.7302])'
 
-# # Swap second last and last values in the lists
-# frequencies[-2], frequencies[-1] = frequencies[-1], frequencies[-2]
-# amplitudes[-2], amplitudes[-1] = amplitudes[-1], amplitudes[-2]
-# phases[-2], phases[-1] = phases[-1], phases[-2]
-
-# # Create dictionaries with the converted values
-# FREQUENCIES = {11: frequencies[0], 12: frequencies[1], 20: frequencies[2], 21: frequencies[3], 22: frequencies[4]}
-# AMPLITUDES = {11: int(amplitudes[0] * amplitude_conversion_factor), 12: int(amplitudes[1] * amplitude_conversion_factor),
-#               20: int(amplitudes[2] * amplitude_conversion_factor), 21: int(amplitudes[3] * amplitude_conversion_factor),
-#               22: int(amplitudes[4] * amplitude_conversion_factor)}
-# PHASES = {11: phases[0], 12: phases[1], 20: phases[2], 21: phases[3], 22: phases[4]}
+tensor_values = re.findall('tensor\((.*?)\)', paste_string)
 
 
-# Define frequencies, amplitudes, and phases for each Dynamixel
-FREQUENCIES = {11: 0.7761, 12: 0.591, 20: 0.9764, 21: 0.5148, 22: 0.6341}
-AMPLITUDES = {11: 877, 12: 985, 20: 802, 21: 1309, 22: 862}
-PHASES = {11: 1.527, 12: 3.419, 20: 5.7299, 21: 3.9914, 22: 1.4527}
+frequency = eval(tensor_values[0])
+amplitude = [round(a * amplitude_conversion_factor) for a in eval(tensor_values[1])]
+phase = eval(tensor_values[2])
+
+# Swap second last and last values
+frequency[-1], frequency[-2] = frequency[-2], frequency[-1]
+amplitude[-1], amplitude[-2] = amplitude[-2], amplitude[-1]
+phase[-1], phase[-2] = phase[-2], phase[-1]
+
+keys = [11, 12, 22, 21, 20]
+FREQUENCIES = dict(zip(keys, frequency))
+AMPLITUDES = dict(zip(keys, amplitude))
+PHASES = dict(zip(keys, phase))
+
+print('FREQUENCIES =', FREQUENCIES)
+print('AMPLITUDES =', AMPLITUDES)
+print('PHASES =', PHASES)
+
+
+# # Define frequencies, amplitudes, and phases for each Dynamixel
+# FREQUENCIES = {11: 0.7761, 12: 0.591, 20: 0.9764, 21: 0.5148, 22: 0.6341}
+# AMPLITUDES = {11: 877, 12: 985, 20: 802, 21: 1309, 22: 862}
+# PHASES = {11: 1.527, 12: 3.419, 20: 5.7299, 21: 3.9914, 22: 1.4527}
 
 
 # Constants
