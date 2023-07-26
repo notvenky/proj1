@@ -64,4 +64,4 @@ while True:
     current_time = time.time() - start_time
     for dxl_id in DXL_ID_LIST:
         oscillate_position(dxl_id, current_time)
-    time.sleep(1)
+    time.sleep(2)
