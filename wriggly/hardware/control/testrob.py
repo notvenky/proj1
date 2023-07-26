@@ -50,7 +50,7 @@ def oscillate_position(dxl_id, t):
     phi = PHASES[dxl_id]
     
     position = MEAN_POSITION + A * np.sin(omega * t + phi)
-    speed = 330
+    speed = 660
 
     # Write the position and speed
     dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, dxl_id, ADDR_PRO_GOAL_POSITION, int(position))
