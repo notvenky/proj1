@@ -43,7 +43,9 @@ std_dev = 0.02  # Standard deviation of the Gaussian noise
 # info_string = "Reward: 1117.745925341783, Frequency: tensor([0.9421, 0.5917, 0.8685, 0.4496, 0.0852]), Amplitude: tensor([0.8103, 0.5961, 1.3018, 0.2412, 0.1356]), Phase: tensor([3.7086, 1.8786, 1.6131, 4.3720, 4.1930])"
 # info_string = "Time: 20:45:21.360926, Reward: 3689.1597391055016, Frequency: tensor([0.4303, 0.4154, 0.4517, 0.3578, 0.2295]), Amplitude: tensor([1.3330, 1.2507, 0.8577, 2.2365, 0.8378]), Phase: tensor([2.1703, 1.8762, 0.6844, 6.2216, 1.6259])"
 # info_string = "Max Reward: 3045.9593233112914, Frequency: tensor([0.2589, 0.2289, 0.1748, 0.2487, 0.4317]), Amplitude: tensor([1.5446, 0.6533, 0.9733, 1.7542, 1.2021]), Phase: tensor([1.2686, 2.7937, 1.6441, 6.0062, 0.2665])"
-info_string = 'Max Reward: 1107.0495866678302, Frequency: tensor([0.0711, 0.2483, 0.3779, 0.2108, 0.0492]), Amplitude: tensor([1.3856, 0.6317, 1.2593, 1.5167, 0.9829]), Phase: tensor([3.4886, 2.3245, 3.4475, 2.7257, 5.6565])'
+# info_string = 'Max Reward: 1107.0495866678302, Frequency: tensor([0.0711, 0.2483, 0.3779, 0.2108, 0.0492]), Amplitude: tensor([1.3856, 0.6317, 1.2593, 1.5167, 0.9829]), Phase: tensor([3.4886, 2.3245, 3.4475, 2.7257, 5.6565])'
+
+info_string = 'Max Reward: 4103.587152758444, Frequency: tensor([0.3774, 0.2280, 0.1030, 0.4670, 0.4668]), Amplitude: tensor([1.0593, 2.1462, 1.5596, 2.9710, 0.0992]), Phase: tensor([3.9576, 2.5248, 1.9755, 6.0795, 3.9190])'
 
 frequencies = torch.tensor(np.array(re.findall(r"Frequency: tensor\((.*?)\)", info_string)[0].replace('[','').replace(']','').split(','), dtype=float))
 amplitudes = torch.tensor(np.array(re.findall(r"Amplitude: tensor\((.*?)\)", info_string)[0].replace('[','').replace(']','').split(','), dtype=float))
