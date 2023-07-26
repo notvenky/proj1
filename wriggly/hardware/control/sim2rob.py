@@ -1,3 +1,131 @@
+'''
+import time
+import numpy as np
+import csv
+import os
+from datetime import datetime
+from pathlib import Path
+
+# Oscillator parameters
+AMPLITUDES = [0.5] * 5  # replace with your values
+FREQUENCIES = [0.5] * 5  # replace with your values
+PHASES = [0.0] * 5  # replace with your values
+
+# Initialize time
+start_time = time.time()
+
+# Command frequency
+COMMAND_FREQUENCY = 1.0
+COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
+
+# Initialize loggers
+Path("logs/command_logs").mkdir(parents=True, exist_ok=True)
+Path("logs/image_logs").mkdir(parents=True, exist_ok=True)
+Path("logs/dynamixel_logs").mkdir(parents=True, exist_ok=True)
+command_logger = csv.writer(open(f"logs/command_logs/{datetime.now().strftime('%Y%m%d-%H%M%S')}.csv", "w"))
+image_logger = csv.writer(open(f"logs/image_logs/{datetime.now().strftime('%Y%m%d-%H%M%S')}.csv", "w"))
+dynamixel_logger = csv.writer(open(f"logs/dynamixel_logs/{datetime.now().strftime('%Y%m%d-%H%M%S')}.csv", "w"))
+
+# Run oscillators
+while True:
+    current_time = time.time()
+    elapsed_time = current_time - start_time
+
+    if elapsed_time > 3600:  # Check if an hour has passed
+        command_logger = csv.writer(open(f"logs/command_logs/{datetime.now().strftime('%Y%m%d-%H%M%S')}.csv", "w"))
+        image_logger = csv.writer(open(f"logs/image_logs/{datetime.now().strftime('%Y%m%d-%H%M%S')}.csv", "w"))
+        dynamixel_logger = csv.writer(open(f"logs/dynamixel_logs/{datetime.now().strftime('%Y%m%d-%H%M%S')}.csv", "w"))
+        start_time = current_time
+
+    goal_positions = []
+    for i in range(len(DXL_ID_LIST)):
+        # Calculate goal position
+        A = AMPLITUDES[i]
+        freq = FREQUENCIES[i]
+        phi = PHASES[i]
+        goal_position = int(A * np.sin(2 * np.pi * freq * elapsed_time + phi) * 2048 + 2048)
+        goal_positions.append(goal_position)
+
+        # Write goal position
+        dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, DXL_ID_LIST[i], ADDR_PRO_GOAL_POSITION, goal_position)
+        if dxl_comm_result != COMM_SUCCESS:
+            print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+        elif dxl_error != 0:
+            print("%s" % packetHandler.getRxPacketError(dxl_error))
+
+    # Log commands
+    command_logger.writerow([(dxl, pos) for dxl, pos in zip(DXL_ID_LIST, goal_positions)])
+
+    # TODO: Add image logging code here
+    # image_logger.writerow(...)
+
+    for i in range(len(DXL_ID_LIST)):
+        # Read and log current position, velocity, and torque
+        position = packetHandler.read4ByteTxRx(portHandler, DXL_ID_LIST[i], ADDR_PRO_PRESENT_POSITION)
+        velocity = packetHandler.read4ByteTxRx(portHandler, DXL_ID_LIST[i], ADDR_PRO_PRESENT_SPEED)
+        torque = packetHandler.read2ByteTxRx(portHandler, DXL_ID_LIST[i], ADDR_PRO_PRESENT_CURRENT)
+        dynamixel_logger.writerow([DXL_ID_LIST[i], position[0], velocity[0], torque[0]])
+
+    # Sleep for the remainder of the period
+    time.sleep(max(0, COMMAND_PERIOD - (time.time() - current_time)))
+
+
+# Add the following imports
+import cv2
+
+# Capture video from the webcam
+cap = cv2.VideoCapture(0)
+
+# Background subtractor
+fgbg = cv2.createBackgroundSubtractorMOG2()
+
+# Initialize robot position
+robot_position = None
+
+# Start video capture loop
+while True:
+    # Capture frame
+    ret, frame = cap.read()
+
+    if not ret:
+        break
+
+    # Apply background subtraction
+    fgmask = fgbg.apply(frame)
+
+    # Find contours in the foreground
+    contours, _ = cv2.findContours(fgmask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # Loop over the contours
+    for contour in contours:
+        # Compute the bounding box for the contour
+        (x, y, w, h) = cv2.boundingRect(contour)
+
+        # Compute the center of the bounding box
+        center = (int(x + w / 2), int(y + h / 2))
+
+        # If this is the first frame or the center is close to the previous position, update robot position
+        if robot_position is None or abs(center[0] - robot_position[0]) + abs(center[1] - robot_position[1]) < 30:
+            robot_position = center
+
+    # Draw the robot position on the frame
+    if robot_position is not None:
+        cv2.circle(frame, robot_position, 5, (0, 0, 255), -1)
+
+    # Display the resulting frame
+    cv2.imshow('frame', frame)
+
+    # Exit loop on 'q' key press
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Release video capture and close windows
+cap.release()
+cv2.destroyAllWindows()
+
+
+'''
+
 import cv2
 import os
 import json
