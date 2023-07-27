@@ -17,8 +17,7 @@ if os.path.exists('sin_count.json'):
         data = json.load(f)
         count = data['sin_count']
 
-cap1 = cv2.VideoCapture(0)  # for the NUC
-cap2 = cv2.VideoCapture(2)  # for the NUC, second
+cap = cv2.VideoCapture(0)  # change index as needed
 
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -94,11 +93,8 @@ def oscillate_position(dxl_id, t):
 start_time = time.time()
 try:
     while True:
-        ret1, frame1 = cap1.read()
-        ret2, frame2 = cap2.read()
-        if ret1 and ret2:
-            # Concatenate both frames horizontally
-            frame = np.concatenate((frame1, frame2), axis=1)
+        ret, frame = cap.read()
+        if ret:
             out.write(frame)
             cv2.imshow('frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -112,8 +108,7 @@ except KeyboardInterrupt:
     pass
 
 finally:
-    cap1.release()
-    cap2.release()
+    cap.release()
     out.release()
     cv2.destroyAllWindows()
     # Increment the count and write it back to the file
