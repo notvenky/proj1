@@ -21,7 +21,7 @@ cap = cv2.VideoCapture(0)  # change index as needed
 
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter(f'media/video_{count}.avi', fourcc, 20.0, (640, 480))  # change resolution as needed
+out = cv2.VideoWriter(f'media_sin/video_{count}.avi', fourcc, 20.0, (640, 480))  # change resolution as needed
 
 # Constants
 amplitude_conversion_factor = 2048 / 3.14
