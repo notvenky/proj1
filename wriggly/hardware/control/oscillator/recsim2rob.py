@@ -5,6 +5,7 @@ import cv2
 import os
 import json
 from config import *
+import subprocess
 
 # Create media directory if it doesn't exist
 if not os.path.exists('media_sin'):
@@ -94,7 +95,6 @@ def oscillate_position(dxl_id, t):
 
 start_time = time.time()
 
-
 try:
     while True:
         # inside the while True: loop
@@ -125,3 +125,11 @@ finally:
     count += 1
     with open('sin_count.json', 'w') as f:
         json.dump({'sin_count': count}, f)
+
+    # Add the video compression functionality here
+    original_video_file = f'media_sin/video_{count - 1}.avi'
+    compressed_video_file = f'media_sin/video_{count - 1}_compressed.mp4'
+    command = f"ffmpeg -i {original_video_file} -vcodec libx264 -crf 23 {compressed_video_file}"
+
+    # Call the ffmpeg command from the terminal
+    subprocess.call(command, shell=True)
