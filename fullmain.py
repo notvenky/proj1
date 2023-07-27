@@ -10,7 +10,7 @@ from dm_control import mujoco
 import torch
 import PIL.Image
 import numpy as np
-from dm_control import composer, viewer
+# from dm_control import composer, viewer
 from dm_control.rl import control
 from wriggly.simulation.robot.wriggly_from_swimmer import Wriggly, Physics
 from wriggly.simulation.training.drqv2 import MyActor
@@ -85,7 +85,7 @@ def my_policy(obs, ):
   action = dist.mean()
   # action = dist.sample(clip=None)
   return action.squeeze().numpy()
-viewer.launch(env, policy = my_policy)
+#viewer.launch(env, policy = my_policy)
 
   
 
@@ -98,8 +98,8 @@ viewer.launch(env, policy = my_policy)
 
 # # Launch the viewer application.
 # viewer.launch(env, policy=my_policy)
-num_params = 3000
-runs_per_act = 5
+num_params = 500
+runs_per_act = 3
 all_rewards = np.zeros((num_params, runs_per_act))
 
 # Define data structures to store frequencies, amplitudes and phases
@@ -126,11 +126,11 @@ max_reward_phase = None
 for i in tqdm(range(num_params)):
   frequencies = torch.rand(num_actuators) / 2 # softplus/exp/
   amplitudes = torch.rand(num_actuators)   # tanh activation
-  amplitudes[0] = amplitudes[0] * 1.57
-  amplitudes[1] = amplitudes[1] * 3.14 
-  amplitudes[2] = amplitudes[2] * 1.57
-  amplitudes[3] = amplitudes[3] * 3.14
-  amplitudes[4] = amplitudes[4] * 1.57 
+  amplitudes[0] = 1.57
+  amplitudes[1] = 3.14 
+  amplitudes[2] = 1.57
+  amplitudes[3] = 3.14
+  amplitudes[4] = 1.57 
 
   # amplitudes[::2] = amplitudes[::2] * 1.57  # For 1st, 3rd, and 5th
   # amplitudes[1::2] = amplitudes[1::2] * 3.14  # For 2nd and 4th
@@ -143,7 +143,7 @@ for i in tqdm(range(num_params)):
   # all_amplitudes[i] = np.pi * amplitudes.numpy() if i % 2 == 0 else np.pi/2 * amplitudes.numpy()
   # all_phases[i] = phases.numpy()
 
-  reward = evaluate(env, actor, runs_per_act, 2500) # for 10 seconds, since 0.002s for 1 step 
+  reward = evaluate(env, actor, runs_per_act, 5000) # for 10 seconds, since 0.002s for 1 step 
   all_rewards[i] = reward 
   top_rewards = []
 
@@ -192,5 +192,4 @@ def viz_policy(obs, ):
   action = dist.mean
   return action.squeeze().numpy()
 
-viewer.launch(env, policy = viz_policy)
-
+# viewer.launch(env, policy = viz_policy)
