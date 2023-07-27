@@ -13,10 +13,10 @@
   </asset>
   <actuator>
     <position name="ACT0" kp="0.5" joint="Green_Leg_Final_Joint"   ctrlrange="-1.57 1.57"/>
-    <position name="ACT1" kp="0.4" joint="Green_Leg_Central_Joint" ctrlrange="-3.14 3.14"/>
-    <position name="ACT2" kp="0.5" joint="Red_Leg_Central_Joint"   ctrlrange="-1.57 1.57"/>
+    <position name="ACT1" kp="0.1" joint="Green_Leg_Central_Joint" ctrlrange="-3.14 3.14"/>
+    <position name="ACT2" kp="0.4" joint="Red_Leg_Central_Joint"   ctrlrange="-1.57 1.57"/>
     <position name="ACT3" kp="0.4" joint="Red_Knee"                ctrlrange="-3.14 3.14"/>
-    <position name="ACT4" kp="0.5" joint="Red_Leg_Final_Joint"     ctrlrange="-1.57 1.57"/>
+    <position name="ACT4" kp="0.3" joint="Red_Leg_Final_Joint"     ctrlrange="-1.57 1.57"/>
   </actuator>
   <sensor>
     <jointpos name="ACT0_pos_sensor" joint="Green_Leg_Final_Joint"/>
