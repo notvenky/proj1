@@ -28,7 +28,7 @@ out = cv2.VideoWriter(f'media_sin/video_{count}.avi', fourcc, 20.0, (1280, 480))
 amplitude_conversion_factor = 2048 / 3.14
 # paste_string = 'Frequency: tensor([0.4916, 0.2262, 0.4490, 0.4511, 0.3306]), Amplitude: tensor([1.5270, 1.4947, 0.8646, 0.8290, 1.4490]), Phase: tensor([0.7578, 2.0704, 0.4936, 5.0827, 1.1826])'
 # paste_string = 'Frequency: tensor([0.4839, 0.3116, 0.1512, 0.4405, 0.0981]), Amplitude: tensor([1.2890, 2.8330, 0.9312, 2.8816, 0.0447]), Phase: tensor([1.9279, 1.2120, 0.1625, 0.4938, 5.1535])'
-paste_string = 'Frequency: tensor([0.2967, 0.1407, 0.0204, 0.0949, 0.0482]), Amplitude: tensor([1.0399, 2.3692, 1.4367, 1.0007, 1.4717]), Phase: tensor([5.4803, 4.8775, 3.9532, 4.5642, 4.8469])'
+paste_string = 'Frequency: tensor([0.4254, 0.453, 0.1042, 0.1972, 0.4794]), Amplitude: tensor([1.0657, 1.8825, 1.4196, 0.289, 0.253]), Phase: tensor([0.6236, 0.3487, 5.1865, 4.6293, 2.9277])'
 
 COMMAND_FREQUENCY = 0.75
 COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
@@ -111,7 +111,7 @@ try:
         current_time = time.time() - start_time
         for dxl_id in DXL_ID_LIST:
             oscillate_position(dxl_id, current_time)
-        time.sleep(TIME_INCREMENT)
+        time.sleep(COMMAND_PERIOD)
 
 
 except KeyboardInterrupt:
