@@ -132,5 +132,11 @@ finally:
     compressed_video_file = f'media_sin/video_{count - 1}_compressed.mp4'
     command = f"ffmpeg -i {original_video_file} -vcodec libx264 -crf 23 {compressed_video_file}"
 
-    # Call the ffmpeg command from the terminal
-    subprocess.call(command, shell=True)
+    if os.path.exists(original_video_file):
+        command = f"ffmpeg -i {original_video_file} -vcodec libx264 -crf 23 {compressed_video_file}"
+        subprocess.call(command, shell=True)
+
+        # Remove the original uncompressed video
+        os.remove(original_video_file)
+    else:
+        print(f"File '{original_video_file}' does not exist.")
