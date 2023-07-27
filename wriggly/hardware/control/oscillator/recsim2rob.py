@@ -1,14 +1,31 @@
 import numpy as np
 import time
 import re
+import cv2
+import os
+import json
 from config import *
 
+# Create media directory if it doesn't exist
+if not os.path.exists('media_sin'):
+    os.makedirs('media_sin')
 
+# Initialize count for video name
+count = 0
+if os.path.exists('sin_count.json'):
+    with open('sin_count.json', 'r') as f:
+        data = json.load(f)
+        count = data['count']
+
+cap = cv2.VideoCapture(0)  # change index as needed
+
+# Define the codec and create VideoWriter object
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter(f'media/video_{count}.avi', fourcc, 20.0, (640, 480))  # change resolution as needed
+
+# Constants
 amplitude_conversion_factor = 2048 / 3.14
-# paste_string = 'Frequency: tensor([0.4303, 0.4154, 0.4517, 0.3578, 0.2295]), Amplitude: tensor([1.3330, 1.2507, 0.8577, 2.2365, 0.8378]), Phase: tensor([2.1703, 1.8762, 0.6844, 6.2216, 1.6259])'
-# paste_string = 'Frequency: tensor([0.8931, 0.5379, 0.8978, 0.8667, 0.5517]), Amplitude: tensor([0.7955, 0.1553, 1.2340, 1.6642, 1.2335]), Phase: tensor([0.7258, 3.1937, 3.4631, 3.5404, 4.7361])'
 paste_string = 'Frequency: tensor([0.4916, 0.2262, 0.4490, 0.4511, 0.3306]), Amplitude: tensor([1.5270, 1.4947, 0.8646, 0.8290, 1.4490]), Phase: tensor([0.7578, 2.0704, 0.4936, 5.0827, 1.1826])'
-
 COMMAND_FREQUENCY = 1.0
 COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
 
@@ -73,10 +90,28 @@ def oscillate_position(dxl_id, t):
     # else:
     #     print("Speed of Dynamixel %d has been changed to: %d" % (dxl_id, speed))
 
-
 start_time = time.time()
-while True:
-    current_time = time.time() - start_time
-    for dxl_id in DXL_ID_LIST:
-        oscillate_position(dxl_id, current_time)
-    time.sleep(COMMAND_PERIOD)
+try:
+    while True:
+        ret, frame = cap.read()
+        if ret:
+            out.write(frame)
+            cv2.imshow('frame', frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        current_time = time.time() - start_time
+        for dxl_id in DXL_ID_LIST:
+            oscillate_position(dxl_id, current_time)
+        time.sleep(COMMAND_PERIOD)
+
+except KeyboardInterrupt:
+    pass
+
+finally:
+    cap.release()
+    out.release()
+    cv2.destroyAllWindows()
+    # Increment the count and write it back to the file
+    count += 1
+    with open('count.json', 'w') as f:
+        json.dump({'count': count}, f)

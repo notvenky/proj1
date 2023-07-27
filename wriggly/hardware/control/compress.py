@@ -67,11 +67,11 @@ try:
         # Randomly select the direction of actuation for each selected Dynamixel
         directions = [random.choice(["clockwise", "anticlockwise"]) for _ in range(num_actuators)]
         # Randomly select the speed of actuation for each selected Dynamixel
-        speeds = [random.randint(50, 200) for _ in range(num_actuators)]
+        speeds = [random.randint(200, 330) for _ in range(num_actuators)]
         # Randomly select the angle of actuation for each selected Dynamixel
         angles = [random.randint(ANGLE_RANGES[dxl_id][0], ANGLE_RANGES[dxl_id][1]) for dxl_id in actuator_ids]
         # Randomly select the torque for each selected Dynamixel
-        torques = [random.randint(10, 100) for _ in range(num_actuators)]
+        torques = [random.randint(200, 330) for _ in range(num_actuators)]
 
         # Write goal position, torque and speed for selected Dynamixels
         for dxl_id, direction, speed, angle, torque in zip(actuator_ids, directions, speeds, angles, torques):
