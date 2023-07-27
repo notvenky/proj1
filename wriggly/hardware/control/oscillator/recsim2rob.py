@@ -22,7 +22,7 @@ cap2 = cv2.VideoCapture(2)
 
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter(f'media_sin/video_{count}.avi', fourcc, 20.0, (640, 480))  # change resolution as needed
+out = cv2.VideoWriter(f'media_sin/video_{count}.avi', fourcc, 20.0, (1280, 480))  # adjust size as per two frames
 
 amplitude_conversion_factor = 2048 / 3.14
 # paste_string = 'Frequency: tensor([0.4916, 0.2262, 0.4490, 0.4511, 0.3306]), Amplitude: tensor([1.5270, 1.4947, 0.8646, 0.8290, 1.4490]), Phase: tensor([0.7578, 2.0704, 0.4936, 5.0827, 1.1826])'
@@ -93,14 +93,16 @@ def oscillate_position(dxl_id, t):
     #     print("Speed of Dynamixel %d has been changed to: %d" % (dxl_id, speed))
 
 start_time = time.time()
+
+
 try:
     while True:
         # inside the while True: loop
         ret1, frame1 = cap1.read()
         ret2, frame2 = cap2.read()
-        if ret1 and ret2 is not None:
+        if ret1 and ret2:  # check both conditions separately
             # Concatenate both frames horizontally
-            frame = np.concatenate((frame1, frame2), axis=0)
+            frame = np.concatenate((frame1, frame2), axis=1)  # concatenate frames horizontally
             out.write(frame)
             cv2.imshow('frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -109,6 +111,7 @@ try:
         for dxl_id in DXL_ID_LIST:
             oscillate_position(dxl_id, current_time)
         time.sleep(COMMAND_PERIOD)
+
 
 except KeyboardInterrupt:
     pass
