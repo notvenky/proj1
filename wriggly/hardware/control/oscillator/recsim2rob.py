@@ -15,7 +15,7 @@ count = 0
 if os.path.exists('sin_count.json'):
     with open('sin_count.json', 'r') as f:
         data = json.load(f)
-        count = data['count']
+        count = data['sin_count']
 
 cap = cv2.VideoCapture(0)  # change index as needed
 
@@ -113,5 +113,5 @@ finally:
     cv2.destroyAllWindows()
     # Increment the count and write it back to the file
     count += 1
-    with open('count.json', 'w') as f:
-        json.dump({'count': count}, f)
+    with open('sin_count.json', 'w') as f:
+        json.dump({'sin_count': count}, f)
