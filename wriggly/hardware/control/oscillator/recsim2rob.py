@@ -32,6 +32,7 @@ paste_string = 'Frequency: tensor([0.2967, 0.1407, 0.0204, 0.0949, 0.0482]), Amp
 
 COMMAND_FREQUENCY = 0.75
 COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
+TIME_INCREMENT = COMMAND_PERIOD/10
 
 tensor_values = re.findall('tensor\((.*?)\)', paste_string)
 frequency = eval(tensor_values[0])
@@ -110,7 +111,7 @@ try:
         current_time = time.time() - start_time
         for dxl_id in DXL_ID_LIST:
             oscillate_position(dxl_id, current_time)
-        time.sleep(COMMAND_PERIOD)
+        time.sleep(TIME_INCREMENT)
 
 
 except KeyboardInterrupt:
