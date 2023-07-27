@@ -17,7 +17,8 @@ if os.path.exists('sin_count.json'):
         data = json.load(f)
         count = data['sin_count']
 
-cap = cv2.VideoCapture(0)  # change index as needed
+#cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(2)
 
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
