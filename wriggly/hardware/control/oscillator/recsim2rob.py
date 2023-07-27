@@ -100,7 +100,7 @@ try:
         ret2, frame2 = cap2.read()
         if ret1 and ret2 is not None:
             # Concatenate both frames horizontally
-            frame = np.concatenate((frame1, frame2), axis=1)
+            frame = np.concatenate((frame1, frame2), axis=2)
             out.write(frame)
             cv2.imshow('frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
