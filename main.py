@@ -10,7 +10,7 @@ from dm_control import mujoco
 import torch
 import PIL.Image
 import numpy as np
-from dm_control import composer, viewer
+# from dm_control import composer, viewer
 from dm_control.rl import control
 from wriggly.simulation.robot.wriggly_from_swimmer import Wriggly, Physics
 from wriggly.simulation.training.drqv2 import MyActor
@@ -85,7 +85,7 @@ def my_policy(obs, ):
   action = dist.mean()
   # action = dist.sample(clip=None)
   return action.squeeze().numpy()
-viewer.launch(env, policy = my_policy)
+# viewer.launch(env, policy = my_policy)
 
   
 
@@ -192,5 +192,5 @@ def viz_policy(obs, ):
   action = dist.mean
   return action.squeeze().numpy()
 
-viewer.launch(env, policy = viz_policy)
+# viewer.launch(env, policy = viz_policy)
 
