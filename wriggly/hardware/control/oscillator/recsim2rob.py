@@ -30,7 +30,7 @@ amplitude_conversion_factor = 2048 / 3.14
 paste_string = 'Frequency: tensor([0.4839, 0.3116, 0.1512, 0.4405, 0.0981]), Amplitude: tensor([1.2890, 2.8330, 0.9312, 2.8816, 0.0447]), Phase: tensor([1.9279, 1.2120, 0.1625, 0.4938, 5.1535])'
 # paste_string = 'Frequency: tensor([0.4254, 0.453, 0.1042, 0.1972, 0.4794]), Amplitude: tensor([1.0657, 1.8825, 1.4196, 0.289, 0.253]), Phase: tensor([0.6236, 0.3487, 5.1865, 4.6293, 2.9277])'
 
-COMMAND_FREQUENCY = 0.75
+COMMAND_FREQUENCY = 2.0
 COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
 TIME_INCREMENT = COMMAND_PERIOD/10
 
