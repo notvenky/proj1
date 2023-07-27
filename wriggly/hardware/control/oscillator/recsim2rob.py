@@ -4,7 +4,7 @@ import re
 import cv2
 import os
 import json
-from ..config import *
+from config import *
 
 # Create media directory if it doesn't exist
 if not os.path.exists('media_sin'):
