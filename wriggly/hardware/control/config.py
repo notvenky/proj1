@@ -22,6 +22,7 @@ ANGLE_RANGES = {
 
 
 MEAN_POSITION = 2048
+MEAN_POSITIONS = [2048, 3072, 2048, 2048, 4095]
 
 dxl_goal_position = [0,4095]
 JOYSTICK_THRESHOLD = 0.8
@@ -67,7 +68,7 @@ for i in range(len(DXL_ID_LIST)):
         print("Dynamixel %d has been successfully connected" % DXL_ID_LIST[i])
 
     # Set initial position
-    dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, DXL_ID_LIST[i], ADDR_PRO_GOAL_POSITION, MEAN_POSITION)
+    dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, DXL_ID_LIST[i], ADDR_PRO_GOAL_POSITION, MEAN_POSITIONS[i])
     if dxl_comm_result != COMM_SUCCESS:
         print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
     elif dxl_error != 0:
