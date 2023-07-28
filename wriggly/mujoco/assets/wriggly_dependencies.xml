@@ -2,6 +2,7 @@
   <compiler angle="radian" autolimits="true" />
   <default>
       <position forcelimited="true" forcerange="-3 3"/>
+      <!-- <geom friction = "0.0001 0.0001 0.0001"/> -->
   </default>
   <asset>
     <mesh name="base_link"        file="../mujoco/meshes/base_link.STL"/>

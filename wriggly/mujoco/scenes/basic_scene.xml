@@ -12,7 +12,8 @@
 
   <worldbody>
     <!-- Floor -->
-    <geom name="floor" condim="3" friction="0.3 0.0005 0.0001" size="0 0 0.05" type="plane" material="groundplane"/>
+    <!-- <geom name="floor" condim="3" friction="0.3 0.005 0.0001" size="0 0 0.05" type="plane" material="groundplane"/> -->
+    <geom name="floor" condim="3" size="0 0 0.05" type="plane" material="groundplane"/>
     <!-- Light -->
     <light name="ceiling" pos="0 0 2" dir="0 0 -1" directional="true"/>
     <!-- Cameras -->
