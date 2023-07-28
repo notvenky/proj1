@@ -143,7 +143,7 @@ for i in tqdm(range(num_params)):
   # all_amplitudes[i] = np.pi * amplitudes.numpy() if i % 2 == 0 else np.pi/2 * amplitudes.numpy()
   # all_phases[i] = phases.numpy()
 
-  reward = evaluate(env, actor, runs_per_act, 2500) # for 10 seconds, since 0.002s for 1 step 
+  reward = evaluate(env, actor, runs_per_act, 5000) # for 10 seconds, since 0.002s for 1 step 
   all_rewards[i] = reward 
   top_rewards = []
 
