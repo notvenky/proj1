@@ -17,7 +17,7 @@
           <!-- Central Link -->
           <body name="Central_Link" pos="0.017 0 -0.1045" quat="0.707107 0 0 0.707107" gravcomp="0">
             <inertial pos="9.37688e-10 -0.0119557 -0.00143737" quat="0.707745 0.706468 -1.73858e-06 1.74172e-06" mass="0.091" diaginertia="1.40798e-05 1.31645e-05 8.83029e-06"/>
-            <joint name="Green_Leg_Central_Joint" pos="0 0 0" axis="0 0 1" damping="0.05" armature="0.01"/>
+            <joint name="Green_Leg_Central_Joint" pos="0 0 0" axis="0 0 1" damping="0.1" armature="0.005"/>
             <geom type="mesh" rgba="0.8 0.8 0.9 1" mesh="central_link"/>
             
             <!-- Red Leg Central Link -->
