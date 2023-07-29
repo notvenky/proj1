@@ -32,9 +32,10 @@ amplitude_conversion_factor = 2048 / 3.14
 
 # paste_string = 'Frequency: tensor([0.4990, 0.2122, 0.4650, 0.4007, 0.3471]), Amplitude: tensor([0.9685, 2.2220, 1.4667, 0.7460, 0.9961]), Phase: tensor([5.4440, 2.9973, 2.8850, 3.7666, 5.2267])'
 # # vid23
-paste_string = 'Frequency: tensor([0.0389, 0.1938, 0.1731, 0.0155, 0.3725]), Amplitude: tensor([0.6815, 3.0101, 1.2761, 0.6794, 0.7488]), Phase: tensor([5.9447, 0.7377, 1.0380, 1.4478, 0.3299])'
-# first result from improved sim
-
+# paste_string = 'Frequency: tensor([0.0389, 0.1938, 0.1731, 0.0155, 0.3725]), Amplitude: tensor([0.6815, 3.0101, 1.2761, 0.6794, 0.7488]), Phase: tensor([5.9447, 0.7377, 1.0380, 1.4478, 0.3299])'
+# # first result from improved sim
+paste_string = 'Frequency: tensor([0.1951, 0.1558, 0.5634, 0.6515, 0.4977]), Amplitude: tensor([1.1059, 0.3600, 1.1725, 0.4729, 1.4343]), Phase: tensor([1.3667, 1.5878, 2.5900, 2.8029, 1.2743])'
+# second after sim improvement, Saturday 29-7
 
 COMMAND_FREQUENCY = 3.0
 COMMAND_PERIOD = 1.0 / COMMAND_FREQUENCY
