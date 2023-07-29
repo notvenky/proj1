@@ -45,9 +45,10 @@ std_dev = 0.02  # Standard deviation of the Gaussian noise
 # info_string = 'Max Reward: 4103.587152758444, Frequency: tensor([0.3774, 0.2280, 0.1030, 0.4670, 0.4668]), Amplitude: tensor([1.0593, 2.1462, 1.5596, 2.9710, 0.0992]), Phase: tensor([3.9576, 2.5248, 1.9755, 6.0795, 3.9190])'
 # info_string = 'Frequency: tensor([0.2967, 0.1407, 0.0204, 0.0949, 0.0482]), Amplitude: tensor([1.0399, 2.3692, 1.4367, 1.0007, 1.4717]), Phase: tensor([5.4803, 4.8775, 3.9532, 4.5642, 4.8469])'
 
-info_string = 'Frequency: tensor([0.4990, 0.2122, 0.4650, 0.4007, 0.3471]), Amplitude: tensor([0.9685, 2.2220, 1.4667, 0.7460, 0.9961]), Phase: tensor([5.4440, 2.9973, 2.8850, 3.7666, 5.2267])'
+# info_string = 'Frequency: tensor([0.4990, 0.2122, 0.4650, 0.4007, 0.3471]), Amplitude: tensor([0.9685, 2.2220, 1.4667, 0.7460, 0.9961]), Phase: tensor([5.4440, 2.9973, 2.8850, 3.7666, 5.2267])'
 # vid 23
 
+info_string = 'Frequency: tensor([0.3772, 0.4522, 0.3793, 0.3916, 0.4428]), Amplitude: tensor([1.4870, 1.6738, 1.1526, 2.1733, 0.1395]), Phase: tensor([3.8298, 2.3467, 6.0578, 1.8011, 5.4534])'
 
 
 
