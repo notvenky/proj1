@@ -100,8 +100,8 @@ def my_policy(obs, ):
 
 # # Launch the viewer application.
 # viewer.launch(env, policy=my_policy)
-num_params = 3000
-runs_per_act = 5
+num_params = 1000
+runs_per_act = 3
 all_rewards = np.zeros((num_params, runs_per_act))
 
 # Define data structures to store frequencies, amplitudes and phases
