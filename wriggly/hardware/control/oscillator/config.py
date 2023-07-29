@@ -10,6 +10,7 @@ ADDR_PRO_GOAL_SPEED = 104                    # Address for speed
 ADDR_PRO_PRESENT_SPEED = 128
 ADDR_PRO_VELOCITY_TRAJECTORY = 136
 ADDR_PRO_POSITION_TRAJECTORY = 140
+ADDR_MOVING = 122
 
 # Define angle ranges for each Dynamixel
 ANGLE_RANGES = {

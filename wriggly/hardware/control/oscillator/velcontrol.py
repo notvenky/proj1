@@ -100,6 +100,24 @@ def oscillate_position(dxl_id, t):
     else:
         print("Dynamixel %d is oscillating at position: %d" % (dxl_id, position))
 
+def is_moving(dxl_id):
+    """
+    Returns True if the specified Dynamixel is moving.
+    """
+    dxl_present_moving, dxl_comm_result, dxl_error = packetHandler.read1ByteTxRx(portHandler, dxl_id, ADDR_MOVING)
+    if dxl_comm_result != COMM_SUCCESS:
+        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+    elif dxl_error != 0:
+        print("%s" % packetHandler.getRxPacketError(dxl_error))
+    return dxl_present_moving != 0
+
+def check_and_issue_next_command(dxl_id, t):
+    """
+    If the specified Dynamixel is not moving, this issues the next command.
+    """
+    if not is_moving(dxl_id):
+        oscillate_position(dxl_id, t)
+
 
 
 
@@ -133,7 +151,7 @@ try:
 
         # Send position commands
         for dxl_id in DXL_ID_LIST:
-            oscillate_position(dxl_id, current_time)
+            check_and_issue_next_command(dxl_id, current_time)
         time.sleep(TIME_INCREMENT)
 
 except KeyboardInterrupt:
