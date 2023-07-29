@@ -152,7 +152,7 @@ try:
         # Send position commands
         for dxl_id in DXL_ID_LIST:
             check_and_issue_next_command(dxl_id, current_time)
-        time.sleep(TIME_INCREMENT)
+        time.sleep(COMMAND_PERIOD)
 
 except KeyboardInterrupt:
     pass
