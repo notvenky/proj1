@@ -32,7 +32,7 @@ amplitude_conversion_factor = 2048 / 3.14
 
 # paste_string = 'Frequency: tensor([0.4990, 0.2122, 0.4650, 0.4007, 0.3471]), Amplitude: tensor([0.9685, 2.2220, 1.4667, 0.7460, 0.9961]), Phase: tensor([5.4440, 2.9973, 2.8850, 3.7666, 5.2267])'
 # # vid23
-paste_string = 'Frequency: tensor([0.3772, 0.4522, 0.3793, 0.3916, 0.4428]), Amplitude: tensor([1.4870, 1.6738, 1.1526, 2.1733, 0.1395]), Phase: tensor([3.8298, 2.3467, 6.0578, 1.8011, 5.4534])'
+paste_string = 'Frequency: tensor([0.0389, 0.1938, 0.1731, 0.0155, 0.3725]), Amplitude: tensor([0.6815, 3.0101, 1.2761, 0.6794, 0.7488]), Phase: tensor([5.9447, 0.7377, 1.0380, 1.4478, 0.3299])'
 # first result from improved sim
 
 
