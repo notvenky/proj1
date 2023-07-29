@@ -134,7 +134,7 @@ try:
         # Send position commands
         for dxl_id in DXL_ID_LIST:
             oscillate_position(dxl_id, current_time)
-        time.sleep(COMMAND_PERIOD)
+        time.sleep(TIME_INCREMENT)
 
 except KeyboardInterrupt:
     pass
