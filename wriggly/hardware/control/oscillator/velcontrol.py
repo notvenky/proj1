@@ -146,7 +146,7 @@ try:
 
         # Set velocity for all motors simultaneously
         for dxl_id in DXL_ID_LIST:
-            velocity = int(330)  # Adjust the velocity value as needed
+            velocity = int(1023)  # Adjust the velocity value as needed
             set_motor_velocity(dxl_id, velocity)
 
         # Send position commands
