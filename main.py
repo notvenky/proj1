@@ -62,6 +62,8 @@ frequencies = torch.rand(num_actuators) # softplus/exp/
 amplitudes = torch.rand(num_actuators)  # tanh activation
 phases = torch.rand(num_actuators)
 actor = MyActor(frequencies, amplitudes, phases, num_actuators)
+# for i in range(mu.shape[-1]):
+#   print(mu[:, i] = a[i])
 
 def evaluate(env, actor, num_episodes, T):
   rewards = np.zeros(num_episodes)
@@ -124,7 +126,7 @@ max_reward_phase = None
 #   amplitudes[4] = amplitudes[4] * 0.7 + 0.8  
 
 for i in tqdm(range(num_params)):
-  frequencies = torch.rand(num_actuators) / 2 # softplus/exp/
+  frequencies = torch.rand(num_actuators) # softplus/exp/
   amplitudes = torch.rand(num_actuators)   # tanh activation
   amplitudes[0] = amplitudes[0] * 1.57
   amplitudes[1] = amplitudes[1] * 3.14 
@@ -176,7 +178,7 @@ for i in tqdm(range(num_params)):
 
 # Print the final rewards for all samples and runs
 with open('top_rewards.txt', 'a') as f:
-    f.write(f"Time: {datetime.datetime.now().time()}, Reward: {max_reward}, Frequency: {max_reward_freq}, Amplitude: {max_reward_amp}, Phase: {max_reward_phase}\n")
+    f.write(f"Time: {datetime.datetime.now()}, Reward: {max_reward}, Frequency: {max_reward_freq}, Amplitude: {max_reward_amp}, Phase: {max_reward_phase}\n")
 print(i, all_rewards)
 
 # Print maximum reward and corresponding frequency, amplitude, phase

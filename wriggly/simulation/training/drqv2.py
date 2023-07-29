@@ -100,8 +100,9 @@ class MyActor(nn.Module):
     def true_params(self):
         frequencies = F.softplus(self.frequencies)
         amplitudes = F.tanh(self.amplitudes)
-        phases = self.phases
+        phases = F.softplus(self.phases)
         amplitudes *= self.range
+        phases 
         return frequencies, amplitudes, phases
 
     def forward(self, obs, t, std):
@@ -116,8 +117,12 @@ class MyActor(nn.Module):
         mu = torch.zeros(b,self.num_actuators,device= t.device)
         f, a, p = self.true_params()
         # Apply oscillation
-        for i in range(mu.shape[-1]):
-            mu[:, i] = a[i] * torch.sin(2 * np.pi * f[i] * t + p[i])
+        # for i in range(mu.shape[-1]):
+        mu[:, 0] = a[0] * torch.sin(2 * np.pi * f[0] * t + p[0])
+        mu[:, 1] = a[1] * torch.sin(2 * np.pi * f[1] * t + p[1]) - 1.57
+        mu[:, 2] = a[2] * torch.sin(2 * np.pi * f[2] * t + p[2])
+        mu[:, 3] = a[3] * torch.sin(2 * np.pi * f[3] * t + p[3]) - 3.14
+        mu[:, 4] = a[4] * torch.sin(2 * np.pi * f[4] * t + p[4])
 
         std = torch.ones_like(mu) * std
         dist = utils.TruncatedNormal(mu, std)
