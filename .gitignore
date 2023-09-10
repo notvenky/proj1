@@ -3,3 +3,13 @@
 
 # Ada Library Information
 *.ali
+
+*.pyc
+*.zip
+*.csv
+*.tfevents*
+*.npy
+*.mp4
+*.avi
+*.npz
+exp_local/

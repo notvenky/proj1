@@ -1,0 +1,8 @@
+%run wriggly_from_swimmer.py
+env = move()
+o = env.reset()
+a1 = env.action_spec().minimum
+a2 = env.action_spec().maximum
+for i in range(100):
+    env.step(a1)
+    env.step(a2)
