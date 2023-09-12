@@ -276,29 +276,7 @@ class Wriggly(base.Task):
       #     return alpha * dot_product_with_start + (1 - alpha) * dot_product_with_prev
       
       '''
-      write a reward function that correctly captures the velocity and 
-      distance travelled by the robot and maximizes both.
-      physics.named.sensor.data['ACT2_velocity_sensor'][0] gives the velocity 
-      of the center of mass of the robot.
 
-      physics.named.data.qpos[0:2] gives the x and y coordinates 
-      of the center of mass of the robot at current timestep
-
-      the robot starts at start_xy = np.array([physics.named.model.geom_pos['target']
-
-      since the robot can move both forward and backward, sometimes
-      the reward wrongly rewards high velocity in any direction, whereas I want a high velocity 
-      in the direction of where it is headed. 
-
-      Write me a reward function that correctly keeps all these loopholes in mind
-      and curates a reward function that maximizes the velocity in the direction of the motion
-
-      I just want to maximize displacement and velocity in any direction possible
-
-
-      For reference, this is a reward that just captures how far the robot has travelled from 
-      itsd starting point at the end of evaluation time. This is sparse reward, and 
-      makes RL training harder.
 
       if physics.time() >= _DEFAULT_TIME_LIMIT:
         current_xy = physics.named.data.qpos[0:2]

@@ -14,7 +14,7 @@ python train_tsaes.py \
 --learning_rate 0.01 \
 --momentum 0.0 \
 --lookahead_scaling 0.0 \
---environment "gym.make('wriggly')" \
+--environment "gym.make('Hopper')" \
 --model "wriggly_train.tsaes_model.ActorOnly(
   actor=wriggly_train.tsaes_model.Actor(
     encoder=wriggly_train.tsaes_model.ObservationEncoder(),
