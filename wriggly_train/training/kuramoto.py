@@ -1,7 +1,3 @@
-# Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
-#
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
 import sys
 sys.path.append("/home/venky/proj1")
 
@@ -72,78 +68,103 @@ class Encoder(nn.Module):
         return h
 
 
-class KuramotoActor(nn.Module):
-    def __init__(self, num_actuators, frequencies=None, amplitudes=None, phases=None, init_std=0.5):
-        #repr_dim, action_shape, feature_dim, hidden_dim
-        super().__init__()
+# class KuramotoActor(nn.Module):
+#     def __init__(self, num_actuators, omega=None, alpha=None, zeta=None, K=None):
+#         super().__init__()
+#         if omega is None:
+#             self.omega = nn.Parameter(torch.randn(num_actuators))
+#         else:
+#             self.omega = nn.Parameter(omega)
 
-        # self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
-        #                            nn.LayerNorm(feature_dim), nn.Tanh())
+#         if alpha is None:
+#             self.alpha = nn.Parameter(torch.randn(num_actuators))
+#         else:
+#             self.alpha = nn.Parameter(alpha)
+            
+#         if zeta is None:
+#             self.zeta = nn.Parameter(torch.zeros(num_actuators))
+#         else:
+#             self.zeta = nn.Parameter(zeta)
 
-        # self.policy = nn.Sequential(nn.Linear(feature_dim, hidden_dim),
-        #                             nn.ReLU(inplace=True),
-        #                             nn.Linear(hidden_dim, hidden_dim),
-        #                             nn.ReLU(inplace=True),
-        #                             nn.Linear(hidden_dim, action_shape[0]))
+#         if K is None:
+#             self.K = nn.Parameter(torch.ones(1))  # Global coupling strength
+#         else:
+#             self.K = nn.Parameter(K)
         
-        # replace above nn with the parameters
+#         self.N = num_actuators  # Total number of actuators
 
-        # self.frequencies = nn.Parameter(torch.rand(num_actuators)) # softplus/exp/
-        # self.amplitudes = nn.Parameter(torch.rand(num_actuators))  # tanh activation
-        # self.phases = nn.Parameter(torch.rand(num_actuators))
-        if frequencies is None:
-            self.frequencies = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
-        else:
-            self.frequencies = nn.Parameter(frequencies) # softplus/exp/
-        if amplitudes is None:
-            self.amplitudes = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
-        else:
-            self.amplitudes = nn.Parameter(amplitudes) # softplus/exp/
-        if phases is None:
-            self.phases = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
-        else:
-            self.phases = nn.Parameter(phases) # softplus/exp/
+#     def underlying_params(self):
+#         return self.frequencies, self.amplitudes, self.phases
 
-        self.std = nn.Parameter(torch.ones(num_actuators) * init_std)
+#     def true_params(self):
+#         frequencies = F.softplus(self.frequencies)
+#         amplitudes = F.tanh(self.amplitudes)*self.range.to(self.amplitudes.device)
+#         phases = F.softplus(self.phases)
+#         return frequencies, amplitudes, phases
 
-        self.num_actuators = num_actuators
-        self.apply(utils.weight_init)
-        self.range = torch.tensor([np.pi/2, np.pi, np.pi/2, np.pi, np.pi/2])
-
-    def underlying_params(self):
-        return self.frequencies, self.amplitudes, self.phases
-
-    def true_params(self):
-        frequencies = F.softplus(self.frequencies)
-        amplitudes = F.tanh(self.amplitudes)*self.range.to(self.amplitudes.device)
-        phases = F.softplus(self.phases)
-        return frequencies, amplitudes, phases
-
-    def forward(self, obs, t, std):
-        # h = self.trunk(obs)
+#     def forward(self, r, theta, t):
+#         d_theta_dt = torch.zeros_like(theta, device=theta.device)
+#         dr_dt = torch.zeros_like(r, device=r.device)
+        
+#         # Kuramoto model dynamics
+#         for i in range(self.N):
+#             interaction_sum = torch.sum(r * torch.sin(theta - theta[i]))
+#             d_theta_dt[i] = self.omega[i] + self.zeta[i] + (self.K / self.N) * interaction_sum
+#             dr_dt[i] = self.alpha[i] * (torch.norm(r) - r[i])
+        
+#         return d_theta_dt, dr_dt
     
-        # mu = self.policy(h) #init as zeros
-        # mu = torch.tanh(mu)
-        # std = torch.ones_like(mu) * std
+class KuramotoActor(nn.Module):
+    def __init__(self, num_actuators, omega=None, alpha=None, zeta=None, K=None, dt=0.1):
+        super().__init__()
+        
+        self.omega = nn.Parameter(torch.randn(num_actuators) if omega is None else omega)
+        self.alpha = nn.Parameter(torch.randn(num_actuators) if alpha is None else alpha)
+        self.zeta = nn.Parameter(torch.zeros(num_actuators) if zeta is None else zeta)
+        self.K = nn.Parameter(torch.ones(1) if K is None else K)
+        
+        self.N = num_actuators  # Total number of actuators
+        self.dt = dt  # Time step for the RK4 integrator
 
-        # dist = utils.TruncatedNormal(mu, std)
-        b = t.shape[0]
-        mu = torch.zeros(b,self.num_actuators,device= t.device)
-        f, a, p = self.true_params()
-        # Apply oscillation
-        for i in range(mu.shape[-1]):
-            mu[:, i] += a[i] * torch.sin(2 * np.pi * f[i] * t + p[i])
+    def derivatives(self, r, theta):
+        d_theta_dt = torch.zeros_like(theta)
+        dr_dt = torch.zeros_like(r)
+        
+        # Kuramoto model dynamics
+        interaction_sum = torch.sum(r * torch.sin(theta.unsqueeze(-1) - theta), dim=-1)
+        d_theta_dt = self.omega + self.zeta + (self.K / self.N) * interaction_sum
+        dr_dt = self.alpha * (torch.norm(r) - r)
+        
+        return d_theta_dt, dr_dt
 
-        std = torch.ones_like(mu) * std
-        dist = utils.TruncatedNormal(mu, std)
-        return dist
+    def rk4_step(self, r, theta):
+        num_actuators = 10
+        r = torch.rand(num_actuators)
+        theta = torch.rand(num_actuators)
+
+        # Initialize model
+        model = KuramotoActor(num_actuators, dt=0.1)
+
+        # Forward pass to update r and theta
+        new_theta, new_r = model(r, theta)
+        # RK4 integration
+        k1_theta, k1_r = self.derivatives(r, theta)
+        k2_theta, k2_r = self.derivatives(r + 0.5 * self.dt * k1_r, theta + 0.5 * self.dt * k1_theta)
+        k3_theta, k3_r = self.derivatives(r + 0.5 * self.dt * k2_r, theta + 0.5 * self.dt * k2_theta)
+        k4_theta, k4_r = self.derivatives(r + self.dt * k3_r, theta + self.dt * k3_theta)
+
+        # Update theta and r
+        new_theta = theta + (self.dt / 6.0) * (k1_theta + 2 * k2_theta + 2 * k3_theta + k4_theta)
+        new_r = r + (self.dt / 6.0) * (k1_r + 2 * k2_r + 2 * k3_r + k4_r)
+        
+        return new_theta, new_r
+
+    def forward(self, r, theta):
+        return self.rk4_step(r, theta)
 
 class KuramotoCritic(nn.Module):
     def __init__(self, repr_dim, action_shape, feature_dim, hidden_dim):
         super().__init__()
-
-        # self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
-        #                            nn.LayerNorm(feature_dim), nn.Tanh())
 
         self.Q1 = nn.Sequential(
             nn.Linear(feature_dim + 1 + action_shape[0], hidden_dim),
@@ -161,7 +182,6 @@ class KuramotoCritic(nn.Module):
         #h = self.trunk(obs)
         if len(t.shape) != len(obs.shape):
             t = t.unsqueeze(-1) 
-        # print(obs.shape, t.shape, action.shape)
         h_action = torch.cat([obs, t, action], dim=-1)
         q1 = self.Q1(h_action)
         q2 = self.Q2(h_action)
@@ -188,9 +208,9 @@ class KuramotoAgent:
         self.actor = KuramotoActor(action_shape[0]).to(device)
         # remove encoder
         repr_dim = 10
-        self.critic = MyCritic(repr_dim, action_shape, feature_dim,
+        self.critic = KuramotoCritic(repr_dim, action_shape, feature_dim,
                              hidden_dim).to(device)
-        self.critic_target = MyCritic(repr_dim, action_shape,
+        self.critic_target = KuramotoCritic(repr_dim, action_shape,
                                     feature_dim, hidden_dim).to(device)
         self.critic_target.load_state_dict(self.critic.state_dict())
 
@@ -289,14 +309,6 @@ class KuramotoAgent:
         batch = next(replay_iter)
         obs, t, action, reward, discount, next_obs = utils.to_torch(
             batch, self.device)
-
-        # augment
-        # obs = self.aug(obs.float())
-        # next_obs = self.aug(next_obs.float())
-        # # encode
-        # obs = self.encoder(obs)
-        # with torch.no_grad():
-        #     next_obs = self.encoder(next_obs)
 
         if self.use_tb:
             metrics['batch_reward'] = reward.mean().item()

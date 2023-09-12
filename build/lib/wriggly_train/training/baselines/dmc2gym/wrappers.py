@@ -151,7 +151,9 @@ class DMCWrapper(core.Env):
         extra = {'internal_state': self._env.physics.get_state().copy()}
 
         for _ in range(self._frame_skip):
+            # print("skipping frames")
             time_step = self._env.step(action)
+            # print("ts reward", time_step.reward)
             reward += time_step.reward or 0
             done = time_step.last()
             if done:

@@ -28,6 +28,6 @@ python train_openai_es.py \
   observation_normalizer=tonic.torch.normalizers.MeanStd()
 )" \
 --test_size 5 \
---num_workers 8
+--num_workers 20
 # --job_id ${JOB_ID}_${SGE_TASK_ID} \
 # --seed ${SGE_TASK_ID}

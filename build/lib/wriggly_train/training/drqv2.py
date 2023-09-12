@@ -118,6 +118,12 @@ class MyActor(nn.Module):
         amplitudes = F.tanh(self.amplitudes)*self.range.to(self.amplitudes.device)
         phases = F.softplus(self.phases)
         return frequencies, amplitudes, phases
+    
+    def print_true_params(self):
+        freq, amp, phase = self.true_params()
+        print("Frequency: ", freq)
+        print("Amplitude: ", amp)
+        print("Phase: ", phase)
 
     def forward(self, obs, t, std):
         # h = self.trunk(obs)
@@ -185,8 +191,12 @@ class MyDrQV2Agent:
         # models
         # self.encoder = Encoder(obs_shape).to(device)
         # print(action_shape)
-        self.actor = MyActor(action_shape[0]).to(device)
-        # remove encoder
+        phase = torch.tensor([1.3417, 5.4342, 0.3429, 5.9328, 6.1546])
+        frequency = torch.tensor([-2.0369, -0.2435, -2.0829,  0.2560, -0.6076])
+        amplitude = torch.tensor([0.6260, 0.2823, 0.4198, 1.2494, 0.5321])
+        self.actor = MyActor(action_shape[0],frequencies=frequency, amplitudes=amplitude, phases=phase).to(device)
+        self.actor.print_true_params()
+
         repr_dim = 10
         self.critic = MyCritic(repr_dim, action_shape, feature_dim,
                              hidden_dim).to(device)

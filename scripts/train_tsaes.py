@@ -5,18 +5,22 @@ sys.path.append("/home/venky/proj1")
 import warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 
+from wriggly_train.training.baselines import dmc2gym as dmc2gym
+
 
 import os
 import ray
 import time
 import torch
-import gym # gymnasium as 
-# import dmc2gym
+import gym
 import collections
 import numpy as np
 import neptune
 import typing as T
 import wriggly_train.tsaes as tsaes
+import wriggly_train.envs.wriggly.robot.wriggly_from_swimmer
+
+
 
 def str_to_bool(s):
   if isinstance(s, bool):
@@ -131,6 +135,7 @@ if __name__ == '__main__':
     import tonic.torch
     import gym
     import dm2gym
+    env = dmc2gym.make(domain_name='wriggly', task_name='move', episode_length=5000)
     if header: exec(header)
     return eval(environment)
 
@@ -141,7 +146,7 @@ if __name__ == '__main__':
     import wriggly_train.tsaes_model
     if header: exec(header)
     return eval(model)
-
+  
   env = env_builder()
   env.observation_space = space_to_box(env.observation_space)
   env.action_space = space_to_box(env.action_space)

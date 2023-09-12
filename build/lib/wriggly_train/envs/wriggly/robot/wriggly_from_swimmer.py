@@ -21,10 +21,8 @@ class AttrDict(dict):
     super().__init__(*args, **kwargs)
     self.__dict__ = self
 
-# from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, Physics
-# from wriggly.simulation.training.drqv2 import MyActor
-
-_DEFAULT_TIME_LIMIT = 10  # (Seconds)
+_DEFAULT_TIME_LIMIT = 20  # (Seconds)
+# _DEFAULT_TIME_LIMIT = 0.1
 _CONTROL_TIMESTEP = .02  # (Seconds)
 TARGET_SPEED_MOVE = 10.0
 
@@ -65,9 +63,12 @@ def move(time_limit=_DEFAULT_TIME_LIMIT, random=None,
   xml_path = "/home/venky/proj1/wriggly_train/envs/wriggly_mujoco/wriggly_apr_target.xml"
   # wriggly =  mj.MjModel.from_xml_path(xml_path)
   physics = Physics.from_xml_path(xml_path)
+  # physics.legacy_step = False
   # data = mj.MjData(wriggly)
   task = Wriggly()
-  env = control.Environment(physics, task, time_limit=time_limit, legacy_step=True)
+  # env = control.Environment(physics, task, time_limit=time_limit, legacy_step=True)
+  env = control.Environment(physics, task, time_limit=time_limit,
+                            legacy_step=False, n_sub_steps=2)
   return env
 
 
@@ -214,7 +215,32 @@ class Wriggly(base.Task):
       obs = np.concatenate([physics.joints(), physics.body_velocities(), np.array([physics.data.time])])
       return obs
 
+  # def reset(self):
+  #   ret = super.reset()
+  #   self.prev_xy = None
+  #   return ret
+
+
+  # def before_step(self, action, physics):
+  #   # print("action", action)
+  #   # print("before_step")
+  #   current_xy = physics.named.data.qpos[0:2]
+  #   # print("prev prev", self.prev_xy)
+  #   self.prev_xy = current_xy.copy()
+    # print("cur prev", self.prev_xy)
+
+  # # def after_step(self, physics):
+  # #   print("after_step")
+  # #   print("prev", self.prev_xy)
+  # #   current_xy = physics.named.data.qpos[0:2]
+  # #   print("cur", current_xy)
+
+  # #   self.prev_xy = current_xy.copy()
+
+
   def get_reward(self, physics):
+      # print("get_reward")
+      # print("time", physics.time())
       # desired_direction = np.array([1, 0, 0])  # Replace with the actual desired direction unit vector
       # current_velocity = np.array([velocity_x, velocity_y, velocity_z])  # Replace with actual velocities
 
@@ -318,33 +344,29 @@ class Wriggly(base.Task):
         
         
         
-        
-        
-      if physics.time() >= _DEFAULT_TIME_LIMIT:
-        current_xy = physics.named.data.qpos[0:2]
-        return np.linalg.norm(self.prev_xy[0] - current_xy[0])
-      else:
-        return 0.0
+      # """Computes the reward for the current timestep"""
+      # current_xy = physics.named.data.qpos[0:2]
+      # return np.linalg.norm(self.prev_xy[0] - current_xy[0])
 
     
 
-      # a = 0.1
-      # b = 1
-      # forward_velocity = physics.named.data.sensordata['ACT2_velocity_sensor'][0]
-      # vel_reward = rewards.tolerance(
-      #   forward_velocity,
-      #   bounds=(50, float('inf')),
-      #   margin=50,
-      #   value_at_margin=0.,
-      #   sigmoid='linear'
-      # )
-      # current_xy = physics.named.data.qpos[0:2]
-      # start_xy = np.array([physics.named.model.geom_pos['target', 'x'], 
-      #                       physics.named.model.geom_pos['target', 'y']])
-      # # dist_reward = np.linalg.norm(self.prev_xy[0] - current_xy[0])
-      # dist_reward = np.linalg.norm(current_xy - start_xy)
-      # total_rew = a * vel_reward + b * dist_reward
-      # return total_rew # - 1101.5300/5000
+      a = 0.1
+      b = 1
+      forward_velocity = physics.named.data.sensordata['ACT2_velocity_sensor'][0]
+      vel_reward = rewards.tolerance(
+        forward_velocity,
+        bounds=(50, float('inf')),
+        margin=50,
+        value_at_margin=0.,
+        sigmoid='linear'
+      )
+      current_xy = physics.named.data.qpos[0:2]
+      start_xy = np.array([physics.named.model.geom_pos['target', 'x'], 
+                            physics.named.model.geom_pos['target', 'y']])
+      # dist_reward = np.linalg.norm(self.prev_xy[0] - current_xy[0])
+      dist_reward = np.linalg.norm(current_xy - start_xy)
+      total_rew = a * vel_reward + b * dist_reward
+      return total_rew
     
     # reward function that rewards deltas in the x coordinate, that is the robot
     # moves in the x direction, and the distance moves is calculated by the change
@@ -361,98 +383,33 @@ class Wriggly(base.Task):
 
 
 
-        # """Computes the reward based on the direction of movement."""
-        # current_xy = physics.named.data.qpos[0:2]
-
-        # if self.prev_xy is None:
-        #     self.prev_xy = current_xy
-        #     return 0.0  # No reward on the first step
-
-        # # Calculate the displacement deltas
-        # displacement_deltas = current_xy - self.prev_xy
-
-        # # Calculate the total reward as the sum of the displacement deltas
-        # reward = np.linalg.norm(displacement_deltas)
-
-        # self.prev_xy = current_xy.copy()
-
-        # return reward
-
+      # """Computes the reward based on the direction of movement."""
       # current_xy = physics.named.data.qpos[0:2]
-
-      # if self.start_xy is None:
-      #     self.start_xy = current_xy
-      #     self.prev_displacement_from_start = 0.0
-      # return 0.0  # No reward on the first step
-
-      # # Calculate the displacement from starting position
-      # displacement_from_start = np.linalg.norm(current_xy - self.start_xy)
-
-      # # Calculate the reward as the difference in displacement from starting position
-      # reward = displacement_from_start - self.prev_displacement_from_start
-
-      # # Update the previous displacement for the next step
-      # self.prev_displacement_from_start = displacement_from_start
-
-      # return reward
-
-
-      # x axis
-      # if _DEFAULT_TIME_LIMIT % physics.time() < 0.5:
-      #   current_xy = physics.named.data.qpos[0:2]
-
-
-      #   # if self.prev_xy is None:
-      #   #     self.prev_xy = current_xy
-      #   #     return 0.0  # No reward on the first step
-
-      #   # Calculate the displacement along the X-axis and Y-axis
-      #   x_displacement = current_xy[0] - self.prev_xy[0]
-      #   y_deviation = abs(current_xy[1] - self.prev_xy[1])
-
-      #   # Reward for X-axis displacement, and punish based on Y-axis deviation
-      #   x_reward = x_displacement
-      #   y_penalty = -y_deviation * 2
-
-      #   # Calculate the total reward
-      #   reward = x_reward + y_penalty
-      #   # self.prev_xy = current_xy.copy()
-      #   return reward
-      # else:
-      #   return 0.0
-
-
-      # current_xy = physics.named.data.qpos[0:2]
-
+      # # print("cur_Xy", current_xy)
+      # # print("prev_xy", self.prev_xy, "\n")
       # if self.prev_xy is None:
-      #     self.prev_xy = current_xy
-      #     return 0.0  # No reward on the first step
+      #     prev_xy = current_xy
+      # else:
+      #     prev_xy = self.prev_xy
 
-      # # Calculate the displacement along the X-axis and Y-axis
-      # x_displacement = current_xy[0] - self.prev_xy[0]
-      # y_deviation = abs(current_xy[1] - self.prev_xy[1])
-      # disp = np.linalg.norm(current_xy - self.prev_xy)
+      # # Calculate the displacement deltas
+      # # displacement_deltas = current_xy - prev_xy
 
-      # # Reward for X-axis displacement, and punish based on Y-axis deviation
-      # x_reward = x_displacement
-      # y_penalty = -y_deviation * 2
+      # # Calculate the total reward as the sum of the displacement deltas
+      # # reward = np.linalg.norm(displacement_deltas) / physics.timestep()  * 1000
+      # reward = current_xy[0] - prev_xy[0]
+      # # print(current_xy, prev_xy)
 
-      # # Calculate the total reward
-      # reward = disp
-      # self.prev_xy = current_xy.copy()
+      # # print("reward a", reward)
+      # # print("current_xy", current_xy)
+      # # print("prev_xy", self.prev_xy)
+      # # print("done")
+
+      # # if reward > 0.001:
+      # #   print("get reward")
+      # #   print("prev xy", self.prev_xy)
+      # #   print("current", current_xy, "\n")
+      # #   print("reward", reward)
+      
+
       # return reward
-
-
-
-
-
-
-
-        # Reward Maintaining X-Coordinate difference/Punish changes in the X-coordinate differences
-        # Punish if X-coor differences between bodies reduce
-        # Heavily Reward for keeping low Y coordinates (descending starting from extremes)
-        # Punish based on max(deviation)
-
-    # check for stationary rotation
-    # punish heavily if center moves
-    # reward if the robot has rotated 90 degrees

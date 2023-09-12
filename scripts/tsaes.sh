@@ -12,9 +12,9 @@ python train_tsaes.py \
 --population_size 64 \
 --population_top_best 32 \
 --learning_rate 0.01 \
---momentum 0.4 \
---lookahead_scaling 3.0 \
---environment "gym.make('SwimmerSwimmer6-v0')" \
+--momentum 0.0 \
+--lookahead_scaling 0.0 \
+--environment "gym.make('wriggly')" \
 --model "wriggly_train.tsaes_model.ActorOnly(
   actor=wriggly_train.tsaes_model.Actor(
     encoder=wriggly_train.tsaes_model.ObservationEncoder(),
@@ -27,6 +27,7 @@ python train_tsaes.py \
   observation_normalizer=wriggly_train.tsaes_model.MeanStd()
 )" \
 --test_size 5 \
---num_workers 8
+--num_workers 20
 # --job_id ${JOB_ID}_${SGE_TASK_ID} \
 # --seed ${SGE_TASK_ID}
+# try momentum on and off

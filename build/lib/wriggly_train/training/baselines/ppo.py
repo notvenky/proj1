@@ -83,7 +83,7 @@ class SaveOnBestTrainingRewardCallback(BaseCallback):
         return True
 
 
-env = dmc2gym.make(domain_name='wriggly', task_name='move')
+env = dmc2gym.make(domain_name='wriggly', task_name='move', episode_length=5000)
 env = Monitor(env, run_log_dir)
 
 model = PPO(   
@@ -100,7 +100,7 @@ callback = SaveOnBestTrainingRewardCallback(check_freq=5000, log_dir=run_log_dir
 print("------------- Start Learning -------------")
 
 model.learn(
-    total_timesteps=1000000,
+    total_timesteps=3000000,
     log_interval=1,
     tb_log_name='ppo',
     reset_num_timesteps=True,

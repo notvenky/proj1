@@ -21,9 +21,6 @@ class AttrDict(dict):
     super().__init__(*args, **kwargs)
     self.__dict__ = self
 
-# from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, Physics
-# from wriggly.simulation.training.drqv2 import MyActor
-
 _DEFAULT_TIME_LIMIT = 20  # (Seconds)
 # _DEFAULT_TIME_LIMIT = 0.1
 _CONTROL_TIMESTEP = .02  # (Seconds)
@@ -347,29 +344,29 @@ class Wriggly(base.Task):
         
         
         
-      """Computes the reward for the current timestep"""
-      current_xy = physics.named.data.qpos[0:2]
-      return np.linalg.norm(self.prev_xy[0] - current_xy[0])
+      # """Computes the reward for the current timestep"""
+      # current_xy = physics.named.data.qpos[0:2]
+      # return np.linalg.norm(self.prev_xy[0] - current_xy[0])
 
     
 
-      # a = 0.1
-      # b = 1
-      # forward_velocity = physics.named.data.sensordata['ACT2_velocity_sensor'][0]
-      # vel_reward = rewards.tolerance(
-      #   forward_velocity,
-      #   bounds=(50, float('inf')),
-      #   margin=50,
-      #   value_at_margin=0.,
-      #   sigmoid='linear'
-      # )
-      # current_xy = physics.named.data.qpos[0:2]
-      # start_xy = np.array([physics.named.model.geom_pos['target', 'x'], 
-      #                       physics.named.model.geom_pos['target', 'y']])
-      # # dist_reward = np.linalg.norm(self.prev_xy[0] - current_xy[0])
-      # dist_reward = np.linalg.norm(current_xy - start_xy)
-      # total_rew = a * vel_reward + b * dist_reward
-      # return total_rew # - 1101.5300/5000
+      a = 0.1
+      b = 1
+      forward_velocity = physics.named.data.sensordata['ACT2_velocity_sensor'][0]
+      vel_reward = rewards.tolerance(
+        forward_velocity,
+        bounds=(50, float('inf')),
+        margin=50,
+        value_at_margin=0.,
+        sigmoid='linear'
+      )
+      current_xy = physics.named.data.qpos[0:2]
+      start_xy = np.array([physics.named.model.geom_pos['target', 'x'], 
+                            physics.named.model.geom_pos['target', 'y']])
+      # dist_reward = np.linalg.norm(self.prev_xy[0] - current_xy[0])
+      dist_reward = np.linalg.norm(current_xy - start_xy)
+      total_rew = a * vel_reward + b * dist_reward
+      return total_rew
     
     # reward function that rewards deltas in the x coordinate, that is the robot
     # moves in the x direction, and the distance moves is calculated by the change
@@ -386,51 +383,33 @@ class Wriggly(base.Task):
 
 
 
-      """Computes the reward based on the direction of movement."""
-      current_xy = physics.named.data.qpos[0:2]
-      # print("cur_Xy", current_xy)
-      # print("prev_xy", self.prev_xy, "\n")
-      if self.prev_xy is None:
-          prev_xy = current_xy
-      else:
-          prev_xy = self.prev_xy
-
-      # Calculate the displacement deltas
-      # displacement_deltas = current_xy - prev_xy
-
-      # Calculate the total reward as the sum of the displacement deltas
-      # reward = np.linalg.norm(displacement_deltas) / physics.timestep()  * 1000
-      reward = current_xy[0] - prev_xy[0]
-      # print(current_xy, prev_xy)
-
-      # print("reward a", reward)
-      # print("current_xy", current_xy)
-      # print("prev_xy", self.prev_xy)
-      # print("done")
-
-      # if reward > 0.001:
-      #   print("get reward")
-      #   print("prev xy", self.prev_xy)
-      #   print("current", current_xy, "\n")
-      #   print("reward", reward)
-      
-
-      return reward
-
+      # """Computes the reward based on the direction of movement."""
       # current_xy = physics.named.data.qpos[0:2]
+      # # print("cur_Xy", current_xy)
+      # # print("prev_xy", self.prev_xy, "\n")
+      # if self.prev_xy is None:
+      #     prev_xy = current_xy
+      # else:
+      #     prev_xy = self.prev_xy
 
-      # if self.start_xy is None:
-      #     self.start_xy = current_xy
-      #     self.prev_displacement_from_start = 0.0
-      # return 0.0  # No reward on the first step
+      # # Calculate the displacement deltas
+      # # displacement_deltas = current_xy - prev_xy
 
-      # # Calculate the displacement from starting position
-      # displacement_from_start = np.linalg.norm(current_xy - self.start_xy)
+      # # Calculate the total reward as the sum of the displacement deltas
+      # # reward = np.linalg.norm(displacement_deltas) / physics.timestep()  * 1000
+      # reward = current_xy[0] - prev_xy[0]
+      # # print(current_xy, prev_xy)
 
-      # # Calculate the reward as the difference in displacement from starting position
-      # reward = displacement_from_start - self.prev_displacement_from_start
+      # # print("reward a", reward)
+      # # print("current_xy", current_xy)
+      # # print("prev_xy", self.prev_xy)
+      # # print("done")
 
-      # # Update the previous displacement for the next step
-      # self.prev_displacement_from_start = displacement_from_start
+      # # if reward > 0.001:
+      # #   print("get reward")
+      # #   print("prev xy", self.prev_xy)
+      # #   print("current", current_xy, "\n")
+      # #   print("reward", reward)
+      
 
       # return reward

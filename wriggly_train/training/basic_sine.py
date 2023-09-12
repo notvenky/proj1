@@ -246,14 +246,6 @@ class SineAgent:
         obs, t, action, reward, discount, next_obs = utils.to_torch(
             batch, self.device)
 
-        # augment
-        # obs = self.aug(obs.float())
-        # next_obs = self.aug(next_obs.float())
-        # # encode
-        # obs = self.encoder(obs)
-        # with torch.no_grad():
-        #     next_obs = self.encoder(next_obs)
-
         if self.use_tb:
             metrics['batch_reward'] = reward.mean().item()
 

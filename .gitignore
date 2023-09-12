@@ -9,7 +9,7 @@
 *.csv
 *.tfevents*
 *.npy
-*.mp4
 *.avi
 *.npz
 exp_local/
+*.mp4
