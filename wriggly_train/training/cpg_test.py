@@ -1,43 +1,4 @@
-"""
-I need to have 2 layers as a subpart of the actor network
-The first needs to represent the rhythm generator, which is governed
-mainly by the following two differential equations:-
 
-r_dot_dot[i] = a * (a/4 * (mu[i] - r[i]) - r_dot[i])
-theta_dot[i] = freq[i] + summation(j) [r[j] * w[i][j] * sin(theta[j] - theta[i] - phi[i][j])]
-
-each dot represents one differential with respect to time
-
-r[i] is the present amplitude of the ith joint
-mu[i] is the instrinsic amplitude of the ith joint, which the network needs to learn
-theta[i] is the present phase of the ith joint
-freq[i] is the frequency of the ith joint
-a is a constant, convergence factor which also needs to be learned
-w[i][j] is the weight of the ith joint on the jth joint
-phi[i][j] is the phase bias of the ith joint on the jth joint
-
-I have 5 joints, so I need to have 5 mu[i], 5 freq[i], 5 a, 5 w[i][j], 5 phi[i][j], that need to be learned
-
-Following this, I need to have a second layer, which is the command output layer
-This layer needs to take the output of the first layer, and convert it into the command
-
-The command is represented as a sinusoidal function of time, with the amplitude of the sine wave
-being the output of the first layer, and the frequency being the output of the first layer
-and the phase being the output of the first layer
-
-The output of the second layer is the command, which is then fed into the environment, and the
-network needs to optimize real-time, both the first and second layers, to generate maximum reward
-
-My code is currently already doing just the output - that is, I have defined my goal_position as 
-r = A * sin(2 * pi * f * t + phi)
-
-But I need to change this to the above mentioned equations, and then train the network to learn
-the parameters of the above mentioned equations
-"""
-
-
-import sys
-sys.path.append("/home/venky/proj1")
 
 
 from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer

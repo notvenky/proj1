@@ -2,8 +2,7 @@
 #
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
-import sys
-sys.path.append("/home/venky/proj1")
+
 
 
 from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer

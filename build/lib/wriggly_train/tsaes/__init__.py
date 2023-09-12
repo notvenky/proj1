@@ -1,5 +1,4 @@
-import sys
-sys.path.append("/home/venky/proj1")
+
 
 import warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)

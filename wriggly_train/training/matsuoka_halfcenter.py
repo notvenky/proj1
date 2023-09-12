@@ -30,8 +30,7 @@
     Using this as basis, write me a full code that implements the Matsuoka Half Center Model
 '''
 
-import sys
-sys.path.append("/home/venky/proj1")
+
 
 
 from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
