@@ -47,28 +47,27 @@ class IjspeertActor(nn.Module):
         super().__init__()
         self.num_actuators = num_actuators
         
-        self.mu = nn.Parameter(torch.randn(num_actuators))  # intrinsic amplitude
-        self.a = nn.Parameter(torch.randn(num_actuators))  # convergence factor
-        self.w = nn.Parameter(torch.randn(num_actuators, num_actuators))  # weight matrix
-        self.phi = nn.Parameter(torch.randn(num_actuators, num_actuators))  # phase bias matrix
-
+        # Intrinsic frequency and amplitude
+        self.nu = nn.Parameter(torch.randn(num_actuators))
+        self.R = nn.Parameter(torch.randn(num_actuators))
         
-        self.frequencies = nn.Parameter(torch.randn(num_actuators))
-        self.amplitudes = nn.Parameter(torch.randn(num_actuators))
-        self.phases = nn.Parameter(torch.randn(num_actuators))
-        self.std = nn.Parameter(torch.ones(num_actuators) * init_std)
+        # Convergence factor
+        self.a = nn.Parameter(torch.randn(num_actuators))
+        
+        # Weight matrix and phase bias matrix
+        self.w = nn.Parameter(torch.randn(num_actuators, num_actuators))
+        self.phi = nn.Parameter(torch.randn(num_actuators, num_actuators))
 
-        self.apply(utils.weight_init)
-        self.range = torch.tensor([np.pi/2, np.pi, np.pi/2, np.pi, np.pi/2])
+        self.apply(utils.weight_init)  # Assuming utils.weight_init is already defined
     
     def dynamics(self, r, r_dot, theta):
-        r_dot_dot = self.a * (self.a / 4 * (self.mu - r) - r_dot)
+        # Using the new equations
+        r_dot_dot = self.a * (self.a / 4 * (self.R - r) - r_dot)
 
-        theta_dot = self.frequencies
+        theta_dot = 2 * np.pi * self.nu
         for i in range(self.num_actuators):
             for j in range(self.num_actuators):
-                theta_dot[i] += r[j].item() * self.w[i, j].item() * torch.sin(theta[j].item() - theta[i].item() - self.phi[i, j].item())
-
+                theta_dot[i] += r[j] * self.w[i, j] * torch.sin(theta[j] - theta[i] - self.phi[i, j])
 
         return r_dot_dot, theta_dot
     
@@ -117,7 +116,6 @@ class IjspeertActor(nn.Module):
         b = t.shape[0]
 
         # Initialize r, r_dot and theta
-        mu = torch.zeros(b, self.num_actuators, device=t.device)
         r = torch.zeros(b, self.num_actuators, device=t.device)
         r_dot = torch.zeros_like(r)
         theta = torch.zeros_like(r)
@@ -127,13 +125,10 @@ class IjspeertActor(nn.Module):
             r, r_dot, theta = self.rk4_step(r, r_dot, theta, dt)
 
         # Use r and theta to generate the command
-        f, a, p = self.true_params()
-        # Apply oscillation
-        for i in range(mu.shape[-1]):
-            mu[:, i] += a[i] * torch.sin(2 * np.pi * f[i] * t + p[i])
-
-        std = torch.ones_like(mu) * std
-        dist = utils.TruncatedNormal(mu, std)
+        x_i = r * (1 + torch.cos(theta))
+        
+        std = torch.ones_like(x_i)  # You can customize the standard deviation as needed
+        dist = utils.TruncatedNormal(x_i, std)  # Assuming TruncatedNormal is already defined
         return dist
 
 

@@ -87,7 +87,7 @@ class SineActor(nn.Module):
 
     def true_params(self):
         frequencies = F.softplus(self.frequencies)
-        amplitudes = F.tanh(self.amplitudes)*self.range.to(self.amplitudes.device)
+        amplitudes = F.tanh(self.amplitudes) # *self.range.to(self.amplitudes.device)
         return frequencies, amplitudes
 
     def forward(self, obs, t, std):
@@ -96,7 +96,7 @@ class SineActor(nn.Module):
         f, a = self.true_params()
         # Apply oscillation
         for i in range(mu.shape[-1]):
-            mu[:, i] += a[i] * torch.sin(2 * np.pi * f[i] * t)
+            mu[:, i] += self.range * a[i] * torch.sin(2 * np.pi * f[i] * t)
 
         std = torch.ones_like(mu) * std
         dist = utils.TruncatedNormal(mu, std)

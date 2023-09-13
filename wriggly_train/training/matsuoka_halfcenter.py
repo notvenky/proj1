@@ -23,11 +23,6 @@
     which is basically a sinusoidal oscillation with a frequency, amplitude and phase for each actuator
 
     The command layer is then used to generate the actual command to the robot
-
-    Ive provided an example below
-    Note that the following code only does the command layer parameters evaluation
-
-    Using this as basis, write me a full code that implements the Matsuoka Half Center Model
 '''
 
 

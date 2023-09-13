@@ -1,6 +1,3 @@
-
-
-
 from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
 import hydra
 import datetime
@@ -65,53 +62,6 @@ class Encoder(nn.Module):
         h = self.convnet(obs)
         h = h.view(h.shape[0], -1)
         return h
-
-
-# class KuramotoActor(nn.Module):
-#     def __init__(self, num_actuators, omega=None, alpha=None, zeta=None, K=None):
-#         super().__init__()
-#         if omega is None:
-#             self.omega = nn.Parameter(torch.randn(num_actuators))
-#         else:
-#             self.omega = nn.Parameter(omega)
-
-#         if alpha is None:
-#             self.alpha = nn.Parameter(torch.randn(num_actuators))
-#         else:
-#             self.alpha = nn.Parameter(alpha)
-            
-#         if zeta is None:
-#             self.zeta = nn.Parameter(torch.zeros(num_actuators))
-#         else:
-#             self.zeta = nn.Parameter(zeta)
-
-#         if K is None:
-#             self.K = nn.Parameter(torch.ones(1))  # Global coupling strength
-#         else:
-#             self.K = nn.Parameter(K)
-        
-#         self.N = num_actuators  # Total number of actuators
-
-#     def underlying_params(self):
-#         return self.frequencies, self.amplitudes, self.phases
-
-#     def true_params(self):
-#         frequencies = F.softplus(self.frequencies)
-#         amplitudes = F.tanh(self.amplitudes)*self.range.to(self.amplitudes.device)
-#         phases = F.softplus(self.phases)
-#         return frequencies, amplitudes, phases
-
-#     def forward(self, r, theta, t):
-#         d_theta_dt = torch.zeros_like(theta, device=theta.device)
-#         dr_dt = torch.zeros_like(r, device=r.device)
-        
-#         # Kuramoto model dynamics
-#         for i in range(self.N):
-#             interaction_sum = torch.sum(r * torch.sin(theta - theta[i]))
-#             d_theta_dt[i] = self.omega[i] + self.zeta[i] + (self.K / self.N) * interaction_sum
-#             dr_dt[i] = self.alpha[i] * (torch.norm(r) - r[i])
-        
-#         return d_theta_dt, dr_dt
     
 class KuramotoActor(nn.Module):
     def __init__(self, num_actuators, omega=None, alpha=None, zeta=None, K=None, dt=0.1):
@@ -122,8 +72,8 @@ class KuramotoActor(nn.Module):
         self.zeta = nn.Parameter(torch.zeros(num_actuators) if zeta is None else zeta)
         self.K = nn.Parameter(torch.ones(1) if K is None else K)
         
-        self.N = num_actuators  # Total number of actuators
-        self.dt = dt  # Time step for the RK4 integrator
+        self.N = num_actuators 
+        self.dt = dt  
 
     def derivatives(self, r, theta):
         d_theta_dt = torch.zeros_like(theta)
@@ -137,7 +87,7 @@ class KuramotoActor(nn.Module):
         return d_theta_dt, dr_dt
 
     def rk4_step(self, r, theta):
-        num_actuators = 10
+        num_actuators = 5
         r = torch.rand(num_actuators)
         theta = torch.rand(num_actuators)
 
@@ -201,11 +151,9 @@ class KuramotoAgent:
         self.stddev_schedule = stddev_schedule
         self.stddev_clip = stddev_clip
 
-        # models
-        # self.encoder = Encoder(obs_shape).to(device)
         print(action_shape)
         self.actor = KuramotoActor(action_shape[0]).to(device)
-        # remove encoder
+
         repr_dim = 10
         self.critic = KuramotoCritic(repr_dim, action_shape, feature_dim,
                              hidden_dim).to(device)
@@ -213,20 +161,16 @@ class KuramotoAgent:
                                     feature_dim, hidden_dim).to(device)
         self.critic_target.load_state_dict(self.critic.state_dict())
 
-        # optimizers
-        # self.encoder_opt = torch.optim.Adam(self.encoder.parameters(), lr=lr)
+
         self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=lr)
         self.critic_opt = torch.optim.Adam(self.critic.parameters(), lr=lr)
-
-        # data augmentation
-        #self.aug = RandomShiftsAug(pad=4)
 
         self.train()
         self.critic_target.train()
 
     def train(self, training=True):
         self.training = training
-        #self.encoder.train(training)
+
         self.actor.train(training)
         self.critic.train(training)
 
@@ -235,7 +179,7 @@ class KuramotoAgent:
         joints = np.concatenate([obs['joints'], obs['jointvel']])
         t = torch.as_tensor(np.array([obs['time']]),device=self.device)
         obs = torch.as_tensor(joints, device=self.device)
-        #obs = self.encoder(obs.unsqueeze(0))
+
         stddev = utils.schedule(self.stddev_schedule, step)
         dist = self.actor(obs, t, stddev)
         if eval_mode:
@@ -243,7 +187,7 @@ class KuramotoAgent:
         else:
             action = dist.sample(clip=None)
             if step < self.num_expl_steps:
-                action.uniform_(-2, 2) #was -1 to 1
+                action.uniform_(-1, 1) #was -1 to 1
         return action.cpu().numpy()[0]
 
     def update_critic(self, obs, t, action, reward, discount, next_obs, step):
@@ -266,12 +210,11 @@ class KuramotoAgent:
                 metrics['critic_q2'] = Q2.mean().item()
                 metrics['critic_loss'] = critic_loss.item()
 
-            # optimize encoder and critic
-            #self.encoder_opt.zero_grad(set_to_none=True)
+
             self.critic_opt.zero_grad(set_to_none=True)
             critic_loss.backward()
         self.critic_opt.step()
-        #self.encoder_opt.step()
+
 
         return metrics
 
@@ -287,7 +230,7 @@ class KuramotoAgent:
 
             actor_loss = -Q.mean()
 
-            # optimize actor
+
             self.actor_opt.zero_grad(set_to_none=True)
             actor_loss.backward()
             self.actor_opt.step()
