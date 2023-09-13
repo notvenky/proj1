@@ -11,7 +11,7 @@
 - Evolutionary Strategies: 
 - I'm working on integrating this with my envs, so far works with the standard suite
 - - OpenAI-ES: scripts (./openai_es.sh) (train_openai_es.py)
-- - TSA-ES: scripts (./tsaes) (train_tsaes.py)
+- - TSA-ES: scripts (./tsaes) (train_tsaes.py). To run ARS within TSA-ES, lookahead and momentum both = 0.0
 - - - Code in wriggly_train.tsaes and wriggly_train.tsaes_model
 
 - Action Parametrizations: wriggly_train.training.{}
