@@ -102,7 +102,7 @@ class SineActor(nn.Module):
         dist = utils.TruncatedNormal(mu, std)
         return dist
 
-class MyCritic(nn.Module):
+class SineCritic(nn.Module):
     def __init__(self, repr_dim, action_shape, feature_dim, hidden_dim):
         super().__init__()
 
@@ -148,9 +148,9 @@ class SineAgent:
         # print(action_shape)
         self.actor = SineActor(action_shape[0]).to(device)
         repr_dim = 10
-        self.critic = MyCritic(repr_dim, action_shape, feature_dim,
+        self.critic = SineCritic(repr_dim, action_shape, feature_dim,
                              hidden_dim).to(device)
-        self.critic_target = MyCritic(repr_dim, action_shape,
+        self.critic_target = SineCritic(repr_dim, action_shape,
                                     feature_dim, hidden_dim).to(device)
         self.critic_target.load_state_dict(self.critic.state_dict())
         self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=lr)
