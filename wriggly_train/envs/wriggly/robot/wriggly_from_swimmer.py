@@ -132,7 +132,7 @@ class Physics(mujoco.Physics):
     return np.array([1, 0, 0])
   
   def current_position(self):
-    """Returns the current position of Wriggly."""
+    """Returns the current position of Wriggly's center part."""
     return np.abs(self.named.data.sensordata['ACT2_pos_sensor'][0])
    
   def sum_speed(self):
@@ -327,7 +327,7 @@ class Wriggly(base.Task):
       # return np.linalg.norm(self.prev_xy[0] - current_xy[0])
 
     
-
+      """Reward for having maximum displacement"""
       a = 0.1
       b = 1
       forward_velocity = physics.named.data.sensordata['ACT2_velocity_sensor'][0]
@@ -345,21 +345,6 @@ class Wriggly(base.Task):
       dist_reward = np.linalg.norm(current_xy - start_xy)
       total_rew = a * vel_reward + b * dist_reward
       return total_rew
-    
-    # reward function that rewards deltas in the x coordinate, that is the robot
-    # moves in the x direction, and the distance moves is calculated by the change
-    # in distance from the starting point, not in absolute distance from previous time
-    # step. This is to ensure that the robot is not rewarded for moving in the y direction
-      '''
-        Reward for moving continuously away from starting position in the x-direction, punish for moving back
-      '''
-
-
-
-
-
-
-
 
       # """Computes the reward based on the direction of movement."""
       # current_xy = physics.named.data.qpos[0:2]
@@ -391,3 +376,14 @@ class Wriggly(base.Task):
       
 
       # return reward
+
+      # """Reward for moving towards a specified target"""
+      # target_size = physics.named.model.geom_size['target', 0]
+      # return rewards.tolerance(physics.nose_to_target_dist(),
+      #                         bounds=(0, target_size),
+      #                         margin=5*target_size,
+      #                         sigmoid='long_tail')
+
+      # """Reward for climbing an obstacle"""
+
+      # """Reward for avoiding obstacles"""
