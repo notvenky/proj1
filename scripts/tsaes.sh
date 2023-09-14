@@ -14,7 +14,7 @@ python train_tsaes.py \
 --learning_rate 0.01 \
 --momentum 0.0 \
 --lookahead_scaling 0.0 \
---environment "gym.make('Hopper')" \
+--environment "dmc2gym.make(domain_name='wriggly',task_name='benchmarking', episode_length=5000)" \
 --model "wriggly_train.tsaes_model.ActorOnly(
   actor=wriggly_train.tsaes_model.Actor(
     encoder=wriggly_train.tsaes_model.ObservationEncoder(),
@@ -31,3 +31,4 @@ python train_tsaes.py \
 # --job_id ${JOB_ID}_${SGE_TASK_ID} \
 # --seed ${SGE_TASK_ID}
 # try momentum on and off
+# lookahead scaling off = ARS, on = TSAES

@@ -233,7 +233,7 @@ class MyDrQV2Agent:
         else:
             action = dist.sample(clip=None)
             if step < self.num_expl_steps:
-                action.uniform_(-2, 2) #was -1 to 1
+                action.uniform_(-1, 1) #was -1 to 1
         return action.cpu().numpy()[0]
 
     def update_critic(self, obs, t, action, reward, discount, next_obs, step):

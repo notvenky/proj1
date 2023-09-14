@@ -25,11 +25,11 @@ wriggly_train/envs/wriggly/tasks/turn.py
 wriggly_train/training/__init__.py
 wriggly_train/training/basic_sine.py
 wriggly_train/training/cpg_test.py
-wriggly_train/training/cpg_test2.py
 wriggly_train/training/dmc.py
 wriggly_train/training/drq_mod.py
 wriggly_train/training/drqv2.py
 wriggly_train/training/ijspeert.py
+wriggly_train/training/ijspeert_new.py
 wriggly_train/training/kuramoto.py
 wriggly_train/training/logger.py
 wriggly_train/training/matsuoka_halfcenter.py

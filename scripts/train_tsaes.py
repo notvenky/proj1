@@ -1,10 +1,7 @@
-
-
-
 import warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 
-from wriggly_train.training.baselines import dmc2gym as dmc2gym
+from wriggly_train.training.baselines import dmc2gym
 
 
 import os
@@ -17,7 +14,7 @@ import numpy as np
 import neptune
 import typing as T
 import wriggly_train.tsaes as tsaes
-import wriggly_train.envs.wriggly.robot.wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import *
 
 
 
@@ -58,7 +55,7 @@ class GymEnvironmentWorker(tsaes.Worker):
     super().__init__(**kwargs)
     import gym
     import dm2gym
-    # import dmc2gym
+    from wriggly_train.training.baselines import dmc2gym
 
     self.env = env_builder()
     # Ensure observation and action spaces are flattened `Box`.
@@ -134,7 +131,8 @@ if __name__ == '__main__':
     import tonic.torch
     import gym
     import dm2gym
-    env = dmc2gym.make(domain_name='wriggly', task_name='move', episode_length=5000)
+    from wriggly_train.training.baselines import dmc2gym
+    # environment = dmc2gym.make(domain_name='wriggly',task_name='move', episode_length=5000)
     if header: exec(header)
     return eval(environment)
 
