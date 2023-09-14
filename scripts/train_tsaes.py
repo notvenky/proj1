@@ -165,7 +165,7 @@ if __name__ == '__main__':
     state_ref = ray.put(normalizer.get_state())
     ray.get([worker.set_model_state.remote(state_ref) for worker in algo.workers])
 
-  # logger = neptune.init_project(project='tsa-es')
+  logger = neptune.init_project(project='notvenky/tsa-es', api_token='eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiJhZDg2OTZjYS00MDExLTQxMzgtODMzMi1kMWViMzQwOGZmZjIifQ==')
   algo = tsaes.TSAES(
     GymEnvironmentWorker,
     dict(
@@ -194,6 +194,6 @@ if __name__ == '__main__':
     callbacks=dict(epoch_train_end=epoch_train_end),
   )
 
-  # logger['model'] = str(mod)
-  # logger['hyperparams'] = vars(args)
+  logger['model'] = str(mod)
+  logger['hyperparams'] = vars(args)
   algo.run(params)

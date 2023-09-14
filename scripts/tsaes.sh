@@ -14,7 +14,7 @@ python train_tsaes.py \
 --learning_rate 0.01 \
 --momentum 0.0 \
 --lookahead_scaling 0.0 \
---environment "dmc2gym.make(domain_name='wriggly',task_name='benchmarking', episode_length=5000)" \
+--environment "gym.make('SwimmerSwimmer6-v0')" \
 --model "wriggly_train.tsaes_model.ActorOnly(
   actor=wriggly_train.tsaes_model.Actor(
     encoder=wriggly_train.tsaes_model.ObservationEncoder(),

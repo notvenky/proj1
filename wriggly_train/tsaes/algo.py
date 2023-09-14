@@ -183,13 +183,13 @@ class TSAES:
 
         self.callbacks['epoch_train_end'](algo=self, epoch=epoch_id, params=params)
 
-        # self.logger['train/epoch'].log(epoch_id + 1)
-        # self.logger['train/objective_evals'].log(2 * self.population_size * (epoch_id + 1))
-        # self.logger['train/seconds'].log(time.time() - train_time)
-        # self.logger['train/reward/mean'].log(np.mean(rewards_train))
-        # self.logger['train/reward/min'].log(np.min(rewards_train))
-        # self.logger['train/reward/max'].log(np.max(rewards_train))
-        # self.logger['train/reward/std'].log(np.std(rewards_train))
+        self.logger['train/epoch'].log(epoch_id + 1)
+        self.logger['train/objective_evals'].log(2 * self.population_size * (epoch_id + 1))
+        self.logger['train/seconds'].log(time.time() - train_time)
+        self.logger['train/reward/mean'].log(np.mean(rewards_train))
+        self.logger['train/reward/min'].log(np.min(rewards_train))
+        self.logger['train/reward/max'].log(np.max(rewards_train))
+        self.logger['train/reward/std'].log(np.std(rewards_train))
 
         # ==========================================================================================
         # Test phase.
@@ -211,14 +211,14 @@ class TSAES:
 
           self.callbacks['epoch_test_end'](algo=self, epoch=epoch_id, params=params)
 
-          # self.logger['test/epoch'].log(epoch_id + 1)
-          # self.logger['test/objective_evals'].log(self.test_size * (epoch_id // self.test_freq + 1))
-          # self.logger['test/seconds'].log(time.time() - test_time)
-          # if len(rewards_test) > 0:
-          #   self.logger['test/reward/mean'].log(np.mean(rewards_test))
-          #   self.logger['test/reward/min'].log(np.min(rewards_test))
-          #   self.logger['test/reward/max'].log(np.max(rewards_test))
-          #   self.logger['test/reward/std'].log(np.std(rewards_test))
+          self.logger['test/epoch'].log(epoch_id + 1)
+          self.logger['test/objective_evals'].log(self.test_size * (epoch_id // self.test_freq + 1))
+          self.logger['test/seconds'].log(time.time() - test_time)
+          if len(rewards_test) > 0:
+            self.logger['test/reward/mean'].log(np.mean(rewards_test))
+            self.logger['test/reward/min'].log(np.min(rewards_test))
+            self.logger['test/reward/max'].log(np.max(rewards_test))
+            self.logger['test/reward/std'].log(np.std(rewards_test))
           np.save(makefile(self.save_dir, 'rewards_test', file=f'{epoch_id + 1}'), rewards_test)
 
         # ==========================================================================================
@@ -347,13 +347,13 @@ class OpenAIES:
         aggregate = aggregate / (len(idxs) * self.sigma)
         params = params + self.optimizer.step(aggregate) - self.weight_decay * params
 
-        # self.logger['train/epoch'].log(epoch_id + 1)
-        # self.logger['train/objective_evals'].log(2 * self.population_size * (epoch_id + 1))
-        # self.logger['train/seconds'].log(time.time() - train_time)
-        # self.logger['train/reward/mean'].log(np.mean(rewards_train))
-        # self.logger['train/reward/min'].log(np.min(rewards_train))
-        # self.logger['train/reward/max'].log(np.max(rewards_train))
-        # self.logger['train/reward/std'].log(np.std(rewards_train))
+        self.logger['train/epoch'].log(epoch_id + 1)
+        self.logger['train/objective_evals'].log(2 * self.population_size * (epoch_id + 1))
+        self.logger['train/seconds'].log(time.time() - train_time)
+        self.logger['train/reward/mean'].log(np.mean(rewards_train))
+        self.logger['train/reward/min'].log(np.min(rewards_train))
+        self.logger['train/reward/max'].log(np.max(rewards_train))
+        self.logger['train/reward/std'].log(np.std(rewards_train))
 
         # ==========================================================================================
         # Test phase.
@@ -370,14 +370,14 @@ class OpenAIES:
           )
           results_test = list(results_test)  # [reward]
           rewards_test = [r for r in results_test if r is not None]
-          # self.logger['test/epoch'].log(epoch_id + 1)
-          # self.logger['test/objective_evals'].log(self.test_size * (epoch_id // self.test_freq + 1))
-          # self.logger['test/seconds'].log(time.time() - test_time)
-          # if len(rewards_test) > 0:
-            # self.logger['test/reward/mean'].log(np.mean(rewards_test))
-            # self.logger['test/reward/min'].log(np.min(rewards_test))
-            # self.logger['test/reward/max'].log(np.max(rewards_test))
-            # self.logger['test/reward/std'].log(np.std(rewards_test))
+          self.logger['test/epoch'].log(epoch_id + 1)
+          self.logger['test/objective_evals'].log(self.test_size * (epoch_id // self.test_freq + 1))
+          self.logger['test/seconds'].log(time.time() - test_time)
+          if len(rewards_test) > 0:
+            self.logger['test/reward/mean'].log(np.mean(rewards_test))
+            self.logger['test/reward/min'].log(np.min(rewards_test))
+            self.logger['test/reward/max'].log(np.max(rewards_test))
+            self.logger['test/reward/std'].log(np.std(rewards_test))
           np.save(makefile(self.save_dir, 'rewards_test', file=f'{epoch_id + 1}'), rewards_test)
 
         # ==========================================================================================

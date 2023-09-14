@@ -1,0 +1,20 @@
+{"obj": {"type": "AssignString", "path": ["model"], "value": "ActorOnly(\n  (actor): Actor(\n    (encoder): ObservationEncoder(\n      (observation_normalizer): MeanStd()\n    )\n    (head): DeterministicPolicyHead(\n      (action_layer): Sequential(\n        (0): Linear(in_features=25, out_features=5, bias=True)\n        (1): Identity()\n      )\n    )\n  )\n  (observation_normalizer): MeanStd()\n)"}, "version": 1}
+{"obj": {"type": "AssignInt", "path": ["hyperparams", "epochs"], "value": 1000}, "version": 2}
+{"obj": {"type": "AssignInt", "path": ["hyperparams", "population_size"], "value": 64}, "version": 3}
+{"obj": {"type": "AssignInt", "path": ["hyperparams", "population_top_best"], "value": 32}, "version": 4}
+{"obj": {"type": "AssignString", "path": ["hyperparams", "noise_generator"], "value": "tsaes.noise.gaussian"}, "version": 5}
+{"obj": {"type": "AssignFloat", "path": ["hyperparams", "learning_rate"], "value": 0.01}, "version": 6}
+{"obj": {"type": "AssignFloat", "path": ["hyperparams", "momentum"], "value": 0.0}, "version": 7}
+{"obj": {"type": "AssignFloat", "path": ["hyperparams", "velocity_smoothing"], "value": 0.9}, "version": 8}
+{"obj": {"type": "AssignString", "path": ["hyperparams", "lookahead_scaling"], "value": "0.0"}, "version": 9}
+{"obj": {"type": "AssignFloat", "path": ["hyperparams", "exploration_bias"], "value": 0.0}, "version": 10}
+{"obj": {"type": "AssignBool", "path": ["hyperparams", "task_sync"], "value": true}, "version": 11}
+{"obj": {"type": "AssignInt", "path": ["hyperparams", "num_workers"], "value": 20}, "version": 12}
+{"obj": {"type": "AssignInt", "path": ["hyperparams", "test_freq"], "value": 1}, "version": 13}
+{"obj": {"type": "AssignInt", "path": ["hyperparams", "test_size"], "value": 5}, "version": 14}
+{"obj": {"type": "AssignInt", "path": ["hyperparams", "save_freq"], "value": 50}, "version": 15}
+{"obj": {"type": "AssignInt", "path": ["hyperparams", "seed"], "value": 0}, "version": 16}
+{"obj": {"type": "AssignString", "path": ["hyperparams", "environment"], "value": "gym.make('SwimmerSwimmer6-v0')"}, "version": 17}
+{"obj": {"type": "AssignString", "path": ["hyperparams", "model"], "value": "wriggly_train.tsaes_model.ActorOnly(\n  actor=wriggly_train.tsaes_model.Actor(\n    encoder=wriggly_train.tsaes_model.ObservationEncoder(),\n    torso=None,\n    head=tonic.torch.models.DeterministicPolicyHead(\n      activation=torch.nn.Identity,\n      fn=wriggly_train.tsaes_model.init_linear_zeros_,\n    )\n  ),\n  observation_normalizer=wriggly_train.tsaes_model.MeanStd()\n)"}, "version": 18}
+{"obj": {"type": "AssignFloat", "path": ["hyperparams", "baseline"], "value": 0.0}, "version": 19}
+{"obj": {"type": "AssignString", "path": ["hyperparams", "job_id"], "value": "debug"}, "version": 20}
