@@ -57,18 +57,20 @@ suite._DOMAINS["wriggly"] = AttrDict(SUITE=SUITE)
 
 
 
+import os
+
 @SUITE.add('benchmarking')
 def move(time_limit=_DEFAULT_TIME_LIMIT, random=None,
              environment_kwargs=None):
-  xml_path = "/home/venky/proj1/wriggly_train/envs/wriggly_mujoco/wriggly_apr_target.xml"
-  # wriggly =  mj.MjModel.from_xml_path(xml_path)
+  current_dir = os.path.dirname(os.path.abspath(__file__))
+  # Construct the relative path to the XML file
+  xml_relative_path = "../../wriggly_mujoco/wriggly_apr_target.xml"
+  xml_path = os.path.join(current_dir, xml_relative_path)
   physics = Physics.from_xml_path(xml_path)
-  # physics.legacy_step = False
-  # data = mj.MjData(wriggly)
   task = Wriggly()
-  # env = control.Environment(physics, task, time_limit=time_limit, legacy_step=True)
   env = control.Environment(physics, task, time_limit=time_limit,
                             legacy_step=False, n_sub_steps=2)
+  
   return env
 
 
