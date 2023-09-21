@@ -83,7 +83,7 @@ class SaveOnBestTrainingRewardCallback(BaseCallback):
         return True
 
 
-env = dmc2gym.make(domain_name='wriggly', task_name='move')
+env = dmc2gym.make(domain_name='wriggly', task_name='move', episode_length=5000)
 # vec_env = DummyVecEnv([lambda: env], render_mode="human")
 env = Monitor(env, run_log_dir)
 # done = False
@@ -100,7 +100,8 @@ model = DDPG(   'MlpPolicy',
                 tau=0.005,
                 gamma=0.99,
                 verbose=1,
-                tensorboard_log=run_log_dir
+                tensorboard_log=run_log_dir,
+                device='cuda'
 )
 callback = SaveOnBestTrainingRewardCallback(check_freq=5000, log_dir=run_log_dir)
 

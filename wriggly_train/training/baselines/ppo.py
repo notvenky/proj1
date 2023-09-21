@@ -83,9 +83,10 @@ class SaveOnBestTrainingRewardCallback(BaseCallback):
         return True
 
 
-env = dmc2gym.make(domain_name='wriggly', task_name='move', episode_length=5000)
+env = dmc2gym.make(domain_name='wriggly', task_name='move_no_time', episode_length=5000)
 env = Monitor(env, run_log_dir)
 
+policy_kwargs = dict(log_std_init=-2)
 model = PPO(   
                 "MlpPolicy",
                 env,
@@ -93,7 +94,9 @@ model = PPO(
                 batch_size=256,
                 gamma=0.99,
                 verbose=1,
-                tensorboard_log=run_log_dir
+                tensorboard_log=run_log_dir,
+                device='cuda',
+                policy_kwargs=policy_kwargs,
             )
 callback = SaveOnBestTrainingRewardCallback(check_freq=5000, log_dir=run_log_dir)
 

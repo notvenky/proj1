@@ -8,7 +8,7 @@ import numpy as np
 # from dm_control import composer, viewer
 from dm_control.rl import control
 # from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, Physics
-from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, Physics
+from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, WrigglyApproachTarget, WrigglyClimbObstacle, WrigglyMaxDisp, WrigglyMaxVel, Physics
 # from wriggly_train.training.drqv2 import MyActor
 from wriggly_train.training.drqv2 import MyActor
 from tqdm import tqdm
@@ -23,7 +23,7 @@ physics = Physics.from_xml_path(xml_path)
 
 
 
-task = Wriggly(
+task = WrigglyMaxVel(
     # wriggly=wriggly,
     # wriggly_spawn_position=(0.5, 0, 0),
     # target_velocity=3.0,
@@ -33,7 +33,7 @@ task = Wriggly(
 
 
 # env = control.Environment(physics, task, legacy_step=True)
-env = dmc.make('wriggly_move', 1,
+env = dmc.make('wriggly_maxvel', 1,
                                   1)
 
 # env = composer.Environment(

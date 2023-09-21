@@ -28,6 +28,7 @@ wriggly_train/training/cpg_test.py
 wriggly_train/training/dmc.py
 wriggly_train/training/drq_mod.py
 wriggly_train/training/drqv2.py
+wriggly_train/training/forced_van_der_pol.py
 wriggly_train/training/ijspeert.py
 wriggly_train/training/ijspeert_new.py
 wriggly_train/training/kuramoto.py

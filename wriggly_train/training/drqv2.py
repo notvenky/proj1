@@ -100,14 +100,14 @@ class MyActor(nn.Module):
 
         self.num_actuators = num_actuators
         self.apply(utils.weight_init)
-        self.range = torch.tensor([np.pi/2, np.pi, np.pi/2, np.pi, np.pi/2])
+        # self.range = torch.tensor([np.pi/2, np.pi, np.pi/2, np.pi, np.pi/2])
 
     def underlying_params(self):
         return self.frequencies, self.amplitudes, self.phases
 
     def true_params(self):
         frequencies = F.softplus(self.frequencies)
-        amplitudes = F.tanh(self.amplitudes)*self.range.to(self.amplitudes.device)
+        amplitudes = F.tanh(self.amplitudes)  #*self.range.to(self.amplitudes.device)
         phases = F.softplus(self.phases)
         return frequencies, amplitudes, phases
     
@@ -173,11 +173,25 @@ class MyDrQV2Agent:
         self.stddev_schedule = stddev_schedule
         self.stddev_clip = stddev_clip
 
+        # # # transformed params from naive random search
+        # frequency = torch.tensor([0.7287, 0.8134, 0.7327, 0.5979, 0.1452])
+        # amplitude = torch.tensor([0.5174, 1.1551, 1.3948, 1.3612, 0.9059])
+        # phase = torch.tensor([3.3565, 0.3632, 1.5797, 2.7197, 3.9647])
 
-        phase = torch.tensor([1.3417, 5.4342, 0.3429, 5.9328, 6.1546])
-        frequency = torch.tensor([-2.0369, -0.2435, -2.0829,  0.2560, -0.6076])
-        amplitude = torch.tensor([0.6260, 0.2823, 0.4198, 1.2494, 0.5321])
-        self.actor = MyActor(action_shape[0],frequencies=frequency, amplitudes=amplitude, phases=phase).to(device)
+        # # phase = torch.tensor([ 4.0064, -3.1963,  2.3760,  1.4613,  3.3991])
+        # # frequency = torch.tensor([-0.9120,  0.0916, -0.8205,  0.1050, -1.6120])
+        # # amplitude = torch.tensor([0.9050, 0.8280, 2.0001, 1.3550, 0.5464])
+        # self.actor = MyActor(action_shape[0],frequencies=frequency, amplitudes=amplitude, phases=phase).to(device)
+
+        # for high vel
+        # Frequency: tensor([0.3259, 0.3420, 0.0214, 0.4218, 0.3906]), Amplitude: tensor([1.4040, 0.7122, 1.1086, 1.1147, 0.9277]), Phase: tensor([1.2277, 2.6753, 5.6710, 3.5273, 5.7863])
+        # frequency = torch.tensor([0.3259, 0.3420, 0.0214, 0.4218, 0.3906])
+        # amplitude = torch.tensor([1.4040, 0.7122, 1.1086, 1.1147, 0.9277])
+        # phase = torch.tensor([1.2277, 2.6753, 5.6710, 3.5273, 5.7863])
+        
+        self.actor = MyActor(action_shape[0]).to(device)
+        # self.actor = MyActor(action_shape[0],frequencies=frequency, amplitudes=amplitude, phases=phase).to(device)
+
         self.actor.print_true_params()
 
         repr_dim = 10

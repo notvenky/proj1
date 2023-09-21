@@ -85,7 +85,7 @@ class TSAES:
     save_freq: int = 50,
     save_dir: str = None,
     seed: int = 0,
-    # logger=None,  # TODO: Use default logger.
+    logger=None,  # TODO: Use default logger.
     callbacks: T.Mapping[str, T.Callable] = {},
   ):
     self.epochs = epochs
@@ -106,7 +106,7 @@ class TSAES:
       save_dir or os.path.join('logs', time.strftime("%Y-%m-%d-%H-%M-%S"))
     )
     os.makedirs(self.save_dir, exist_ok=True)
-    # self.logger = logger
+    self.logger = logger
     self.seed = seed
     self.callbacks = collections.defaultdict(lambda: lambda **kwargs: None, **callbacks)
 
@@ -270,7 +270,7 @@ class OpenAIES:
     save_freq: int = 50,
     save_dir: str = None,
     seed: int = 0,
-    # logger=None,  # TODO: Use default logger.
+    logger=None,  # TODO: Use default logger.
   ):
     self.epochs = epochs
     self.population_size = population_size
@@ -288,7 +288,7 @@ class OpenAIES:
       save_dir or os.path.join('logs', time.strftime("%Y-%m-%d-%H-%M-%S"))
     )
     os.makedirs(self.save_dir, exist_ok=True)
-    # self.logger = logger
+    self.logger = logger
     self.seed = seed
 
     ray.init(**ray_kwargs)

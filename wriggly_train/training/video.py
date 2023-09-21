@@ -29,7 +29,7 @@ class VideoRecorder:
             if hasattr(env, 'physics'):
                 frame = env.physics.render(height=self.render_size,
                                            width=self.render_size,
-                                           camera_id=4)
+                                           camera_id=5)
             else:
                 frame = env.render()
             self.frames.append(frame)

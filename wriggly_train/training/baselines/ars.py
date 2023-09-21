@@ -1,10 +1,10 @@
 from wriggly_train.training.baselines import dmc2gym
-from stable_baselines3 import TD3
+from sb3_contrib import ARS
 import numpy as np
 from datetime import datetime
 import os
 import matplotlib.pyplot as plt
-from stable_baselines3.common.monitor import Monitor
+from sb3_contrib.common.utils import Monitor
 from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.results_plotter import load_results, ts2xy
@@ -18,7 +18,7 @@ from wriggly_train.training import dmc
 import os
 
 current_date = datetime.now().strftime('%Y-%m-%d')
-root_log_dir = "logs/td3/"
+root_log_dir = "logs/ars/"
 daily_log_dir = os.path.join(root_log_dir, current_date)
 run_id = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 run_log_dir = os.path.join(daily_log_dir, run_id)
@@ -83,35 +83,29 @@ class SaveOnBestTrainingRewardCallback(BaseCallback):
         return True
 
 
-env = dmc2gym.make(domain_name='wriggly', task_name='move', episode_length=5000)
-# vec_env = DummyVecEnv([lambda: env], render_mode="human")
+env = dmc2gym.make(domain_name='wriggly', task_name='move_no_time', episode_length=5000)
 env = Monitor(env, run_log_dir)
-# done = False
-# obs = env.reset()
-# while not done:
-#     action = env.action_space.sample()
-#     obs, reward, done, trunk, info = env.step(action)
 
-model = TD3(   
+policy_kwargs = dict(log_std_init=-2)
+model = ARS(   
                 "MlpPolicy",
                 env,
                 learning_rate=0.0003,
                 batch_size=256,
-                buffer_size=1000000,
-                tau=0.005,
                 gamma=0.99,
                 verbose=1,
                 tensorboard_log=run_log_dir,
-                device='cuda'
+                device='cuda',
+                policy_kwargs=policy_kwargs,
             )
 callback = SaveOnBestTrainingRewardCallback(check_freq=5000, log_dir=run_log_dir)
 
 print("------------- Start Learning -------------")
 
 model.learn(
-    total_timesteps=1000000,
+    total_timesteps=3000000,
     log_interval=1,
-    tb_log_name='td3',
+    tb_log_name='ARS',
     reset_num_timesteps=True,
     callback=callback,
     progress_bar=True
@@ -124,7 +118,7 @@ plt.show
 # obs = vec_env.reset()
 # for i in range(1000):
 #     callback = SaveOnBestTrainingRewardCallback(check_freq=1000, log_dir=log_dir)
-#     model.learn(total_timesteps=500000, log_interval=1, tb_log_name = 'ppo', reset_num_timesteps=True, progress_bar=True)
+#     model.learn(total_timesteps=500000, log_interval=1, tb_log_name = 'ARS', reset_num_timesteps=True, progress_bar=True)
 #     action, _states = model.predict(obs, deterministic=True)
 #     # Access the selected parameters and log them
 #     selected_parameters = vec_env.step(action)[0]  # This is just an example
@@ -140,7 +134,7 @@ plt.show
 
 
 # from wriggly_train.training.baselines import dmc2gym
-# from stable_baselines3 import PPO
+# from stable_baselines3 import ARS
 # from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
 # from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, Physics
 # from wriggly_train.training import dmc
@@ -153,7 +147,7 @@ plt.show
 #     obs, reward, done, trunk, info = env.step(action)
 
 
-# model = PPO("MlpPolicy", env, verbose=1)
+# model = ARS("MlpPolicy", env, verbose=1)
 # model.learn(total_timesteps=10_000)
 
 # vec_env = model.get_env()

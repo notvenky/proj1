@@ -149,7 +149,7 @@ if __name__ == '__main__':
   else:
     optimizer = tsaes.optimizers.Adam(learning_rate=args.learning_rate,)
 
-#   logger = neptune.init(project='neuroai/openai-es')
+  logger = neptune.init(project='notvenky/openai-es')
   algo = tsaes.OpenAIES(
     GymEnvironmentWorker,
     dict(
@@ -171,9 +171,9 @@ if __name__ == '__main__':
     save_freq=args.save_freq,
     save_dir=os.path.join('logs', args.job_id),
     seed=args.seed,
-    # logger=logger,
+    logger=logger,
   )
 
-#   logger['model'] = str(mod)
-#   logger['hyperparams'] = vars(args)
+  logger['model'] = str(mod)
+  logger['hyperparams'] = vars(args)
   algo.run(params)

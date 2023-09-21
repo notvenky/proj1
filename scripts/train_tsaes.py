@@ -190,7 +190,7 @@ if __name__ == '__main__':
     save_freq=args.save_freq,
     save_dir=os.path.join('logs', args.job_id),
     seed=args.seed,
-    # logger=logger,
+    logger=logger,
     callbacks=dict(epoch_train_end=epoch_train_end),
   )
 

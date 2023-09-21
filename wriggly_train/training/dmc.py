@@ -183,17 +183,18 @@ class ExtendedTimeStepWrapper(dm_env.Environment):
 def make(name, frame_stack, action_repeat):
     domain, task = name.split('_', 1)
     # overwrite cup to ball_in_cup
-    domain = dict(cup='ball_in_cup').get(domain, domain)
+    # domain = dict(cup='ball_in_cup').get(domain, domain)
     # make sure reward is not visualized
-    if (domain, task) in suite.ALL_TASKS:
-        env = suite.load(domain,
-                         task,
-                         # seedtask_kwargs={'random': },
-                         visualize_reward=False)
-        pixels_key = 'pixels'
-    else:
-        name = f'{domain}_{task}'
-        env = wriggly_from_swimmer.move()
+    # import ipdb; ipdb.set_trace()
+    # if (domain, task) in suite.ALL_TASKS:
+    env = suite.load(domain,
+                        task,
+                        # seedtask_kwargs={'random': },
+                        visualize_reward=False)
+    pixels_key = 'pixels'
+    # else:
+    #     name = f'{domain}_{task}'
+    #     env = wriggly_from_swimmer.move()
         # pixels_key = 'front_close'
     # add wrappers
     env = ActionDTypeWrapper(env, np.float32)

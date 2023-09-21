@@ -2,8 +2,8 @@
   <compiler angle="radian" autolimits="true" />
   <default>
       <position forcelimited="true" forcerange="-1 1"/>
-      <!-- <geom solref=".002 10" solimp="0.9 0.95 0.001 0.5 2"/> -->
-      <geom solref=".01 1" solimp="0.9 0.95 0.001 0.5 6"/>
+      <geom solref=".002 10" solimp="0.9 0.95 0.001 0.5 2"/>
+      <!-- <geom solref=".01 1" solimp="0.9 0.95 0.001 0.5 6"/> -->
 
   </default>
   <asset>
@@ -22,6 +22,8 @@
     <position name="ACT4" kp="5" joint="Red_Leg_Final_Joint"     ctrlrange="-1.57 1.57"/>
   </actuator>
   <sensor>
+    <subtreelinvel name="central_velsensor" body="green_leg"/>
+    
     <jointpos name="ACT0_pos_sensor" joint="Green_Leg_Final_Joint"/>
     <jointpos name="ACT1_pos_sensor" joint="Green_Leg_Central_Joint"/>
     <jointpos name="ACT2_pos_sensor" joint="Red_Leg_Central_Joint"/>
