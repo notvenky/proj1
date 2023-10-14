@@ -6,7 +6,7 @@ import traceback
 import numpy as np
 import typing as T
 from tqdm import tqdm
-
+import wandb
 import wriggly_train.tsaes as tsaes
 
 
@@ -183,13 +183,16 @@ class TSAES:
 
         self.callbacks['epoch_train_end'](algo=self, epoch=epoch_id, params=params)
 
-        self.logger['train/epoch'].log(epoch_id + 1)
-        self.logger['train/objective_evals'].log(2 * self.population_size * (epoch_id + 1))
-        self.logger['train/seconds'].log(time.time() - train_time)
-        self.logger['train/reward/mean'].log(np.mean(rewards_train))
-        self.logger['train/reward/min'].log(np.min(rewards_train))
-        self.logger['train/reward/max'].log(np.max(rewards_train))
-        self.logger['train/reward/std'].log(np.std(rewards_train))
+        metrics = {
+            'train/epoch': epoch_id + 1,
+            'train/objective_evals': 2 * self.population_size * (epoch_id + 1),
+            'train/seconds': time.time() - train_time,
+            'train/reward/mean': np.mean(rewards_train),
+            'train/reward/min': np.min(rewards_train),
+            'train/reward/max': np.max(rewards_train),
+            'train/reward/std': np.std(rewards_train),
+        }
+        wandb.log(metrics)
 
         # ==========================================================================================
         # Test phase.
@@ -211,14 +214,23 @@ class TSAES:
 
           self.callbacks['epoch_test_end'](algo=self, epoch=epoch_id, params=params)
 
-          self.logger['test/epoch'].log(epoch_id + 1)
-          self.logger['test/objective_evals'].log(self.test_size * (epoch_id // self.test_freq + 1))
-          self.logger['test/seconds'].log(time.time() - test_time)
+          test_metrics = {
+              'test/epoch': epoch_id + 1,
+              'test/objective_evals': self.test_size * (epoch_id // self.test_freq + 1),
+              'test/seconds': time.time() - test_time,
+          }
+
           if len(rewards_test) > 0:
-            self.logger['test/reward/mean'].log(np.mean(rewards_test))
-            self.logger['test/reward/min'].log(np.min(rewards_test))
-            self.logger['test/reward/max'].log(np.max(rewards_test))
-            self.logger['test/reward/std'].log(np.std(rewards_test))
+              test_metrics.update({
+                  'test/reward/mean': np.mean(rewards_test),
+                  'test/reward/min': np.min(rewards_test),
+                  'test/reward/max': np.max(rewards_test),
+                  'test/reward/std': np.std(rewards_test),
+              })
+              
+          wandb.log(test_metrics)
+
+          # Save rewards_test to disk
           np.save(makefile(self.save_dir, 'rewards_test', file=f'{epoch_id + 1}'), rewards_test)
 
         # ==========================================================================================
@@ -347,13 +359,16 @@ class OpenAIES:
         aggregate = aggregate / (len(idxs) * self.sigma)
         params = params + self.optimizer.step(aggregate) - self.weight_decay * params
 
-        self.logger['train/epoch'].log(epoch_id + 1)
-        self.logger['train/objective_evals'].log(2 * self.population_size * (epoch_id + 1))
-        self.logger['train/seconds'].log(time.time() - train_time)
-        self.logger['train/reward/mean'].log(np.mean(rewards_train))
-        self.logger['train/reward/min'].log(np.min(rewards_train))
-        self.logger['train/reward/max'].log(np.max(rewards_train))
-        self.logger['train/reward/std'].log(np.std(rewards_train))
+        metrics = {
+            'train/epoch': epoch_id + 1,
+            'train/objective_evals': 2 * self.population_size * (epoch_id + 1),
+            'train/seconds': time.time() - train_time,
+            'train/reward/mean': np.mean(rewards_train),
+            'train/reward/min': np.min(rewards_train),
+            'train/reward/max': np.max(rewards_train),
+            'train/reward/std': np.std(rewards_train),
+        }
+        wandb.log(metrics)
 
         # ==========================================================================================
         # Test phase.
@@ -370,14 +385,23 @@ class OpenAIES:
           )
           results_test = list(results_test)  # [reward]
           rewards_test = [r for r in results_test if r is not None]
-          self.logger['test/epoch'].log(epoch_id + 1)
-          self.logger['test/objective_evals'].log(self.test_size * (epoch_id // self.test_freq + 1))
-          self.logger['test/seconds'].log(time.time() - test_time)
+          test_metrics = {
+              'test/epoch': epoch_id + 1,
+              'test/objective_evals': self.test_size * (epoch_id // self.test_freq + 1),
+              'test/seconds': time.time() - test_time,
+          }
+
           if len(rewards_test) > 0:
-            self.logger['test/reward/mean'].log(np.mean(rewards_test))
-            self.logger['test/reward/min'].log(np.min(rewards_test))
-            self.logger['test/reward/max'].log(np.max(rewards_test))
-            self.logger['test/reward/std'].log(np.std(rewards_test))
+              test_metrics.update({
+                  'test/reward/mean': np.mean(rewards_test),
+                  'test/reward/min': np.min(rewards_test),
+                  'test/reward/max': np.max(rewards_test),
+                  'test/reward/std': np.std(rewards_test),
+              })
+              
+          wandb.log(test_metrics)
+
+          # Save rewards_test to disk
           np.save(makefile(self.save_dir, 'rewards_test', file=f'{epoch_id + 1}'), rewards_test)
 
         # ==========================================================================================

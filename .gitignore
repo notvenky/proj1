@@ -11,5 +11,11 @@
 *.npy
 *.avi
 *.npz
-exp_local/
 *.mp4
+*.png
+*.json
+*.txt
+*.log
+exp_local/
+.neptune/
+wandb/

@@ -1,4 +1,7 @@
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from typing import Union
+from torch import Tensor
+from torch.nn.modules.module import Module
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 import hydra
 import datetime
 import numpy as np
@@ -6,7 +9,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import wriggly_train.training.utils as utils
-
+from wriggly_train.policy.cpg_policy import CPGPolicy
+from wriggly_train.policy.mlp_cpgs import MLPDelta
+from wriggly_train.training.utils import dict_to_flat
 
 class RandomShiftsAug(nn.Module):
     def __init__(self, pad):
@@ -63,71 +68,116 @@ class Encoder(nn.Module):
         h = h.view(h.shape[0], -1)
         return h
 
-
-class MyActor(nn.Module):
-    def __init__(self, num_actuators, frequencies=None, amplitudes=None, phases=None, init_std=0.5):
-        #repr_dim, action_shape, feature_dim, hidden_dim
+class DrQv2Actor(nn.Module):
+    def __init__(self, policy: CPGPolicy, init_std=0.5) -> None:
         super().__init__()
-
-        # self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
-        #                            nn.LayerNorm(feature_dim), nn.Tanh())
-
-        # self.policy = nn.Sequential(nn.Linear(feature_dim, hidden_dim),
-        #                             nn.ReLU(inplace=True),
-        #                             nn.Linear(hidden_dim, hidden_dim),
-        #                             nn.ReLU(inplace=True),
-        #                             nn.Linear(hidden_dim, action_shape[0]))
-        
-        # replace above nn with the parameters
-
-        # self.frequencies = nn.Parameter(torch.rand(num_actuators)) # softplus/exp/
-        # self.amplitudes = nn.Parameter(torch.rand(num_actuators))  # tanh activation
-        # self.phases = nn.Parameter(torch.rand(num_actuators))
-        if frequencies is None:
-            self.frequencies = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
-        else:
-            self.frequencies = nn.Parameter(frequencies) # softplus/exp/
-        if amplitudes is None:
-            self.amplitudes = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
-        else:
-            self.amplitudes = nn.Parameter(amplitudes) # softplus/exp/
-        if phases is None:
-            self.phases = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
-        else:
-            self.phases = nn.Parameter(phases) # softplus/exp/
-
-        self.std = nn.Parameter(torch.ones(num_actuators) * init_std)
-
-        self.num_actuators = num_actuators
-        self.apply(utils.weight_init)
-        # self.range = torch.tensor([np.pi/2, np.pi, np.pi/2, np.pi, np.pi/2])
-
-    def underlying_params(self):
-        return self.frequencies, self.amplitudes, self.phases
-
-    def true_params(self):
-        frequencies = F.softplus(self.frequencies)
-        amplitudes = F.tanh(self.amplitudes)  #*self.range.to(self.amplitudes.device)
-        phases = F.softplus(self.phases)
-        return frequencies, amplitudes, phases
+        print('actor init', policy)
+        self.policy = policy
+        self.init_std = init_std
     
-    def print_true_params(self):
-        freq, amp, phase = self.true_params()
-        print("Frequency: ", freq)
-        print("Amplitude: ", amp)
-        print("Phase: ", phase)
-
     def forward(self, obs, t, std):
-        b = t.shape[0]
-        mu = torch.zeros(b,self.num_actuators,device= t.device)
-        f, a, p = self.true_params()
-        # Apply oscillation
-        for i in range(mu.shape[-1]):
-            mu[:, i] += a[i] * torch.sin(2 * np.pi * f[i] * t + p[i])
-
+        # b = t.shape[0]
+        # mu = torch.zeros(b,self.num_actuators,device= t.device)
+        # f, a, p = self.true_params()
+        # # Apply oscillation
+        # for i in range(mu.shape[-1]):
+        #     mu[:, i] += a[i] * torch.sin(2 * np.pi * f[i] * t + p[i])
+        if len(obs.shape) == len(t.shape):
+            new_obs = torch.cat([obs, t], dim=-1)
+        elif len(obs.shape) == len(t.shape) - 1:
+            new_obs = torch.cat([obs, t[0]])
+        else:
+            new_t = t.unsqueeze(1)
+            print(obs.shape, new_t.shape)
+            new_obs = torch.cat([obs, new_t], dim=1)
+        mu = self.policy(new_obs)
         std = torch.ones_like(mu) * std
         dist = utils.TruncatedNormal(mu, std)
         return dist
+    
+    def __getattr__(self, name: str) -> Tensor | Module:
+        try:
+            return super().__getattr__(name)
+        except AttributeError:
+            return getattr(self.policy, name)
+        # if name == 'policy':
+        #     return self.policy
+        # print('name', name)
+        # print(self.policy)
+        # import ipdb; ipdb.set_trace()
+
+# class MyActor(nn.Module):
+#     def __init__(self, num_actuators, frequencies=None, amplitudes=None, phases=None, init_std=0.5):
+#         #repr_dim, action_shape, feature_dim, hidden_dim
+#         super().__init__()
+
+#         # self.trunk = nn.Sequential(nn.Linear(repr_dim, feature_dim),
+#         #                            nn.LayerNorm(feature_dim), nn.Tanh())
+
+#         # self.policy = nn.Sequential(nn.Linear(feature_dim, hidden_dim),
+#         #                             nn.ReLU(inplace=True),
+#         #                             nn.Linear(hidden_dim, hidden_dim),
+#         #                             nn.ReLU(inplace=True),
+#         #                             nn.Linear(hidden_dim, action_shape[0]))
+        
+#         # replace above nn with the parameters
+
+#         # self.frequencies = nn.Parameter(torch.rand(num_actuators)) # softplus/exp/
+#         # self.amplitudes = nn.Parameter(torch.rand(num_actuators))  # tanh activation
+#         # self.phases = nn.Parameter(torch.rand(num_actuators))
+#         if frequencies is None:
+#             self.frequencies = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
+#         else:
+#             self.frequencies = nn.Parameter(frequencies) # softplus/exp/
+#         if amplitudes is None:
+#             self.amplitudes = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
+#         else:
+#             self.amplitudes = nn.Parameter(amplitudes) # softplus/exp/
+#         if phases is None:
+#             self.phases = nn.Parameter(torch.randn(num_actuators)) # softplus/exp/
+#         else:
+#             self.phases = nn.Parameter(phases) # softplus/exp/
+
+#         self.std = nn.Parameter(torch.ones(num_actuators) * init_std)
+
+#         self.num_actuators = num_actuators
+#         self.apply(utils.weight_init)
+#         self.range = torch.tensor([np.pi/2, np.pi, np.pi/2, np.pi, np.pi/2])
+
+#     def underlying_params(self):
+#         return self.frequencies, self.amplitudes, self.phases
+
+#     def true_params(self):
+#         frequencies = F.softplus(self.frequencies)
+#         amplitudes = F.tanh(self.amplitudes)*self.range.to(self.amplitudes.device)
+#         phases = F.softplus(self.phases)
+#         return frequencies, amplitudes, phases
+    
+#     def get_true_params(self):
+#         freq, amp, phase = self.true_params()
+#         return {
+#             'Frequency': freq.cpu().detach().numpy(),
+#             'Amplitude': amp.cpu().detach().numpy(),
+#             'Phase': phase.cpu().detach().numpy()
+#         }
+    
+#     def print_true_params(self):
+#         freq, amp, phase = self.true_params()
+#         print("Frequency: ", freq)
+#         print("Amplitude: ", amp)
+#         print("Phase: ", phase)
+
+#     def forward(self, obs, t, std):
+#         b = t.shape[0]
+#         mu = torch.zeros(b,self.num_actuators,device= t.device)
+#         f, a, p = self.true_params()
+#         # Apply oscillation
+#         for i in range(mu.shape[-1]):
+#             mu[:, i] += a[i] * torch.sin(2 * np.pi * f[i] * t + p[i])
+
+#         std = torch.ones_like(mu) * std
+#         dist = utils.TruncatedNormal(mu, std)
+#         return dist
 
 class MyCritic(nn.Module):
     def __init__(self, repr_dim, action_shape, feature_dim, hidden_dim):
@@ -173,7 +223,7 @@ class MyDrQV2Agent:
         self.stddev_schedule = stddev_schedule
         self.stddev_clip = stddev_clip
 
-        # # # transformed params from naive random search
+        # # # # transformed params from naive random search
         # frequency = torch.tensor([0.7287, 0.8134, 0.7327, 0.5979, 0.1452])
         # amplitude = torch.tensor([0.5174, 1.1551, 1.3948, 1.3612, 0.9059])
         # phase = torch.tensor([3.3565, 0.3632, 1.5797, 2.7197, 3.9647])
@@ -188,11 +238,41 @@ class MyDrQV2Agent:
         # frequency = torch.tensor([0.3259, 0.3420, 0.0214, 0.4218, 0.3906])
         # amplitude = torch.tensor([1.4040, 0.7122, 1.1086, 1.1147, 0.9277])
         # phase = torch.tensor([1.2277, 2.6753, 5.6710, 3.5273, 5.7863])
-        
-        self.actor = MyActor(action_shape[0]).to(device)
-        # self.actor = MyActor(action_shape[0],frequencies=frequency, amplitudes=amplitude, phases=phase).to(device)
 
-        self.actor.print_true_params()
+        # maxvel, base of 50
+        # frequency = torch.tensor([ 0.0536, -1.5105, -0.0681, -0.3290, -0.3829])
+        # amplitude = torch.tensor([1.0596, 1.6072, 1.2798, 0.3475, 0.5415])
+        # phase = torch.tensor([1.0760, 1.2676, 0.9958, 3.2318, 2.1892])
+
+        # '''1105: Frequency: tensor([0.7797, 0.8540, 0.7756, 0.8069, 0.7436]), Amplitude: tensor([0.4550, 1.7164, 1.5673, 2.5919, 0.7335]), Phase: tensor([0.1001, 2.1576, 3.0394, 1.2417, 3.0698])'''
+        # frequency = torch.tensor([0.7797, 0.8540, 0.7756, 0.8069, 0.7436])
+        # amplitude = torch.tensor([0.4550, 1.7164, 1.5673, 2.5919, 0.7335])
+        # phase = torch.tensor([0.1001, 2.1576, 3.0394, 1.2417, 3.0698])
+
+        '''
+        Transformemd Phase:  tensor([1.8392, 5.8254, 4.2703, 6.1321, 2.1468])
+        Transformemd Frequency:  tensor([ 0.4610, -0.6689,  0.3663,  0.1774, -0.1784])
+        Transformemd Amplitude:  tensor([0.6211, 0.8757, 0.2556, 1.2622, 0.6168])  
+        '''
+
+        # frequency = torch.tensor([ 0.4610, -0.6689,  0.3663,  0.1774, -0.1784])
+        # amplitude = torch.tensor([0.6211, 0.8757, 0.2556, 1.2622, 0.6168])
+        # phase = torch.tensor([1.8392, 5.8254, 4.2703, 6.1321, 2.1468])
+
+
+        frequency = torch.tensor([ 0.4610, -0.6689,  0.3663,  0.1774, -0.1784])
+        amplitude = torch.tensor([0.6211, 3.14, 0.62, 3.14, 0.6168])
+        phase = torch.tensor([1.8392, 5.8254, 4.2703, 6.1321, 2.1468])
+
+        # self.actor = MyActor(action_shape[0]).to(device)
+        # self.policy = CPGPolicy(action_shape[0],frequencies=frequency, amplitudes=amplitude, phases=phase).to(device)
+        print('obs shape**********************************88')
+        print(obs_shape)
+        self.policy = MLPDelta(obs_shape, action_shape[0]).to(device)
+        print('self.policy', self.policy)
+        self.actor = DrQv2Actor(self.policy, init_std=0.5).to(device)
+
+        self.policy.print_true_params()
 
         repr_dim = 10
         self.critic = MyCritic(repr_dim, action_shape, feature_dim,
@@ -218,9 +298,12 @@ class MyDrQV2Agent:
 
     def act(self, obs, step, eval_mode):
         # print(obs)
-        joints = np.concatenate([obs['joints'], obs['jointvel']])
-        t = torch.as_tensor(np.array([obs['time']]),device=self.device)
-        obs = torch.as_tensor(joints, device=self.device)
+        # joints = np.concatenate([obs['joints'], obs['jointvel']])
+        t_np = np.array([obs['time']]).copy()
+        t = torch.as_tensor(t_np,device=self.device).float()
+        del obs['time']
+        o_np = dict_to_flat(obs)
+        obs = torch.as_tensor(o_np, device=self.device).float()
 
         stddev = utils.schedule(self.stddev_schedule, step)
         dist = self.actor(obs, t, stddev)

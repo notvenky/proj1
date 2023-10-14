@@ -1,6 +1,6 @@
 
 
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 import warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 

@@ -1,9 +1,42 @@
+'''
+In [10]: model = ARS.load("best_mod
+    ...: el.zip")
+
+In [11]: model
+Out[11]: <sb3_contrib.ars.ars.ARS at 0x7fd55f6119f0>
+
+In [12]: model.policy
+Out[12]: 
+CPGPolicy(
+  (features_extractor): FlattenExtractor(
+    (flatten): Flatten(start_dim=1, end_dim=-1)
+  )
+  (pi_features_extractor): FlattenExtractor(
+    (flatten): Flatten(start_dim=1, end_dim=-1)
+  )
+  (vf_features_extractor): FlattenExtractor(
+    (flatten): Flatten(start_dim=1, end_dim=-1)
+  )
+  (mlp_extractor): PassThroughObs(
+    (value_net): Sequential(
+      (0): Linear(in_features=13, out_features=69, bias=True)
+      (1): ReLU()
+    )
+  )
+  (action_net): MyActor()
+  (value_net): Linear(in_features=69, out_features=1, bias=True)
+)
+'''
+
+
 from wriggly_train.training.baselines import dmc2gym
+import dmc2gymnasium
 from stable_baselines3 import PPO
 import numpy as np
 from datetime import datetime
 import os
 import matplotlib.pyplot as plt
+from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.vec_env import DummyVecEnv
@@ -13,9 +46,11 @@ from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.vec_env import VecMonitor
 from stable_baselines3.common.atari_wrappers import MaxAndSkipEnv
 from stable_baselines3.common.logger import configure, Logger, CSVOutputFormat, TensorBoardOutputFormat
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 from wriggly_train.training import dmc
 import os
+from wriggly_train.policy.cpg_policy import make_cpg_policy, CPGPolicy
+from wriggly_train.policy.mlp_cpgs import MLPDelta
 
 current_date = datetime.now().strftime('%Y-%m-%d')
 root_log_dir = "logs/ppo/"
@@ -82,15 +117,27 @@ class SaveOnBestTrainingRewardCallback(BaseCallback):
 
         return True
 
+def make_env():
+  #  env = dmc2gym.make(domain_name='wriggly', task_name='move_no_time', episode_length=1000)
+  env = dmc2gymnasium.DMCGym('wriggly', 'approach_target', )
+   # env = dmc2gym.make(domain_name='point_mass', task_name='easy', seed=1)
+  return env
 
-env = dmc2gym.make(domain_name='wriggly', task_name='move_no_time', episode_length=5000)
-env = Monitor(env, run_log_dir)
 
-policy_kwargs = dict(log_std_init=-2)
+vec_env = make_vec_env(make_env, n_envs=32)
+env = VecMonitor(vec_env, run_log_dir)
+def make_basic_cpg(d_obs, d_act):
+   return CPGPolicy(d_act)
+
+def make_delta_cpg(d_obs, d_act):
+   return MLPDelta(d_obs, d_act)
+
+policy_class = make_cpg_policy(make_delta_cpg)
+policy_kwargs = dict(log_std_init=0.5)
 model = PPO(   
-                "MlpPolicy",
+                policy_class,
                 env,
-                learning_rate=0.0003,
+                learning_rate=0.0001,
                 batch_size=256,
                 gamma=0.99,
                 verbose=1,
@@ -98,12 +145,12 @@ model = PPO(
                 device='cuda',
                 policy_kwargs=policy_kwargs,
             )
-callback = SaveOnBestTrainingRewardCallback(check_freq=5000, log_dir=run_log_dir)
+callback = SaveOnBestTrainingRewardCallback(check_freq=1000, log_dir=run_log_dir)
 
 print("------------- Start Learning -------------")
 
 model.learn(
-    total_timesteps=3000000,
+    total_timesteps=10000000,
     log_interval=1,
     tb_log_name='ppo',
     reset_num_timesteps=True,
@@ -113,51 +160,3 @@ model.learn(
 
 env.close()
 plt.show
-
-# vec_env = model.get_env()
-# obs = vec_env.reset()
-# for i in range(1000):
-#     callback = SaveOnBestTrainingRewardCallback(check_freq=1000, log_dir=log_dir)
-#     model.learn(total_timesteps=500000, log_interval=1, tb_log_name = 'ppo', reset_num_timesteps=True, progress_bar=True)
-#     action, _states = model.predict(obs, deterministic=True)
-#     # Access the selected parameters and log them
-#     selected_parameters = vec_env.step(action)[0]  # This is just an example
-#     callback.logger.record("selected_parameters", selected_parameters)  # Replace with your actual parameters
-#     obs, reward, done, info = vec_env.step(action)
-#     vec_env.render(mode='human')
-#     # env.render(mode = 'human')
-#     # VecEnv resets automatically
-#     if done:
-#       obs = env.reset()
-
-# env.close()
-
-
-# from wriggly_train.training.baselines import dmc2gym
-# from stable_baselines3 import PPO
-# from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
-# from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, Physics
-# from wriggly_train.training import dmc
-
-# env = dmc2gym.make(domain_name='wriggly', task_name='move')
-# done = False
-# obs = env.reset()
-# while not done:
-#     action = env.action_space.sample()
-#     obs, reward, done, trunk, info = env.step(action)
-
-
-# model = PPO("MlpPolicy", env, verbose=1)
-# model.learn(total_timesteps=10_000)
-
-# vec_env = model.get_env()
-# obs = vec_env.reset()
-# for i in range(1000):
-#     action, _states = model.predict(obs, deterministic=True)
-#     obs, reward, done, info = env.step(action)
-#     vec_env.render(mode='human')
-#     # VecEnv resets automatically
-#     if done:
-#       obs = env.reset()
-
-# env.close()

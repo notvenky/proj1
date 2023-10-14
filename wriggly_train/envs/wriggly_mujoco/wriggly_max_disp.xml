@@ -4,7 +4,7 @@
   <!-- <option density = "1000" viscosity = "1"/> -->
 
   <worldbody>
-    <geom name="target" pos="0 1 0" type="cylinder" size=".5 .005 0" rgba="0 0.6 0.6 1"/>
+    <geom name="target" pos="0 0 0" type="cylinder" size=".5 .005 0" rgba="0 0.6 0.6 1"/>
     <!--geom name="heading" pos="0 1 0.25" type="cylinder" size=".05 .25 0" rgba="0.6 0.6 0 1"-->
     <!-- <geom name="goal_spot" pos="1 0 0" type="cylinder" size=".25 .005 0" rgba="0 1 0 1"/> -->
   </worldbody>
@@ -16,4 +16,4 @@
   <compiler meshdir="." />
   <include file = "assets/wriggly_chain.xml"/>
 
-</mujoco> 
+</mujoco>

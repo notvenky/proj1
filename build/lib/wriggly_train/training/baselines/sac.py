@@ -13,7 +13,7 @@ from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.vec_env import VecMonitor
 from stable_baselines3.common.atari_wrappers import MaxAndSkipEnv
 from stable_baselines3.common.logger import configure, Logger, CSVOutputFormat, TensorBoardOutputFormat
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 from wriggly_train.training import dmc
 import os
 

@@ -1,0 +1,67 @@
+<mujoco>
+  <worldbody>
+    <!-- Green Leg -->
+    <body name="green_leg" gravcomp="0" pos="0 0 0.027">
+        <!-- <inertial pos="0.364397154664965 -0.247649999434367 -6.01260156101907E-09" quat="0.5 -0.5 0.5 -0.5" mass="0.025" diaginertia="5.02495112065811E-06 7.84051273383468E-06 1.03414373246399E-05"/> -->
+        <inertial pos="0.0 -0.0 0.0" quat="0.5 -0.5 0.5 -0.5" mass="0.025" diaginertia="5.02495112065811E-06 7.84051273383468E-06 1.03414373246399E-05"/>
+        <joint name="free" pos="0 0 0" type="free"/>
+        <geom name = "green_leg" pos = "-0.3235 0.23065 0" type="mesh" rgba="0.8 0.8 0.9 1" mesh="base_link"/>
+        <!-- <geom name = "green_leg" pos = "-0.3235 0.23065 0" type="mesh" rgba="0. 1.0 0.0 1" mesh="base_link"/> -->
+        <!-- <geom name="green_tracker" pos="-0.01 -0.01 0.017" type="box" size="0.01 0.01 0.001" rgba="1.0 0.0 0.0 1"/> -->
+        <site name="green_tracker" type="capsule" rgba="0 1 0 1" zaxis="1 0 0" pos="0.065 -0.017 0" size="0.01 0.01"/>
+        <!-- Green Leg Holder -->
+        <!-- <body name="Green_Leg_Holder" pos="0.3235 -0.23065 0" quat="0.5 -0.5 0.5 -0.5" gravcomp="0"> -->
+        <body name="Green_Leg_Holder" pos="0.0 -0.0 0" quat="0.5 -0.5 0.5 -0.5" gravcomp="0">
+          <inertial pos="0.0172732 -1.71313e-05 -0.0312874" quat="0.707094 0.00279184 0.00136492 0.707112" mass="0.101" diaginertia="1.71483e-05 1.52784e-05 1.18772e-05"/>
+          <joint name="Green_Leg_Final_Joint" pos="0 0 0" axis="1 0 0" damping=".5" armature="0.001"/>
+          <geom name = "green_leg_holder" pos = "0. 0 0" type="mesh" rgba="0.8 0.8 0.9 1" mesh="green_leg_holder"/>
+          <!-- <site name="green_left" type="box" size="0.001 0.01 0.01" rgba="0.5 0 0.5 1" pos="0.0 0.0 -0.02"/>
+          <site name="green_right" type="box" size="0.001 0.01 0.01" rgba="1 1 0 1" pos="0.035 0.0 -0.02"/> -->
+
+          <!-- Central Link -->
+          <body name="Central_Link" pos="0.017 0 -0.1045" quat="0.707107 0 0 0.707107" gravcomp="0">
+            <inertial pos="9.37688e-10 -0.0119557 -0.00143737" quat="0.707745 0.706468 -1.73858e-06 1.74172e-06" mass="0.091" diaginertia="1.40798e-05 1.31645e-05 8.83029e-06"/>
+            <joint name="Green_Leg_Central_Joint" pos="0 0 0" axis="0 0 1" damping=".5" armature="0.001"/>
+            <geom name="central_link" type="mesh" rgba="0.8 0.8 0.9 1" mesh="central_link"/>
+            <site name="center_left" type="box" size="0.01 0.001 0.01" pos="0.0 -0.035 0.0" rgba="1 1 0 1"/>
+            <site name="center_right" type="box" size="0.01 0.001 0.01" pos="0 0.0125 0.0" rgba="0.5 0 0.5 1"/>
+
+            <!-- Red Leg Central Link -->
+            <body name="Red_Leg_Central_Link" pos="0 0 -0.04515" quat="0.5 0.5 0.5 0.5" gravcomp="0">
+              <inertial pos="-0.000634684 -0.0270609 -0.000240499" quat="0.707212 0.704458 -0.0410108 -0.0436829" mass="0.113" diaginertia="2.05457e-05 1.98685e-05 1.50592e-05"/>
+              <joint name="Red_Leg_Central_Joint" pos="0 0 0" axis="0 0 1" damping=".5" armature="0.001"/>
+              <geom name="red_leg_central_link" type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_central"/>
+              <site name="center_bot" type="box" size="0.01 0.01 0.001" pos="0.0 -0.02 0.02" rgba="0 0 1 1"/>
+              <site name="center_top" type="box" size="0.01 0.01 0.001" pos="0 -0.02 -0.02" rgba="1 0.6 0 1"/>
+              <!-- Red Leg Holder -->
+              <body name="Red_Leg_Holder" pos="0 -0.10485 0" quat="-0.5 0.5 0.5 0.5" gravcomp="0">
+                <inertial pos="9.37688e-10 -0.0119557 -0.00143737" quat="0.707745 0.706468 -1.73858e-06 1.74172e-06" mass="0.091" diaginertia="1.40798e-05 1.31645e-05 8.83029e-06"/>
+                <joint name="Red_Knee" pos="0 0 0" axis="0 0 1" damping=".5" armature="0.001"/>
+                <geom name="red_leg_holder" type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_leg_holder"/>
+                
+                <!-- Red Leg -->
+                <body name="Red_Leg" pos="0 0 -0.045" quat="0.5 -0.5 0.5 -0.5" gravcomp="0">
+                  <inertial pos="0.00101128 0.025027 -0.000247357" quat="0.705699 0.707278 -0.0298534 -0.0292677" mass="0.112" diaginertia="2.31293e-05 2.08201e-05 1.20376e-05"/>
+                  <joint name="Red_Leg_Final_Joint" pos="0 0 0" axis="0 0 1" damping=".5" armature="0.001"/>
+                  <geom name="red_leg" type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_leg"/>
+                  <!-- <site name="red_top" type="box" size="0.01 0.01 0.001" rgba="1 0 0 1" pos="0.0 0.02 -0.0175"/>
+                  <site name="red_bot" type="box" size="0.01 0.01 0.001" rgba="0 1 0 1" pos="0.0 0.02 0.02"/> -->
+                  <site name="red_tracker" type="capsule" rgba="1 0 0 1" zaxis="0 1 0" pos="0.0 0.077 0" size="0.01 0.01"/>
+
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+    </body>
+  </worldbody>
+</mujoco>
+
+
+<!--body>
+  <inertial pos="0.364397154664965 -0.247649999434367 -6.01260156101907E-09" quat="1 0 0 0">
+    <mass mass="0.0302629231778384"/>
+    <inertia diaginertia="5.02495112065811E-06 7.84051273383468E-06 1.03414373246399E-05"/>
+  </inertial>
+  <geom type="plane" pos="0 0 0" quat="1 0 0 0"/>
+</body-->

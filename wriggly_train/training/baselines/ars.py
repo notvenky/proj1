@@ -1,27 +1,48 @@
-from wriggly_train.training.baselines import dmc2gym
-from sb3_contrib import ARS
 import numpy as np
 from datetime import datetime
 import os
 import matplotlib.pyplot as plt
-from sb3_contrib.common.utils import Monitor
-from stable_baselines3.common.vec_env import SubprocVecEnv
-from stable_baselines3.common.vec_env import DummyVecEnv
+import dmc2gymnasium
+
+
+from dm_control import mujoco, suite
+from dm_control.rl import control
+from dm_control.suite import base
+from dm_control.suite import common
+from dm_control.suite.utils import randomizers
+from dm_control.utils import containers
+from dm_control.utils import rewards
+from lxml import etree
+import typing as T
+from dm_control import suite, composer
+from dm_control.utils import containers
+
+
+from sb3_contrib import ARS
+from sb3_contrib.common.vec_env import AsyncEval
+from stable_baselines3.common.env_util import make_vec_env
+
 from stable_baselines3.common.results_plotter import load_results, ts2xy
 from stable_baselines3.common.utils import set_random_seed
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.vec_env import VecMonitor
-from stable_baselines3.common.atari_wrappers import MaxAndSkipEnv
 from stable_baselines3.common.logger import configure, Logger, CSVOutputFormat, TensorBoardOutputFormat
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 from wriggly_train.training import dmc
 import os
+from wriggly_train.policy.cpg_policy import CPGPolicy, CPGPolicy
+
+from torch.utils.tensorboard import SummaryWriter
+
+my_actor = CPGPolicy(num_actuators=5)
 
 current_date = datetime.now().strftime('%Y-%m-%d')
 root_log_dir = "logs/ars/"
 daily_log_dir = os.path.join(root_log_dir, current_date)
 run_id = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 run_log_dir = os.path.join(daily_log_dir, run_id)
+# Create a summary writer object
+writer = SummaryWriter(log_dir=run_log_dir)
 
 os.makedirs(run_log_dir, exist_ok=True)
 
@@ -36,13 +57,15 @@ class SaveOnBestTrainingRewardCallback(BaseCallback):
       It must contain the file created by the ``Monitor`` wrapper.
     :param verbose: Verbosity level.
     """
-    def __init__(self, check_freq: int, log_dir: str, verbose: int = 1):
+    def __init__(self, check_freq: int, log_dir: str, my_actor: CPGPolicy, verbose: int = 1):
         super(SaveOnBestTrainingRewardCallback, self).__init__(verbose)
         self.check_freq = check_freq
         self.log_dir = log_dir
         self.save_path = os.path.join(log_dir, 'best_model')
         self.best_mean_reward = -np.inf
         self.plot_data = {'x': [], 'y': []}
+        self.my_actor = my_actor
+        self.writer = SummaryWriter(log_dir=log_dir)
         plt.ion()
 
     def _init_callback(self) -> None:
@@ -80,84 +103,51 @@ class SaveOnBestTrainingRewardCallback(BaseCallback):
                   plt.draw()
                   plt.gcf().canvas.flush_events()
 
+                  self.my_actor.log_params(self.writer, self.num_timesteps)
+
         return True
+    
+    def _on_training_end(self) -> None:
+        plt.savefig(os.path.join(self.log_dir, 'training_performance.png'))
+        writer.close()
+
+def make_env():
+   env = dmc2gymnasium.DMCGym('wriggly', 'approach_target', )
+   # env = dmc2gym.make(domain_nmame='point_mass', task_name='easy', seed=1)
+   return env
 
 
-env = dmc2gym.make(domain_name='wriggly', task_name='move_no_time', episode_length=5000)
-env = Monitor(env, run_log_dir)
+vec_env = make_vec_env(make_env, n_envs=32)
+env = VecMonitor(vec_env, run_log_dir)
 
-policy_kwargs = dict(log_std_init=-2)
+policy_kwargs = dict(log_std_init=0.5)
 model = ARS(   
-                "MlpPolicy",
+                CPGPolicy,
                 env,
-                learning_rate=0.0003,
-                batch_size=256,
-                gamma=0.99,
+                learning_rate=0.02,
+                n_top = 16,
+                delta_std=0.5,
+                # policy_kwargs=policy_kwargs,
                 verbose=1,
                 tensorboard_log=run_log_dir,
-                device='cuda',
-                policy_kwargs=policy_kwargs,
+                device="cuda",
+                zero_policy=False,
             )
-callback = SaveOnBestTrainingRewardCallback(check_freq=5000, log_dir=run_log_dir)
+n_envs = 32
+# async_eval = AsyncEval([lambda: make_vec_env(env) for _ in range(n_envs)], model.policy)
+callback = SaveOnBestTrainingRewardCallback(check_freq=1000, log_dir=run_log_dir, my_actor=my_actor)
 
 print("------------- Start Learning -------------")
 
 model.learn(
-    total_timesteps=3000000,
+    total_timesteps=10000000,
     log_interval=1,
-    tb_log_name='ARS',
+    tb_log_name='ars',
     reset_num_timesteps=True,
     callback=callback,
-    progress_bar=True
+    progress_bar=True, 
+    # async_eval=async_eval,
 )
 
 env.close()
 plt.show
-
-# vec_env = model.get_env()
-# obs = vec_env.reset()
-# for i in range(1000):
-#     callback = SaveOnBestTrainingRewardCallback(check_freq=1000, log_dir=log_dir)
-#     model.learn(total_timesteps=500000, log_interval=1, tb_log_name = 'ARS', reset_num_timesteps=True, progress_bar=True)
-#     action, _states = model.predict(obs, deterministic=True)
-#     # Access the selected parameters and log them
-#     selected_parameters = vec_env.step(action)[0]  # This is just an example
-#     callback.logger.record("selected_parameters", selected_parameters)  # Replace with your actual parameters
-#     obs, reward, done, info = vec_env.step(action)
-#     vec_env.render(mode='human')
-#     # env.render(mode = 'human')
-#     # VecEnv resets automatically
-#     if done:
-#       obs = env.reset()
-
-# env.close()
-
-
-# from wriggly_train.training.baselines import dmc2gym
-# from stable_baselines3 import ARS
-# from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
-# from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, Physics
-# from wriggly_train.training import dmc
-
-# env = dmc2gym.make(domain_name='wriggly', task_name='move')
-# done = False
-# obs = env.reset()
-# while not done:
-#     action = env.action_space.sample()
-#     obs, reward, done, trunk, info = env.step(action)
-
-
-# model = ARS("MlpPolicy", env, verbose=1)
-# model.learn(total_timesteps=10_000)
-
-# vec_env = model.get_env()
-# obs = vec_env.reset()
-# for i in range(1000):
-#     action, _states = model.predict(obs, deterministic=True)
-#     obs, reward, done, info = env.step(action)
-#     vec_env.render(mode='human')
-#     # VecEnv resets automatically
-#     if done:
-#       obs = env.reset()
-
-# env.close()

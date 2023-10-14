@@ -5,7 +5,7 @@
 
 
 
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+# from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 import random
 import re
 import time
@@ -151,3 +151,9 @@ def schedule(schdl, step):
                 mix = np.clip((step - duration1) / duration2, 0.0, 1.0)
                 return (1.0 - mix) * final1 + mix * final2
     raise NotImplementedError(schdl)
+
+def dict_to_flat(obs_dict):
+    ret = []
+    for k, v in obs_dict.items():
+        ret.append(v)
+    return np.concatenate(ret)

@@ -1,4 +1,4 @@
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 import hydra
 import datetime
 import numpy as np
@@ -127,7 +127,7 @@ class IjspeertActor(nn.Module):
         # Use r and theta to generate the command
         x_i = r * (1 + torch.cos(theta))
         
-        std = torch.ones_like(x_i)  # You can customize the standard deviation as needed
+        std = torch.ones_like(x_i)
         dist = utils.TruncatedNormal(x_i, std)  # Assuming TruncatedNormal is already defined
         return dist
 

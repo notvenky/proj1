@@ -159,6 +159,11 @@ class Logger(object):
 
     def log_and_dump_ctx(self, step, ty):
         return LogAndDumpCtx(self, step, ty)
+    
+    def log_actor_params(self, params, step, prefix='eval'):
+        for param_name, param_value in params.items():
+            for i, value in enumerate(param_value):
+                self.log(f'{prefix}/{param_name}_{i}', value, step)
 
 
 class LogAndDumpCtx:

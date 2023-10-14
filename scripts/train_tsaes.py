@@ -3,20 +3,18 @@ warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 from wriggly_train.training.baselines import dmc2gym
 
-
 import os
 import ray
 import time
 import torch
 import gym
+import dm2gym
 import collections
+import wandb
 import numpy as np
-import neptune
 import typing as T
+
 import wriggly_train.tsaes as tsaes
-from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import *
-
-
 
 def str_to_bool(s):
   if isinstance(s, bool):
@@ -55,7 +53,6 @@ class GymEnvironmentWorker(tsaes.Worker):
     super().__init__(**kwargs)
     import gym
     import dm2gym
-    from wriggly_train.training.baselines import dmc2gym
 
     self.env = env_builder()
     # Ensure observation and action spaces are flattened `Box`.
@@ -131,8 +128,6 @@ if __name__ == '__main__':
     import tonic.torch
     import gym
     import dm2gym
-    from wriggly_train.training.baselines import dmc2gym
-    # environment = dmc2gym.make(domain_name='wriggly',task_name='move', episode_length=5000)
     if header: exec(header)
     return eval(environment)
 
@@ -143,7 +138,7 @@ if __name__ == '__main__':
     import wriggly_train.tsaes_model
     if header: exec(header)
     return eval(model)
-  
+
   env = env_builder()
   env.observation_space = space_to_box(env.observation_space)
   env.action_space = space_to_box(env.action_space)
@@ -165,7 +160,54 @@ if __name__ == '__main__':
     state_ref = ray.put(normalizer.get_state())
     ray.get([worker.set_model_state.remote(state_ref) for worker in algo.workers])
 
-  logger = neptune.init_project(project='notvenky/tsa-es', api_token='eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiJhZDg2OTZjYS00MDExLTQxMzgtODMzMi1kMWViMzQwOGZmZjIifQ==')
+
+  wandb.init(project='evolutionary')
+  wandb.config.update({'epochs': args.epochs,
+                      'population_size': args.population_size,
+                      'population_top_best': args.population_top_best,
+                      'noise_generator': args.noise_generator,
+                      'learning_rate': args.learning_rate,
+                      'momentum': args.momentum,
+                      'velocity_smoothing': args.velocity_smoothing,
+                      'lookahead_scaling': 'adaptive' if args.lookahead_scaling == 'adaptive' else float(args.lookahead_scaling),
+                      'exploration_bias': args.exploration_bias,
+                      'task_sync': args.task_sync,
+                      'num_workers': args.num_workers,
+                      'test_freq': args.test_freq,
+                      'test_size': args.test_size,
+                      'save_freq': args.save_freq,
+                      'seed': args.seed})
+
+  algo = tsaes.TSAES(
+      GymEnvironmentWorker,
+      dict(
+        env_builder=env_builder,
+        model_builder=model_builder,
+        baseline=args.baseline,
+      ),
+      epochs=args.epochs,
+      population_size=args.population_size,
+      population_top_best=args.population_top_best,
+      noise_generator=eval(args.noise_generator),
+      learning_rate=args.learning_rate,
+      momentum=args.momentum,
+      velocity_smoothing=args.velocity_smoothing,
+      lookahead_scaling='adaptive' if args.lookahead_scaling == 'adaptive' else float(args.lookahead_scaling),
+      exploration_bias=args.exploration_bias,
+      task_sync=args.task_sync,
+      num_workers=args.num_workers,
+      test_freq=args.test_freq,
+      test_size=args.test_size,
+      save_freq=args.save_freq,
+      save_dir=os.path.join('logs', args.job_id),
+      seed=args.seed,
+      logger=wandb,
+      callbacks=dict(epoch_train_end=epoch_train_end),
+  )
+  wandb.log({'model': str(mod)})
+  algo.run(params)
+
+'''  logger = wandb.init_run(project='notvenky/tsa-es', api_token='eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiJhZDg2OTZjYS00MDExLTQxMzgtODMzMi1kMWViMzQwOGZmZjIifQ==')
   algo = tsaes.TSAES(
     GymEnvironmentWorker,
     dict(
@@ -196,4 +238,40 @@ if __name__ == '__main__':
 
   logger['model'] = str(mod)
   logger['hyperparams'] = vars(args)
-  algo.run(params)
+  algo.run(params)'''
+
+
+'''
+  logger = wandb.init(project='evolutionary')
+algo = tsaes.TSAES(
+  GymEnvironmentWorker,
+  dict(
+    env_builder=env_builder,
+    model_builder=model_builder,
+    baseline=args.baseline,
+  ),
+  epochs=args.epochs,
+  population_size=args.population_size,
+  population_top_best=args.population_top_best,
+  noise_generator=eval(args.noise_generator),
+  learning_rate=args.learning_rate,
+  momentum=args.momentum,
+  velocity_smoothing=args.velocity_smoothing,
+  lookahead_scaling='adaptive'
+  if args.lookahead_scaling == 'adaptive' else float(args.lookahead_scaling),
+  exploration_bias=args.exploration_bias,
+  task_sync=args.task_sync,
+  num_workers=args.num_workers,
+  test_freq=args.test_freq,
+  test_size=args.test_size,
+  save_freq=args.save_freq,
+  save_dir=os.path.join('logs', args.job_id),
+  seed=args.seed,
+  logger=logger,
+  callbacks=dict(epoch_train_end=epoch_train_end),
+)
+
+logger['model'] = str(mod)
+logger['hyperparams'] = vars(args)
+algo.run(params)
+'''

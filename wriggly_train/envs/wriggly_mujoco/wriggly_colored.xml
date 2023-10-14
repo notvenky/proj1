@@ -1,0 +1,11 @@
+<mujoco model="wriggly">
+
+
+  <include file = "scenes/white_scene.xml"/>
+  <!--include file = "scenes/dkitty_scene.xml"-->
+  <include file = "assets/wriggly_dependencies.xml"/>
+  <compiler meshdir="."/>
+  <include file = "assets/wriggly_chain_colored.xml"/>
+  <!-- <include file = "assets/wriggly_leg.xml"/> -->
+
+</mujoco>

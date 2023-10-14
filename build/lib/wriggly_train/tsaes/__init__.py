@@ -5,7 +5,7 @@ warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 from dm_control import suite, composer
 from dm_control.utils import containers
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 
 class AttrDict(dict):
   def __init__(self, *args, **kwargs):

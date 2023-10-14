@@ -17,15 +17,18 @@ from dm_control import suite, composer
 from dm_control.utils import containers
 from wriggly_train.training.baselines import dmc2gym as dmc2gym
 
+from scipy.spatial.transform import Rotation as R
+from wriggly_train.training.utils import dict_to_flat
+
 class AttrDict(dict):
   def __init__(self, *args, **kwargs):
     super().__init__(*args, **kwargs)
     self.__dict__ = self
 
-_DEFAULT_TIME_LIMIT = 20  # (Seconds)
-# _DEFAULT_TIME_LIMIT = 0.1
-_CONTROL_TIMESTEP = .02  # (Seconds)
-TARGET_MOVE_SPEED = 1.0
+_DEFAULT_TIME_LIMIT = 10  # (Seconds)
+_DEFAULT_TIME_STEP = 0.1
+_CONTROL_TIMESTEP = .03
+TARGET_MOVE_SPEED = 0.1
 
 
 
@@ -45,7 +48,7 @@ suite._DOMAINS["wriggly"] = AttrDict(SUITE=SUITE)
 #   # wriggly =  mj.MjModel.from_xml_path(xml_path)
 #   physics = Physics.from_xml_path(xml_path)
 #   robot = Wriggly(**robot_kwargs)
-#   task_kwargs.setdefault("jointvel", TARGET_SPEED_WALK)
+#   task_kwargs.setdefault("jointvel", TARGET_MOVE_SPEED)
 #   task = Physics(robot, **task_kwargs)
 #   env = composer.Environment(
 #     task,
@@ -65,7 +68,7 @@ def move(time_limit=_DEFAULT_TIME_LIMIT, random=None,
   physics = Physics.from_xml_path(xml_path)
   task = Wriggly()
   env = control.Environment(physics, task, time_limit=time_limit,
-                            legacy_step=False, n_sub_steps=2)
+                            legacy_step=False, n_sub_steps= 2)
   return env
 
 @SUITE.add('benchmarking') # MAX_DISP
@@ -77,10 +80,10 @@ def move_no_time(time_limit=_DEFAULT_TIME_LIMIT, random=None,
   physics = Physics.from_xml_path(xml_path)
   task = Wriggly(include_time=False)
   env = control.Environment(physics, task, time_limit=time_limit,
-                            legacy_step=False, n_sub_steps=2)
+                            legacy_step=False, n_sub_steps= 2)
   return env
 
-
+# APPROACH TARGET
 @SUITE.add('benchmarking')  
 def approach_target(time_limit=_DEFAULT_TIME_LIMIT, random=None,
              environment_kwargs=None):
@@ -90,33 +93,21 @@ def approach_target(time_limit=_DEFAULT_TIME_LIMIT, random=None,
   physics = Physics.from_xml_path(xml_path)
   task = WrigglyApproachTarget()
   env = control.Environment(physics, task, time_limit=time_limit,
-                            legacy_step=False, n_sub_steps=2)
-  
-  return env
-  
-@SUITE.add('benchmarking')
-def climb_obstacle(time_limit=_DEFAULT_TIME_LIMIT, random=None,
-             environment_kwargs=None):
-  current_dir = os.path.dirname(os.path.abspath(__file__))
-  xml_relative_path = "../../wriggly_mujoco/wriggly_climb_obstacle.xml"
-  xml_path = os.path.join(current_dir, xml_relative_path)
-  physics = Physics.from_xml_path(xml_path)
-  task = WrigglyClimbObstacle()
-  env = control.Environment(physics, task, time_limit=time_limit,
-                            legacy_step=False, n_sub_steps=2)
+                            legacy_step=False, n_sub_steps= 2)
   
   return env
 
+# AVOID OBSTACLE
 @SUITE.add('benchmarking')
 def maxvel(time_limit=_DEFAULT_TIME_LIMIT, random=None,
               environment_kwargs=None):
   current_dir = os.path.dirname(os.path.abspath(__file__))
-  xml_relative_path = "../../wriggly_mujoco/wriggly_max_disp.xml"
+  xml_relative_path = "../../wriggly_mujoco/wriggly_avoid.xml"
   xml_path = os.path.join(current_dir, xml_relative_path)
   physics = Physics.from_xml_path(xml_path)
   task = WrigglyMaxVel()
   env = control.Environment(physics, task, time_limit=time_limit,
-                            legacy_step=False, n_sub_steps=2)
+                            legacy_step=False, n_sub_steps= 2)
   
   return env
 
@@ -129,27 +120,50 @@ def maxvel(time_limit=_DEFAULT_TIME_LIMIT, random=None,
 #   task = wriggly(random=random)
 #   environment_kwargs = environment_kwargs or {}
 #   return control.Environment(
-#       physics, task, time_limit=time_limit, control_timestep=_CONTROL_TIMESTEP,
+#       physics, task, time_limit=time_limit, n_sub_steps= 2,
 #       **environment_kwargs)
 
 
 class Physics(mujoco.Physics):
   """Physics simulation with additional features for the wriggly domain."""
 
-  def nose_to_target(self):
+  def green_leg_to_target(self):
     """Returns a vector from nose to goal spot in local coordinate of the head."""
-    nose_to_target = (self.named.data.geom_xpos['goal_spot'] -
+    green_leg_to_target = (self.named.data.geom_xpos['targetball'] -
                       self.named.data.geom_xpos['green_leg'])
     head_orientation = self.named.data.xmat['green_leg'].reshape(3, 3)
-    return nose_to_target.dot(head_orientation)[:2]
+    head_r = R.from_matrix(head_orientation)
+    z_rot = head_r.as_euler("xyz")[2]
+    head_z = R.from_euler("xyz", [0, 0, z_rot])
+    head_z_mat = head_z.as_matrix()
+    b = (head_z_mat @ green_leg_to_target)[:2]
+    return b
 
-  def nose_to_target_dist(self):
+  def green_leg_to_target_dist(self):
     """Returns the distance from the nose to the target."""
-    return np.linalg.norm(self.nose_to_target())
+    ret = np.linalg.norm(self.green_leg_to_target())
+    return ret
+  
+  def red_leg_to_target(self):
+    """Returns a vector from nose to goal spot in local coordinate of the head."""
+    red_leg_to_target = (self.named.data.geom_xpos['targetball'] -
+                      self.named.data.geom_xpos['red_leg'])
+    head_orientation = self.named.data.xmat['Red_Leg'].reshape(3, 3)
+    head_r = R.from_matrix(head_orientation)
+    z_rot = head_r.as_euler("xyz")[2]
+    head_z = R.from_euler("xyz", [0, 0, z_rot])
+    head_z_mat = head_z.as_matrix()
+    b = (head_z_mat @ red_leg_to_target)[:2]
+    return b
+  
+  def red_leg_to_target_dist(self):
+    """Returns the distance from the nose to the target."""
+    ret = np.linalg.norm(self.red_leg_to_target())
+    return ret
 
   def body_velocities(self):
     """Returns local body velocities: x,y linear, z rotational."""
-    xvel_local = self.data.sensordata[13:].reshape((-1, 6))
+    xvel_local = self.data.sensordata[15:].reshape((-1, 6))
     vx_vy_wz = [0, 1, 5]  # Indices for linear x,y vels and rotational z vel.
     return xvel_local[:, vx_vy_wz].ravel()
 
@@ -161,17 +175,9 @@ class Physics(mujoco.Physics):
     """Returns the horizontal speed of Wriggly."""
     return self.named.data.sensordata['central_velsensor'][0]
   
-  def desired_direction(self):
-    """Returns the desired direction of Wriggly."""
-    return np.array([1, 0, 0])
-  
-  def current_position(self):
-    """Returns the current position of Wriggly's center part."""
-    return np.abs(self.named.data.sensordata['ACT2_pos_sensor'][0])
-   
-  def sum_speed(self):
-    """Returns the sum of speeds of all parts of Wriggly."""
-    return 0.2 * (self.named.data.sensordata['ACT0_velocity_sensor'][0] + self.named.data.sensordata['ACT1_velocity_sensor'][0] + self.named.data.sensordata['ACT2_velocity_sensor'][0] + self.named.data.sensordata['ACT3_velocity_sensor'][0] + self.named.data.sensordata['ACT4_velocity_sensor'][0])
+  def start_ball_dist(self):
+    """Returns the distance between the start and the target ball."""
+    return np.linalg.norm(self.named.data.geom_xpos['targetball'] - self.named.data.geom_xpos['green_leg'])
 
 class Wriggly(base.Task):
   start_time = time.time()
@@ -179,7 +185,7 @@ class Wriggly(base.Task):
 
   
   
-  """Wriggly task to reach the target or just swim"""
+  """Wriggly tasks"""
 
   def __init__(self, random=None, include_time=True):
 
@@ -198,51 +204,75 @@ class Wriggly(base.Task):
     self.include_time = include_time
 
   def initialize_episode(self, physics):
-    """Sets the state of the environment at the start of each episode.
-    Initializes the wriggly orientation to [-pi, pi) and the relative joint
-    angle of each joint uniformly within its range.
-    Args:
-      physics: An instance of `Physics`.
-    """
-    # Random joint angles:
-    # randomizers.randomize_limited_and_rotational_joints(physics, self.random)
-    physics.named.data.qpos[7:] = 0.0
+      """Sets the state of the environment at the start of each episode.
+      Initializes the wriggly orientation to [-pi, pi) and the relative joint
+      angle of each joint uniformly within its range.
+      Args:
+        physics: An instance of `Physics`.
+      """
+      randomizers.randomize_limited_and_rotational_joints(physics, self.random)
 
-    # Random target position.
-    #close_target = self.random.rand() < .2  # Probability of a close target.
-    target_box = 0.2
-    xpos, ypos = random.uniform(-target_box, target_box), random.uniform(-target_box, target_box)
-    physics.named.data.qpos[0] = xpos
-    physics.named.data.qpos[1] = ypos
-    physics.named.data.qpos[2] = 0.03
+      # Random target position.
+      target_box = 0.2
+      xpos, ypos = self.random.uniform(-target_box, target_box), self.random.uniform(-target_box, target_box)
+      physics.named.data.qpos[0] = xpos
+      physics.named.data.qpos[1] = ypos
+      physics.named.data.qpos[2] = 0.03
+
+      # x_targetball, y_targetball = self.random_position_at_fixed_distance_from_target(physics)
+      
+      # # Assign new positions to targetball and goal_spot
+      # physics.named.model.geom_pos['targetball', ['x', 'y']] = [x_targetball, y_targetball]
+      # physics.named.model.geom_pos['goal_spot', ['x', 'y']] = [x_targetball, y_targetball]
+
+      physics.named.model.geom_pos['target', 'x'] = xpos
+      physics.named.model.geom_pos['target', 'y'] = ypos
+      self.prev_xy = np.array([physics.named.data.qpos[0], physics.named.data.qpos[1]])
+
+      super().initialize_episode(physics)
+      # physics.forward()
 
 
-    physics.named.model.geom_pos['target', 'x'] = xpos
-    physics.named.model.geom_pos['target', 'y'] = ypos
-    self.prev_xy = np.array([physics.named.data.qpos[0], physics.named.data.qpos[1]])
-
-    super().initialize_episode(physics)
+  def random_position_at_fixed_distance_from_target(self, physics):
+      """ Generate a random unit vector"""
+      distance = 1
+      theta = self.random.uniform(0, 2*np.pi)
+      x = np.cos(theta) * distance
+      y = np.sin(theta) * distance
+      
+      return x, y
 
   def step(self, action):
     scaled_action = action * self.range # map [-1, 1] to [-range, range]
     super().step(scaled_action)
 
+
   def get_observation(self, physics, retdict=True):
-    """Returns an observation of joint angles, body velocities and target."""
+    """Returns an observation of joint angles, body velocities and target information."""
+
+    vel = physics.body_velocities()
+    if len(vel) == 0:
+      vel = np.zeros(physics.model.nu)    
+    obs = collections.OrderedDict()
+    obs['joints'] = physics.joints()
+    obs['jointvel'] = vel
+    # print('jv', obs['jointvel'])
+    obs['green_leg_pos'] = physics.named.data.geom_xpos['green_leg']
+    obs['red_leg_pos'] = physics.named.data.geom_xpos['red_leg']
+    obs['target_pos'] = physics.named.data.geom_xpos['targetball']
+    obs['green_leg_heading'] = physics.green_leg_to_target()
+    obs['red_leg_heading'] = physics.red_leg_to_target()
+    if self.include_time:
+      obs['time'] = np.array(physics.data.time)
     if retdict:
-        
-      obs = collections.OrderedDict()
-      obs['joints'] = physics.joints()
-      obs['jointvel'] = physics.body_velocities()
-      if self.include_time:
-        obs['time'] = np.array(physics.data.time)
       return obs
     else:
-      if self.include_time:
-        obs = np.concatenate([physics.joints(), physics.body_velocities(), np.array([physics.data.time])])
-      else:
-        obs = np.concatenate([physics.joints(), physics.body_velocities()])
-      return obs
+      return dict_to_flat(obs)
+      # if self.include_time:
+      #   obs = np.concatenate([physics.joints(), vel, np.array([physics.data.time])])
+      # else:
+      #   obs = np.concatenate([physics.joints(), vel])
+      # return obs
 
   # def reset(self):
   #   ret = super.reset()
@@ -268,9 +298,11 @@ class Wriggly(base.Task):
 
 
   def get_reward(self, physics):
+      # import ipdb; ipdb.set_trace()
       """Reward for having maximum displacement"""
       a = 0.0
       b = 1
+      c = 0.8 # scaling factor for time
       vel_reward = rewards.tolerance(
         physics.speed(),
         bounds=(TARGET_MOVE_SPEED, float('inf')),
@@ -284,7 +316,12 @@ class Wriggly(base.Task):
       # dist_reward = np.linalg.norm(self.prev_xy[0] - current_xy[0])
       dist_reward = np.linalg.norm(current_xy - start_xy)
       total_rew = a * vel_reward + b * dist_reward
-      return max(total_rew, 0)
+      return total_rew
+      # import ipdb; ipdb.set_trace()
+      # if physics.time() >= _DEFAULT_TIME_LIMIT*c:
+      #   return max(total_rew, 0)
+      # else:
+      #   return 0
 
 class WrigglyMaxDisp(Wriggly):
   def get_reward(self, physics):
@@ -325,18 +362,19 @@ class WrigglyMaxVel(Wriggly):
     return max(total_rew, 0)
     
 class WrigglyApproachTarget(Wriggly):
+  def initialize_episode(self, physics):
+    """Sets the state of the environment at the start of each episode."""
+    x_targetball, y_targetball = self.random_position_at_fixed_distance_from_target(physics)
+    
+    # Assign new positions to targetball and goal_spot
+    physics.named.model.geom_pos['targetball', ['x', 'y']] = [x_targetball, y_targetball]
+    physics.named.model.geom_pos['goal_spot', ['x', 'y']] = [x_targetball, y_targetball]
+
+    return super().initialize_episode(physics)
   def get_reward(self, physics):
     """Reward for moving towards a specified target"""
-    target_size = physics.named.model.geom_size['goal_spot', 0]
-    return rewards.tolerance(physics.nose_to_target_dist(),
-                            bounds=(0, target_size),
-                            margin=target_size,
+    target_size = physics.named.model.geom_size['targetball', 0]
+    return rewards.tolerance(physics.green_leg_to_target_dist(),
+                            bounds=(0, 2.5 * target_size),
+                            margin=10 * target_size,
                             sigmoid='long_tail')
-    
-class WrigglyClimbObstacle(Wriggly):
-  def get_reward(self, physics):
-    pass
-    
-class WrigglyAvoidObstacle(Wriggly):
-  def get_reward(self, physics):
-    pass

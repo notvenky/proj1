@@ -10,8 +10,8 @@ discount: 0.99
 # train settings
 num_seed_frames: 2000
 # eval
-eval_every_frames: 10000
-num_eval_episodes: 10
+eval_every_frames: 5000
+num_eval_episodes: 20
 # snapshot
 save_snapshot: false
 # replay buffer

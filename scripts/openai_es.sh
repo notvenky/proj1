@@ -10,7 +10,7 @@
 python train_openai_es.py \
 --epochs 1000 \
 --population_size 64 \
---population_top_best 64 \
+--population_top_best 32 \
 --learning_rate 0.02 \
 --sigma 0.02 \
 --weight_decay 0.0 \

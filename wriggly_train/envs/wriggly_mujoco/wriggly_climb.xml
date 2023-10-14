@@ -1,0 +1,23 @@
+<mujoco model="wriggly">
+  <option timestep = "0.005" integrator="RK4"/>
+  # increase density and viscosity to make the fluid more viscous
+  <!-- <option density = "1000" viscosity = "1"/> -->
+
+  <worldbody>
+    <geom name="target" pos="0 1 0" type="cylinder" size=".5 .005 0" rgba="0 0.6 0.6 1"/>
+    <!--geom name="heading" pos="0 1 0.25" type="cylinder" size=".05 .25 0" rgba="0.6 0.6 0 1"-->
+    <!-- <geom name="goal_spot" pos="1 0 0" type="cylinder" size=".25 .005 0" rgba="0 1 0 1"/> -->
+    <body name="bench_body" pos="1 0 0.025">
+      <geom name="bench_geom" type="box" size=".05 1 0.025" rgba="0.8 0.8 0.8 1"/>
+      <inertial pos="0 0 0" mass="1.0" diaginertia="0.1 0.1 0.1"/>
+    </body>
+  </worldbody>
+  <include file = "assets/materials.xml"/>
+
+  <include file = "scenes/basic_scene.xml"/>
+  <!--include file = "scenes/dkitty_scene.xml"-->
+  <include file = "assets/wriggly_dependencies.xml"/>
+  <compiler meshdir="." />
+  <include file = "assets/wriggly_chain.xml"/>
+
+</mujoco>

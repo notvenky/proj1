@@ -12,31 +12,31 @@
         <body name="Green_Leg_Holder" pos="0.0 -0.0 0" quat="0.5 -0.5 0.5 -0.5" gravcomp="0">
           <inertial pos="0.0172732 -1.71313e-05 -0.0312874" quat="0.707094 0.00279184 0.00136492 0.707112" mass="0.101" diaginertia="1.71483e-05 1.52784e-05 1.18772e-05"/>
           <joint name="Green_Leg_Final_Joint" pos="0 0 0" axis="1 0 0" damping=".5" armature="0.001"/>
-          <geom name = "Green_Leg_Holder" pos = "0. 0 0" type="mesh" rgba="0.8 0.8 0.9 1" mesh="green_leg_holder"/>
+          <geom name = "green_leg_holder" pos = "0. 0 0" type="mesh" rgba="0.8 0.8 0.9 1" mesh="green_leg_holder"/>
           
           <!-- Central Link -->
           <body name="Central_Link" pos="0.017 0 -0.1045" quat="0.707107 0 0 0.707107" gravcomp="0">
             <inertial pos="9.37688e-10 -0.0119557 -0.00143737" quat="0.707745 0.706468 -1.73858e-06 1.74172e-06" mass="0.091" diaginertia="1.40798e-05 1.31645e-05 8.83029e-06"/>
             <joint name="Green_Leg_Central_Joint" pos="0 0 0" axis="0 0 1" damping=".5" armature="0.001"/>
-            <geom type="mesh" rgba="0.8 0.8 0.9 1" mesh="central_link"/>
+            <geom name="central_link" type="mesh" rgba="0.8 0.8 0.9 1" mesh="central_link"/>
             
             <!-- Red Leg Central Link -->
             <body name="Red_Leg_Central_Link" pos="0 0 -0.04515" quat="0.5 0.5 0.5 0.5" gravcomp="0">
               <inertial pos="-0.000634684 -0.0270609 -0.000240499" quat="0.707212 0.704458 -0.0410108 -0.0436829" mass="0.113" diaginertia="2.05457e-05 1.98685e-05 1.50592e-05"/>
               <joint name="Red_Leg_Central_Joint" pos="0 0 0" axis="0 0 1" damping=".5" armature="0.001"/>
-              <geom type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_central"/>
+              <geom name="red_leg_central_link" type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_central"/>
               
               <!-- Red Leg Holder -->
               <body name="Red_Leg_Holder" pos="0 -0.10485 0" quat="-0.5 0.5 0.5 0.5" gravcomp="0">
                 <inertial pos="9.37688e-10 -0.0119557 -0.00143737" quat="0.707745 0.706468 -1.73858e-06 1.74172e-06" mass="0.091" diaginertia="1.40798e-05 1.31645e-05 8.83029e-06"/>
                 <joint name="Red_Knee" pos="0 0 0" axis="0 0 1" damping=".5" armature="0.001"/>
-                <geom type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_leg_holder"/>
+                <geom name="red_leg_holder" type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_leg_holder"/>
                 
                 <!-- Red Leg -->
                 <body name="Red_Leg" pos="0 0 -0.045" quat="0.5 -0.5 0.5 -0.5" gravcomp="0">
                   <inertial pos="0.00101128 0.025027 -0.000247357" quat="0.705699 0.707278 -0.0298534 -0.0292677" mass="0.112" diaginertia="2.31293e-05 2.08201e-05 1.20376e-05"/>
                   <joint name="Red_Leg_Final_Joint" pos="0 0 0" axis="0 0 1" damping=".5" armature="0.001"/>
-                  <geom type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_leg"/>
+                  <geom name="red_leg" type="mesh" rgba="0.8 0.8 0.9 1" mesh="red_leg"/>
                 </body>
               </body>
             </body>

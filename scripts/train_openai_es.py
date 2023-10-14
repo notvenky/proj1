@@ -122,6 +122,7 @@ if __name__ == '__main__':
     import tonic.torch
     import gym
     import dm2gym
+    # import dmc2gym
     if header: exec(header)
     return eval(environment)
 
@@ -149,7 +150,7 @@ if __name__ == '__main__':
   else:
     optimizer = tsaes.optimizers.Adam(learning_rate=args.learning_rate,)
 
-  logger = neptune.init(project='notvenky/openai-es')
+  logger = neptune.init_run(project='notvenky/tsa-es', api_token='eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiJhZDg2OTZjYS00MDExLTQxMzgtODMzMi1kMWViMzQwOGZmZjIifQ==')
   algo = tsaes.OpenAIES(
     GymEnvironmentWorker,
     dict(

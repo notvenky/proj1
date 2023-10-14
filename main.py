@@ -8,9 +8,9 @@ import numpy as np
 # from dm_control import composer, viewer
 from dm_control.rl import control
 # from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, Physics
-from wriggly_train.envs.wriggly.robot.wriggly_from_swimmer import Wriggly, WrigglyApproachTarget, WrigglyClimbObstacle, WrigglyMaxDisp, WrigglyMaxVel, Physics
+from wriggly_train.envs.wriggly.robots.wriggly_from_swimmer import Wriggly, WrigglyApproachTarget, WrigglyMaxDisp, WrigglyMaxVel, Physics
 # from wriggly_train.training.drqv2 import MyActor
-from wriggly_train.training.drqv2 import MyActor
+from wriggly_train.training.drqv2 import CPGPolicy
 from tqdm import tqdm
 import heapq
 import datetime
@@ -23,7 +23,7 @@ physics = Physics.from_xml_path(xml_path)
 
 
 
-task = WrigglyMaxVel(
+task = WrigglyApproachTarget(
     # wriggly=wriggly,
     # wriggly_spawn_position=(0.5, 0, 0),
     # target_velocity=3.0,
@@ -33,7 +33,7 @@ task = WrigglyMaxVel(
 
 
 # env = control.Environment(physics, task, legacy_step=True)
-env = dmc.make('wriggly_maxvel', 1,
+env = dmc.make('wriggly_approach_target', 1,
                                   1)
 
 # env = composer.Environment(
@@ -61,7 +61,7 @@ action_spec = env.action_spec()
 frequencies = torch.rand(num_actuators) # softplus/exp/
 amplitudes = torch.rand(num_actuators)  # tanh activation
 phases = torch.rand(num_actuators)
-actor = MyActor(num_actuators)
+actor = CPGPolicy(num_actuators)
 mu = torch.rand(num_actuators) # intrinsic amplitude
 a = torch.rand(num_actuators) # convergence factor
 w = torch.rand(num_actuators) # weights
@@ -142,7 +142,7 @@ for i in tqdm(range(num_params)):
   # amplitudes[1::2] = amplitudes[1::2] * 3.14  # For 2nd and 4th
   phases = torch.rand(num_actuators) * 2 * np.pi
   #np.pi for 1 and 3 np.p/2 for 0, 2 & 4
-  actor = MyActor(num_actuators)
+  actor = CPGPolicy(num_actuators)
   actor.frequencies.data = frequencies
   actor.amplitudes.data = amplitudes
   actor.phases.data = phases
@@ -191,7 +191,7 @@ print(i, all_rewards)
 # Print maximum reward and corresponding frequency, amplitude, phase
 print(f"Max Reward: {max_reward}, Frequency: {max_reward_freq}, Amplitude: {max_reward_amp}, Phase: {max_reward_phase}")
 
-actor_viz = MyActor(num_actuators, max_reward_freq, max_reward_amp, max_reward_phase)
+actor_viz = CPGPolicy(num_actuators, max_reward_freq, max_reward_amp, max_reward_phase)
 
 def viz_policy(obs, ):
   time = torch.tensor(obs.observation["time"]).unsqueeze(0)

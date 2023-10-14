@@ -1,6 +1,6 @@
 
 
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 import warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 
@@ -18,7 +18,7 @@ import dmc
 import utils
 
 
-from drqv2 import MyActor
+from drqv2 import MyDrQV2Agent
 # from basic_sine import SineActor
 # from cpg_test import MyActor
 # from cpg_test2 import MyActor
@@ -39,7 +39,14 @@ def make_agent(obs_spec, action_spec, cfg):
         cfg.obs_shape = obs_spec.shape
 
     else:
-        cfg.obs_shape = -1
+        print(obs_spec)
+        d_obs = 0
+        for size in obs_spec.values():
+            if len(size.shape) == 0:
+                d_obs += 1
+            else:
+                d_obs += size.shape[0]
+        cfg.obs_shape = d_obs
         
     cfg.action_shape = action_spec.shape
     return hydra.utils.instantiate(cfg)
@@ -58,6 +65,7 @@ class Workspace:
         self.agent = make_agent(self.train_env.observation_spec(),
                                 self.train_env.action_spec(),
                                 self.cfg.agent)
+        self.actor = self.agent.actor
         self.timer = utils.Timer()
         self._global_step = 0
         self._global_episode = 0
@@ -70,7 +78,7 @@ class Workspace:
                                   self.cfg.action_repeat)
         self.eval_env = dmc.make(self.cfg.task_name, self.cfg.frame_stack,
                                  self.cfg.action_repeat)
-        self.actor = MyActor(5)
+        
         # create replay buffer
         # shape = np.sum([x.shape[0] for x in self.train_env.observation_spec().values()])
         shape = 0 
@@ -80,29 +88,12 @@ class Workspace:
             else:
                 shape += x.shape[0]
         obs_spec = specs.Array((shape,),np.float32, 'observation')
-        # data_specs.append(self.train_env.action_spec())
-        # data_specs.append(specs.Array((1,), np.float32, 'reward'))  
-        # data_specs.append(specs.Array((1,), np.float32, 'discount'))
-        # data_specs = (obs_spec,
-        #               self.train_env.action_spec(),
-        #               specs.Array((1,), np.float32, 'reward'),
-        #               specs.Array((1,), np.float32, 'discount'))
-        
-        # data_specs = []
-        # for x in self.train_env.observation_spec().values():
-        #     data_specs.append(x)
-        # data_specs.append(self.train_env.action_spec())
-        # data_specs.append(specs.Array((1,), np.float32, 'reward'))  
-        # data_specs.append(specs.Array((1,), np.float32, 'discount'))
-                      
 
         data_specs = (self.train_env.observation_spec(),
                       self.train_env.action_spec(),
                       specs.Array((1,), np.float32, 'reward'),
                       specs.Array((1,), np.float32, 'discount'))
         # print(data_specs)
-        import ipdb
-        # ipdb.set_trace()
         self.replay_storage = ReplayBufferStorage(data_specs,
                                                   self.work_dir / 'buffer')
 
@@ -143,6 +134,11 @@ class Workspace:
 
         while eval_until_episode(episode):
             # print('new_ep')
+
+            actor_params = self.actor.get_true_params()
+            # self.logger.log_actor_params(actor_params, episode, prefix='train')
+
+            
             time_step = self.eval_env.reset()
             self.video_recorder.init(self.eval_env, enabled=(episode == 0))
             while not time_step.last():
@@ -166,6 +162,12 @@ class Workspace:
             log('episode_length', step * self.cfg.action_repeat / episode)
             log('episode', self.global_episode)
             log('step', self.global_step)
+
+        # with self.logger.log_and_dump_ctx(self.global_frame, ty='param') as log:
+            for param_name, param_value in actor_params.items():
+                print(param_name, param_value)
+                for i, value in enumerate(param_value):
+                    log(f'param/{param_name}_{i}', value)
 
     def train(self):
         # predicates
@@ -225,6 +227,7 @@ class Workspace:
 
             # try to update the agent
             if not seed_until_step(self.global_step):
+                import ipdb; ipdb.set_trace()
                 metrics = self.agent.update(self.replay_iter, self.global_step)
                 self.logger.log_metrics(metrics, self.global_frame, ty='train')
 

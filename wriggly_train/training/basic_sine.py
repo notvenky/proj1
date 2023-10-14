@@ -1,4 +1,4 @@
-from wriggly_train.envs.wriggly.robot import wriggly_from_swimmer
+from wriggly_train.envs.wriggly.robots import wriggly_from_swimmer
 import hydra
 import datetime
 import numpy as np
