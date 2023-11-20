@@ -96,23 +96,3 @@ for i in range(len(DXL_ID_LIST)):
         print("%s" % packetHandler.getRxPacketError(dxl_error))
     else:
         print("Dynamixel %d TIME PROFILE SET" % DXL_ID_LIST[i])
-
-
-for i in range(len(DXL_ID_LIST)):
-    # Enable Dynamixel Torque
-    dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, DXL_ID_LIST[i], ADDR_PRO_TORQUE_ENABLE, 1)
-    if dxl_comm_result != COMM_SUCCESS:
-        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
-    elif dxl_error != 0:
-        print("%s" % packetHandler.getRxPacketError(dxl_error))
-    else:
-        print("Dynamixel %d has been successfully connected" % DXL_ID_LIST[i])
-
-    # Set initial position
-    dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, DXL_ID_LIST[i], ADDR_PRO_GOAL_POSITION, MEAN_POSITION)
-    if dxl_comm_result != COMM_SUCCESS:
-        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
-    elif dxl_error != 0:
-        print("%s" % packetHandler.getRxPacketError(dxl_error))
-    else:
-        print("Dynamixel %d has been successfully set to initial position" % DXL_ID_LIST[i])
