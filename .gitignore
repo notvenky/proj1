@@ -19,3 +19,4 @@
 exp_local/
 .neptune/
 wandb/
+*.pkl

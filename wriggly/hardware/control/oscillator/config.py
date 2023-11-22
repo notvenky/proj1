@@ -45,7 +45,7 @@ DXL_MOVING_STATUS_THRESHOLD = 20
 PROTOCOL_VERSION = 2.0                        # 2.0 for XM430-W210
 
 # Default setting
-DXL_ID_LIST = [11, 12, 20, 21, 22]                 # Dynamixel ID list
+DXL_ID_LIST = [11, 12, 20, 21, 22]            # Dynamixel ID list
 BAUDRATE = 1000000                            # Dynamixel communication baudrate
 DEVICENAME = '/dev/ttyUSB0'                   # U2D2 USB-to-Serial converter device name
 
