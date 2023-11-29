@@ -1,0 +1,66 @@
+<mujoco>
+  <compiler angle="radian" autolimits="true" />
+  <default>
+      <position forcelimited="true" forcerange="-3 3"/>
+      <!-- <geom solref=".002 1" solimp=".8 .9 .01"/> -->
+      <!-- <geom solref=".002 10" solimp="0.9 0.95 0.001 0.5 2"/> -->
+      <geom solref=".01 1" solimp="0.9 0.95 0.001 0.5 6"/>
+      <!-- <geom friction = "0.0001 0.0001 0.0001"/> -->
+  </default>
+  <asset>
+    <mesh name="base_link"        file="../mujoco/meshes/base_link.STL"/>
+    <mesh name="green_leg_holder" file="../mujoco/meshes/green_leg_holder.STL"/>
+    <mesh name="central_link"     file="../mujoco/meshes/central_link.STL"/>
+    <mesh name="red_central"      file="../mujoco/meshes/red_central.STL"/>
+    <mesh name="red_leg_holder"   file="../mujoco/meshes/red_leg_holder.STL"/>
+    <mesh name="red_leg"          file="../mujoco/meshes/red_leg.STL"/>
+  </asset>
+  <actuator>
+    <position name="ACT0" kp="5" joint="Green_Leg_Final_Joint"   ctrlrange="-1.57 1.57"/>
+    <position name="ACT1" kp="5" joint="Green_Leg_Central_Joint" ctrlrange="-3.14 3.14"/>
+    <position name="ACT2" kp="5" joint="Red_Leg_Central_Joint"   ctrlrange="-1.57 1.57"/>
+    <position name="ACT3" kp="5" joint="Red_Knee"                ctrlrange="-3.14 3.14"/>
+    <position name="ACT4" kp="5" joint="Red_Leg_Final_Joint"     ctrlrange="-1.57 1.57"/>
+    <position name="ACT5" kp="5" joint="Green_Leg_Final_Joint"   ctrlrange="-1.57 1.57"/>
+    <position name="ACT6" kp="5" joint="Green_Leg_Central_Joint" ctrlrange="-3.14 3.14"/>
+    <position name="ACT7" kp="5" joint="Red_Leg_Central_Joint"   ctrlrange="-1.57 1.57"/>
+    <position name="ACT8" kp="5" joint="Red_Knee"                ctrlrange="-3.14 3.14"/>
+    <position name="ACT9" kp="5" joint="Red_Leg_Final_Joint"     ctrlrange="-1.57 1.57"/>
+    <position name="ACT10" kp="5" joint="Green_Leg_Final_Joint"   ctrlrange="-1.57 1.57"/>
+    <position name="ACT11" kp="5" joint="Green_Leg_Central_Joint" ctrlrange="-3.14 3.14"/>
+  </actuator>
+  <sensor>
+    <jointpos name="ACT0_pos_sensor" joint="Green_Leg_Final_Joint"/>
+    <jointpos name="ACT1_pos_sensor" joint="Green_Leg_Central_Joint"/>
+    <jointpos name="ACT2_pos_sensor" joint="Red_Leg_Central_Joint"/>
+    <jointpos name="ACT3_pos_sensor" joint="Red_Knee"/>
+    <jointpos name="ACT4_pos_sensor" joint="Red_Leg_Final_Joint"/>
+    <jointpos name="ACT5_pos_sensor" joint="Green_Leg_Final_Joint"/>
+    <jointpos name="ACT6_pos_sensor" joint="Green_Leg_Central_Joint"/>
+    <jointpos name="ACT7_pos_sensor" joint="Red_Leg_Central_Joint"/>
+    <jointpos name="ACT8_pos_sensor" joint="Red_Knee"/>
+    <jointpos name="ACT9_pos_sensor" joint="Red_Leg_Final_Joint"/>
+    <jointpos name="ACT10_pos_sensor" joint="Green_Leg_Final_Joint"/>
+    <jointpos name="ACT11_pos_sensor" joint="Green_Leg_Central_Joint"/>
+
+    <jointvel name="ACT0_velocity_sensor" joint="Green_Leg_Final_Joint"/>
+    <jointvel name="ACT1_velocity_sensor" joint="Green_Leg_Central_Joint"/>
+    <jointvel name="ACT2_velocity_sensor" joint="Red_Leg_Central_Joint"/>
+    <jointvel name="ACT3_velocity_sensor" joint="Red_Knee"/>
+    <jointvel name="ACT4_velocity_sensor" joint="Red_Leg_Final_Joint"/>
+    <jointvel name="ACT5_velocity_sensor" joint="Green_Leg_Final_Joint"/>
+    <jointvel name="ACT6_velocity_sensor" joint="Green_Leg_Central_Joint"/>
+    <jointvel name="ACT7_velocity_sensor" joint="Red_Leg_Central_Joint"/>
+    <jointvel name="ACT8_velocity_sensor" joint="Red_Knee"/>
+    <jointvel name="ACT9_velocity_sensor" joint="Red_Leg_Final_Joint"/>
+    <jointvel name="ACT10_velocity_sensor" joint="Green_Leg_Final_Joint"/>
+    <jointvel name="ACT11_velocity_sensor" joint="Green_Leg_Central_Joint"/>
+  </sensor>
+  <!-- <contact>
+    <exclude name="exclude_0_1" body1="green_leg" body2="Green_Leg_Holder"/>
+    <exclude name="exclude_1_2" body1="Green_Leg_Holder" body2="Central_Link"/>
+    <exclude name="exclude_2_3" body1="Central_Link" body2="Red_Leg_Central_Link"/>
+    <exclude name="exclude_3_4" body1="Red_Leg_Central_Link" body2="Red_Leg_Holder"/>
+    <exclude name="exclude_4_5" body1="Red_Leg_Holder" body2="Red_Leg"/>
+  </contact> -->
+</mujoco>

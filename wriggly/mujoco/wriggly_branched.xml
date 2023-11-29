@@ -1,0 +1,19 @@
+<mujoco model="wriggly_branched">
+  <option timestep = "0.005" integrator="RK4"/>
+
+
+  <!-- <option density = "1000" viscosity = "10"/> -->
+
+  <worldbody>
+    <geom name="target" pos="0 1 0" type="cylinder" size=".5 .005 0" rgba="0 0.6 0.6 1"/>
+    <!-- <geom name="heading" pos="0 1 0.25" type="cylinder" size=".05 .25 0" rgba="0.6 0.6 0 1"/> -->
+  </worldbody>
+  <include file = "assets/materials.xml"/>
+
+  <include file = "scenes/basic_scene.xml"/>
+  <!--include file = "scenes/dkitty_scene.xml"-->
+  <include file = "assets/wriggly_dependencies_branched.xml"/>
+  <compiler meshdir="."/>
+  <include file = "assets/wriggly_chain_branched.xml"/>
+
+</mujoco>

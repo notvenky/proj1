@@ -1,7 +1,7 @@
 from dynamixel_sdk import *
 import numpy as np
 
-CONTROL_HZ = 10
+CONTROL_HZ = 15
 CONTROL_TIME = 1.0 / CONTROL_HZ
 CONTROL_TIME_MS = int(CONTROL_TIME * 1000)
 
@@ -35,7 +35,8 @@ ANGLE_RANGES = {
 
 
 MEAN_POSITION = 2048
-# MEAN_POSITIONS = [2048, 3072, 2048, 2048, 4095]
+JOINT_RANGES_SIM = (1.57, 3.14, 1.57, 3.14, 1.57)
+CLIPPING_RANGES = [(-1.57, 1.57), (-3.14, 3.14), (-1.57, 1.57), (-3.14, 3.14), (-1.57, 1.57)]
 
 dxl_goal_position = [0,4095]
 JOYSTICK_THRESHOLD = 0.8
@@ -46,6 +47,7 @@ PROTOCOL_VERSION = 2.0                        # 2.0 for XM430-W210
 
 # Default setting
 DXL_ID_LIST = [21,22,20,12,11]                # Dynamixel ID list
+# DXL_ID_LIST = [22, 21, 20, 12, 11]               # Dynamixel ID list
 BAUDRATE = 1000000                            # Dynamixel communication baudrate
 DEVICENAME = '/dev/ttyUSB0'                   # U2D2 USB-to-Serial converter device name
 

@@ -1,0 +1,16 @@
+<mujoco model="wriggly">
+  <option timestep="0.005" integrator="RK4"/>
+  
+  <worldbody>
+    <geom name="target" pos="0 0 0" type="cylinder" size=".5 .005" rgba="0 0.6 0.6 1"/>
+    <geom name="arrow" fromto="0 0 0.5 2 0 0.5" type="cylinder" size=".005 1" euler="0 1.57 0" rgba="0.9 0.4 0.2 1"/>
+    <!-- <geom name="arrow" type="cylinder" size="0.01 2.4" pos="2.4 0 0" euler="0 0 1.57" rgba="1 0 0 1"/> -->
+    <!-- <geom name="arrowhead" type="cylinder" fromto="4.8 0 0 5 0 0" size="0.02 0.1" rgba="1 0 0 1"/> -->
+  </worldbody>
+  
+  <include file="assets/materials.xml"/>
+  <include file="scenes/basic_scene.xml"/>
+  <include file="assets/wriggly_dependencies.xml"/>
+  <compiler meshdir="." />
+  <include file="assets/wriggly_chain.xml"/>
+</mujoco>
