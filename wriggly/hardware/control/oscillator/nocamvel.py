@@ -1,6 +1,7 @@
 import numpy as np
 import time
 import re
+import matplotlib.pyplot as plt
 from config import *
 
 
@@ -41,7 +42,7 @@ Frequency [0.64432    0.24508412 0.62286806 0.4359714  0.45896667]
 Amplitude [1.5191154 3.11296   1.537959  2.7207987 1.1485012]
 Phase [1.148803  1.5353366 1.120023  2.939859  2.0592115]
 '''
-paste_string = 'Frequency: tensor([0.6443, 0.2451, 0.6229, 0.4360, 0.4590]), Amplitude: tensor([1.5191, 3.1130, 1.5380, 2.7208, 1.1485]), Phase: tensor([1.1488, 1.5353, 1.1200, 2.9399, 2.0592])'
+# paste_string = 'Frequency: tensor([0.6443, 0.2451, 0.6229, 0.4360, 0.4590]), Amplitude: tensor([1.5191, 3.1130, 1.5380, 2.7208, 1.1485]), Phase: tensor([1.1488, 1.5353, 1.1200, 2.9399, 2.0592])'
 
 
 '''
@@ -75,7 +76,7 @@ Amplitude [1.3954116 3.0426228 1.4533448 1.9150698 1.1466035]
 Phase [1.326706  1.4117506 1.4463348 3.2927694 2.2267342]
 '''
 
-# paste_string = 'Frequency: tensor([0.6913, 0.2183, 0.6087, 0.5010, 0.5084]), Amplitude: tensor([1.3954, 3.0426, 1.4533, 1.9151, 1.1466]), Phase: tensor([1.3267, 1.4118, 1.4463, 3.2928, 2.2267])'
+paste_string = 'Frequency: tensor([0.6913, 0.2183, 0.6087, 0.5010, 0.5084]), Amplitude: tensor([1.3954, 3.0426, 1.4533, 1.9151, 1.1466]), Phase: tensor([1.3267, 1.4118, 1.4463, 3.2928, 2.2267])'
 
 
 '''
@@ -148,6 +149,33 @@ print('PHASES =', PHASES)
 
 # Constants
 PI = np.pi
+
+# Data storage for plotting
+commanded_velocity = {dxl_id: [] for dxl_id in DXL_ID_LIST}
+actual_velocity = {dxl_id: [] for dxl_id in DXL_ID_LIST}
+commanded_position = {dxl_id: [] for dxl_id in DXL_ID_LIST}
+actual_position = {dxl_id: [] for dxl_id in DXL_ID_LIST}
+time_stamps = []
+
+def read_present_position(dxl_id):
+    dxl_present_position, dxl_comm_result, dxl_error = packetHandler.read4ByteTxRx(portHandler, dxl_id, ADDR_PRO_PRESENT_POSITION)
+    if dxl_comm_result != COMM_SUCCESS:
+        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+    elif dxl_error != 0:
+        print("%s" % packetHandler.getRxPacketError(dxl_error))
+    return dxl_present_position
+
+def plot_servo_data(time, commanded, actual, title):
+    plt.figure(figsize=(10, 6))
+    for dxl_id, data in commanded.items():
+        plt.plot(time, data, label=f'Commanded {dxl_id}')
+        plt.plot(time, actual[dxl_id], '--', label=f'Actual {dxl_id}')
+    
+    plt.title(title)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Value')
+    plt.legend()
+    plt.show()
 
 # Function to set velocity for the Dynamixel motors
 def set_motor_velocity(dxl_id, velocity):
@@ -222,6 +250,8 @@ try:
         # Send position commands
         for dxl_id in DXL_ID_LIST:
             check_and_issue_next_command(dxl_id, current_time)
+            actual_pos = read_present_position(dxl_id)
+            actual_position[dxl_id].append(actual_pos)
         time.sleep(COMMAND_PERIOD)
 
 except KeyboardInterrupt:
@@ -239,6 +269,7 @@ finally:
             print("Dynamixel %d torque has been successfully disabled" % DXL_ID_LIST[i])
 
     portHandler.closePort()
+    plot_servo_data(time_stamps, commanded_position, actual_position, 'Position Over Time')
 
 
 

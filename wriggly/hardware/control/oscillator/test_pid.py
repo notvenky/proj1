@@ -1,10 +1,26 @@
-from dynamixel_sdk import *
 from config import *
 # from dynamixel.dxl_client import DynamixelClient, DynamixelReader, DynamixelPosVelCurReader
 import pickle
 import matplotlib.pyplot as plt
-import numpy as np
-import time
+
+# PID Controller Class
+class PIDController:
+    def __init__(self, Kp, Ki, Kd):
+        self.Kp = Kp
+        self.Ki = Ki
+        self.Kd = Kd
+        self.previous_error = 0
+        self.integral = 0
+
+    def calculate(self, error, dt):
+        self.integral += error * dt
+        derivative = (error - self.previous_error) / dt
+        output = self.Kp * error + self.Ki * self.integral + self.Kd * derivative
+        self.previous_error = error
+        return output
+
+# Initialize PID Controllers for each joint
+pid_controllers = [PIDController(Kp=0.1, Ki=0.01, Kd=0.01) for _ in DXL_ID_LIST]
 
 joint_position_log = []
 joint_velocity_log = []
@@ -12,6 +28,27 @@ commanded_positions_log = []
 last_joint_positions = None
 
 groupSyncWrite = GroupSyncWrite(portHandler, packetHandler, ADDR_PRO_GOAL_POSITION, 4)
+
+with open('observations_0.pkl', 'rb') as f:
+    joint_readings = pickle.load(f)[1:]
+
+def write_joint_currents(joint_currents):
+    """
+    Write joint currents to the motors using group sync write.
+    """
+    groupSyncWrite.clearParam()
+    for dxl_id, current in zip(DXL_ID_LIST, joint_currents):
+        param_goal_current = [DXL_LOBYTE(DXL_LOWORD(current)), DXL_HIBYTE(DXL_LOWORD(current)), 
+                              DXL_LOBYTE(DXL_HIWORD(current)), DXL_HIBYTE(DXL_HIWORD(current))]
+        dxl_addparam_result = groupSyncWrite.addParam(dxl_id, param_goal_current)
+        if not dxl_addparam_result:
+            print("[ID:%03d] groupSyncWrite addparam failed" % dxl_id)
+            quit()
+
+    dxl_comm_result = groupSyncWrite.txPacket()
+    if dxl_comm_result != COMM_SUCCESS:
+        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+    groupSyncWrite.clearParam()
 
 def unnormalize_and_clip(joint_angles, obs_mean, obs_std):
     """
@@ -84,11 +121,25 @@ def read_actual_joint_positions():
 
     return actual_positions
 
-# obs_mean = np.array([0.5, 0.5, 0.5, 0.5, 0.5])
-# obs_std = np.array([1.57, 3.14, 1.57, 3.14, 1.57])
+# Main control loop
+last_time = time.time()
+for joint_angles in joint_readings:
+    current_time = time.time()
+    dt = current_time - last_time
+    last_time = current_time
 
-with open('observations_0.pkl', 'rb') as f:
-    joint_readings = pickle.load(f)[1:]
+    joint_positions = convert_to_dxl_position(joint_angles)
+    actual_positions = read_actual_joint_positions()
+    joint_currents = []
+
+    for idx, (desired, actual) in enumerate(zip(joint_positions, actual_positions)):
+        error = desired - actual
+        current = pid_controllers[idx].calculate(error, dt)
+        current = np.clip(current, -MAX_CURRENT, MAX_CURRENT)  # Limit the current
+        joint_currents.append(int(current))
+
+    write_joint_currents(joint_currents)
+    time.sleep(CONTROL_TIME)
 
 for joint_angles in joint_readings:
     joint_positions = convert_to_dxl_position(joint_angles)
@@ -107,4 +158,3 @@ plt.xlabel('Time (s)')
 plt.ylabel('Position')
 plt.legend()
 plt.show()
-# plt.savefig('joint_positions.png')

@@ -1,7 +1,7 @@
 from dynamixel_sdk import *
 import numpy as np
 
-CONTROL_HZ = 15
+CONTROL_HZ = 7.5
 CONTROL_TIME = 1.0 / CONTROL_HZ
 CONTROL_TIME_MS = int(CONTROL_TIME * 1000)
 
@@ -23,6 +23,7 @@ ADDR_TIME_PROFILE = 112
 # Operating Mode Addresses
 POSITION_CONTROL = 3
 VELOCITY_CONTROL = 1
+CURRENT_CONTROL = 0
 
 # Define angle ranges for each Dynamixel
 ANGLE_RANGES = {
@@ -56,10 +57,9 @@ amplitude_conversion_factor = 2048 / 3.14
 
 # Initialize PortHandler instance
 portHandler = PortHandler(DEVICENAME)
-print(DXL_ID_LIST)
+# print(DXL_ID_LIST)
 # Initialize PacketHandler instance
 packetHandler = PacketHandler(PROTOCOL_VERSION)
-
 
 # Open port
 if portHandler.openPort():
@@ -118,3 +118,5 @@ for i in range(len(DXL_ID_LIST)):
         print("%s" % packetHandler.getRxPacketError(dxl_error))
     else:
         print("Dynamixel %d has been successfully set to initial position" % DXL_ID_LIST[i])
+
+print('**************** WRIGGLY IS AT HOME POSITION ****************')
